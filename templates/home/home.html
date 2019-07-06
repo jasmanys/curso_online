@@ -1,0 +1,63 @@
+{% extends 'base-public.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/home.css">
+{% endblock %}
+{% block title %}
+    Home
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+
+
+    <nav id="nav-foto" class="navbar py-lg-4 ">
+        <div class="container">
+            <h1 class="h1 text-white"> Mis Cursos</h1>
+            <img src="/static/media/logo.png" class="navbar-brand justify-end" />
+        </div>
+
+    </nav>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div style="cursor: pointer;" class="card mt-3 mb-3 ">
+                    <div class="card-header text-white">
+                        Curso de Electricidad
+                    </div>
+                    <div class="card-body">
+                        Clase
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <footer class="mt-5 fixed-bottom bg-white">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col">
+                        <small>Antony Aguirre © 2019</small>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+{% endblock %}
+
+    <!-- <a href="https://farm9.staticflickr.com/8642/16455005578_0fdfc6c3da_b.jpg" data-lity
+        data-lity-desc="Photo of a flower">Image</a>
+    <a href="#inline" data-lity>Inline</a>
+    <a href="//www.youtube.com/watch?v=Mnx58McOgDk" data-lity>iFrame Youtube</a>
+    <a href="//vimeo.com/1084537" data-lity>iFrame Vimeo</a>
+    <a href="//maps.google.com/maps?q=1600+Amphitheatre+Parkway,+Mountain+View,+CA" data-lity>Google Maps</a>
+
+    <div id="inline" style="background:#fff" class="lity-hide">
+        Inline content
+    </div>-->
+{% block script %}
+    <script src="/static/js/home.js"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+/*li:hover{
+    background-color: red;
+}*/
+@media (max-width: 991.98px) {
+    .dropdown-menu {
+        border: none;
+    }
+
+    .nav-item:hover {
+        padding-bottom: -5px;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-bottom-color: solid;
+    }
+}
+
+@media (min-width: 992px) {
+    .nav-item:hover {
+        border-bottom-width: 5px;
+        border-bottom-style: solid;
+        border-bottom-color: #38869a;
+    }
+}
+.card{
+    transition: box-shadow .3s;
+}
+.card:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  }
+.card-header{
+    background-color:#38869a;
+}
+#nav-foto {
+    background-image: url('/static/media/fondo-nav-naval.jpg');
+}
