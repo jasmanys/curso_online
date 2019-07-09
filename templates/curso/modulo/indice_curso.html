@@ -1,0 +1,54 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    Indice del curso
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white"> Mis Cursos</h1>
+
+        </div>
+
+    </nav>
+    <div class="container mt-3">
+    <div class="row">
+    <ul class="offset-xl-4 col-xl-8 col-lg-8 offset-lg-4 col-md-12 text-justify">
+    {% for modulo in modulos %}
+
+        <li>
+                {{ modulo.numero }} {{ modulo.titulo }}
+            <ul>
+                {% for antemodulo in modulo.antemodulos %}
+                    <li>
+                            {{ modulo.numero }}.{{ antemodulo.numero }} {{ antemodulo.titulo }}
+                        <ul>
+                            {% for submodulo in antemodulo.submodulos %}
+                                <li>
+
+                                        {{ modulo.numero }}.{{ antemodulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+
+    {% endfor %}
+     </ul>
+</div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

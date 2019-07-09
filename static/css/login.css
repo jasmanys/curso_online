@@ -3,3 +3,8 @@ body {
     background-image: url('/static/media/fondo_naval.jpg');
     background-position: center center;
 }
+@media (max-width: 991.98px) {
+    #btn-login {
+	background-color: #38869a;
+    }
+}

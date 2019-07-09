@@ -4,9 +4,11 @@ from django.db.models import Max
 from estudiante.models import Estudiante
 
 class Curso(models.Model):
-    nombre = models.CharField(verbose_name='Curso', max_length=50)
-    descripcion = models.CharField(verbose_name='Descripcion', max_length=100)
-    comentario = models.CharField(verbose_name='Comentario', max_length=100)
+    nombre = models.CharField(verbose_name='Nombre del Curso', max_length=50)
+    descripcion = models.TextField(verbose_name='Descripción', max_length=600)
+    comentario = models.TextField(verbose_name='Comentario', max_length=600)
+    icono = models.TextField(verbose_name='Icono', max_length=600, blank=True, null=True)
+
 
     def __str__(self):
         return self.nombre
@@ -16,7 +18,7 @@ class Curso(models.Model):
         verbose_name_plural = 'Cursos'
 
 class EstudianteCurso(models.Model):
-    estudiante = models.ForeignKey(Estudiante, verbose_name='Estudiante', on_delete=models.PROTECT)
+    estudiante = models.ForeignKey(Estudiante, verbose_name='Elija al Estudiante', on_delete=models.PROTECT)
     cursos = models.ManyToManyField(Curso, verbose_name="Cursos")
 
     def __str__(self):
@@ -28,7 +30,7 @@ class EstudianteCurso(models.Model):
 
 class Recurso(models.Model):
     curso = models.ForeignKey(Curso, verbose_name="Curso", on_delete=models.CASCADE)
-    descripcion = models.CharField(verbose_name='Descripcion', max_length=100)
+    descripcion = models.TextField(verbose_name='Descripcion', max_length=600)
 
     def __str__(self):
         return self.descripcion
@@ -38,7 +40,7 @@ class Recurso(models.Model):
         verbose_name_plural = 'Recursos'
 
 class Item(models.Model):
-    descripcion = models.CharField(verbose_name='Descripción', max_length=50)
+    descripcion = models.TextField(verbose_name='Descripción', max_length=600)
 
     def __str__(self):
         return self.descripcion
@@ -48,9 +50,9 @@ class Item(models.Model):
         verbose_name_plural = 'Items para Recursos'
 
 class RecursoItem(models.Model):
-    titulo = models.CharField(verbose_name='Título', max_length=50)
+    titulo = models.CharField(verbose_name='Título', max_length=200)
     item = models.ManyToManyField(Item, verbose_name='Item')
-    descripcion = models.CharField(verbose_name='Descripción', max_length=50)
+    descripcion = models.TextField(verbose_name='Descripción', max_length=600)
     recurso = models.ForeignKey(Recurso, verbose_name='Recurso', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -61,8 +63,8 @@ class RecursoItem(models.Model):
         verbose_name_plural = 'Items de Recursos'
 
 class Modulo(models.Model):
-    numero = models.IntegerField(verbose_name='Módulo')
-    titulo = models.CharField(verbose_name='Título', max_length=50)
+    numero = models.IntegerField(verbose_name='Numero del Módulo')
+    titulo = models.CharField(verbose_name='Título', max_length=200)
     curso = models.ForeignKey(Curso, verbose_name="Curso", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -87,7 +89,7 @@ class Modulo(models.Model):
 
 class AnteModulo(models.Model):
     numero = models.IntegerField(verbose_name='AnteMódulo')
-    titulo = models.CharField(verbose_name='Título', max_length=50)
+    titulo = models.CharField(verbose_name='Título', max_length=200)
     modulo = models.ForeignKey(Modulo, verbose_name="Módulo", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -111,7 +113,7 @@ class AnteModulo(models.Model):
         super(AnteModulo, self).save(*args, **kwargs)
 
 class Foto(models.Model):
-    foto = models.CharField(verbose_name='Foto', max_length=300)
+    foto = models.TextField(verbose_name='Foto', max_length=600)
 
     def __str__(self):
         return self.foto
@@ -121,7 +123,7 @@ class Foto(models.Model):
         verbose_name_plural = 'Fotos'
 
 class Video(models.Model):
-    video = models.CharField(verbose_name='Link del vídeo en YouTube', max_length=350)
+    video = models.TextField(verbose_name='Link del vídeo en YouTube', max_length=600)
 
     def __str__(self):
         return self.video
@@ -131,7 +133,7 @@ class Video(models.Model):
         verbose_name_plural = 'Vídeos'
 
 class Audio(models.Model):
-    audio = models.CharField(verbose_name='Audio', max_length=350)
+    audio = models.TextField(verbose_name='Audio', max_length=600)
 
     def __str__(self):
         return self.audio
@@ -142,7 +144,7 @@ class Audio(models.Model):
 
 class SubModulo(models.Model):
     numero = models.IntegerField(verbose_name='SubMódulo')
-    titulo = models.CharField(verbose_name='Título', max_length=50)
+    titulo = models.CharField(verbose_name='Título', max_length=200)
     texto = models.TextField(verbose_name='Contenido', max_length=10000, blank=True)
     antemodulo = models.ForeignKey(AnteModulo, verbose_name="AnteModulo", on_delete=models.CASCADE)
 

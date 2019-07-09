@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% block head %}
     <link rel="stylesheet" href="/static/css/login.css">
 {% endblock %}
@@ -33,13 +33,13 @@
                     <form action="/login/" method="POST"> {% csrf_token %}
                         <div class="form-group row">
                             <div class="col-12">
-                                <input type="text" class="form-control pt-4 pb-4" id="username" name="username"
+                                <input required type="text" class="form-control pt-4 pb-4" id="username" name="username"
                                     placeholder="Username o e-mail" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-12">
-                                <input type="password" class="form-control pt-4 pb-4" id="password" name="password"
+                                <input required type="password" class="form-control pt-4 pb-4" id="password" name="password"
                                     placeholder="Contraseña" />
                             </div>
                         </div>

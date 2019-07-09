@@ -1,15 +1,26 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Value
+from django.db.models.functions import Lower, Trim, Replace
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
+from curso.models import Curso
+from unidecode import unidecode
+
 @login_required(login_url='/login/')
+
 def index(request):
+    data = {}
     user = request.user
     if user.is_superuser:
         return redirect('/admin/')
-    return render(request, 'home/home.html')
+    data['cursos'] = Curso.objects.annotate(nombre_link=Replace(Lower(Trim("nombre")), Value(' '), Value(''))).values()
+    for i in range(len(data['cursos'])):
+        data['cursos'][i]['nombre_link'] = unidecode(data['cursos'][i]['nombre_link'])
+    data['user'] = user
+    return render(request, 'home/home.html', data)
 
 # Create your views here.
 def login_user(request):
