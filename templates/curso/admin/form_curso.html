@@ -1,0 +1,63 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    {% if accion %}
+        {{ accion }}
+    {% else %}
+        Cursos
+    {% endif %}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                {% if curso.nombre %}
+                    Curso de {{ curso.nombre }}
+                {% else %}
+                    {{ accion }}
+                {% endif %}
+            </h1>
+        </div>
+
+    </nav>
+    <div class="container-fluid mt-3 mb-5">
+        <div class="row"><!--Datos del nuevo CURSO-->
+            <div class="col-xl-8 offset-xl-2">
+                <div class="card">
+                    <div class="card-header curso-card-header text-white text-center">
+                        <h5 class="h5">
+                            Datos del nuevo curso
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="frm" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <p>
+                                <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar Curso</button>
+                                <a href="/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<!-- Initialize Swiper -->
+  <script>
+    const cargando = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    const err = 'Siguiente';
+    $('#frm').on('submit',() =>{
+        $('#guardar').html(cargando);
+    });
+  </script>
+{% endblock %}

@@ -1,17 +1,16 @@
-from django.db import models
+﻿from django.db import models
 from django.db.models import Max
-
 from estudiante.models import Estudiante
 
 class Curso(models.Model):
-    nombre = models.CharField(verbose_name='Nombre del Curso', max_length=50)
+    nombre = models.CharField(verbose_name='Nombre del Curso', max_length=50, unique=True)
     descripcion = models.TextField(verbose_name='Descripción', max_length=600)
     comentario = models.TextField(verbose_name='Comentario', max_length=600)
-    icono = models.TextField(verbose_name='Icono', max_length=600, blank=True, null=True)
+    icono = models.ImageField(verbose_name='Icono', upload_to='fotos_curso/', null=True, blank=True)
 
 
     def __str__(self):
-        return self.nombre
+        return "Curso de {}".format(self.nombre)
 
     class Meta:
         verbose_name = 'Curso'
@@ -64,7 +63,7 @@ class RecursoItem(models.Model):
 
 class Modulo(models.Model):
     numero = models.IntegerField(verbose_name='Numero del Módulo')
-    titulo = models.CharField(verbose_name='Título', max_length=200)
+    titulo = models.CharField(verbose_name='Título', max_length=200, blank=False, null=False)
     curso = models.ForeignKey(Curso, verbose_name="Curso", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -87,78 +86,24 @@ class Modulo(models.Model):
             self.numero = mod.numero
         super(Modulo, self).save(*args, **kwargs)
 
-class AnteModulo(models.Model):
-    numero = models.IntegerField(verbose_name='AnteMódulo')
-    titulo = models.CharField(verbose_name='Título', max_length=200)
-    modulo = models.ForeignKey(Modulo, verbose_name="Módulo", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '{} - {} - {}'.format(self.numero, self.titulo, self.modulo)
-
-    class Meta:
-        verbose_name = 'AnteMódulo'
-        verbose_name_plural = 'AnteMódulos'
-        ordering = ('numero',)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            if AnteModulo.objects.filter(modulo__id = self.modulo.id).exists():
-                mod = AnteModulo.objects.filter(modulo__id = self.modulo.id).aggregate(max_numero = Max('numero'))
-                self.numero = mod.get('max_numero') + 1
-            else:
-                self.numero = 1
-        else:
-            mod = AnteModulo.objects.get(id=self.id)
-            self.numero = mod.numero
-        super(AnteModulo, self).save(*args, **kwargs)
-
-class Foto(models.Model):
-    foto = models.TextField(verbose_name='Foto', max_length=600)
-
-    def __str__(self):
-        return self.foto
-
-    class Meta:
-        verbose_name = 'Foto'
-        verbose_name_plural = 'Fotos'
-
-class Video(models.Model):
-    video = models.TextField(verbose_name='Link del vídeo en YouTube', max_length=600)
-
-    def __str__(self):
-        return self.video
-
-    class Meta:
-        verbose_name = 'Vídeo'
-        verbose_name_plural = 'Vídeos'
-
-class Audio(models.Model):
-    audio = models.TextField(verbose_name='Audio', max_length=600)
-
-    def __str__(self):
-        return self.audio
-
-    class Meta:
-        verbose_name = 'Audio'
-        verbose_name_plural = 'Audios'
-
 class SubModulo(models.Model):
     numero = models.IntegerField(verbose_name='SubMódulo')
     titulo = models.CharField(verbose_name='Título', max_length=200)
     texto = models.TextField(verbose_name='Contenido', max_length=10000, blank=True)
-    antemodulo = models.ForeignKey(AnteModulo, verbose_name="AnteModulo", on_delete=models.CASCADE)
+    modulo = models.ForeignKey(Modulo, verbose_name="Seleccione el Módulo al que pertenece", on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} - {}'.format(self.numero, self.titulo)
+        return '{}.{} - {} - Módulo: {} - Curso: {}'.format(self.modulo.numero, self.numero, self.titulo, self.modulo.titulo, self.modulo.curso.nombre)
 
     class Meta:
-        verbose_name = 'SubModulo'
-        verbose_name_plural = 'SubModulos'
+        verbose_name = 'SubMódulo'
+        verbose_name_plural = 'SubMódulos'
+        ordering = ('numero',)
 
     def save(self, *args, **kwargs):
         if not self.id:
-            if SubModulo.objects.filter(antemodulo__id = self.antemodulo.id).exists():
-                mod = SubModulo.objects.filter(antemodulo__id = self.antemodulo.id).aggregate(max_numero = Max('numero'))
+            if SubModulo.objects.filter(modulo__id = self.modulo.id).exists():
+                mod = SubModulo.objects.filter(modulo__id = self.modulo.id).aggregate(max_numero = Max('numero'))
                 self.numero = mod.get('max_numero') + 1
             else:
                 self.numero = 1
@@ -166,6 +111,39 @@ class SubModulo(models.Model):
             mod = SubModulo.objects.get(id=self.id)
             self.numero = mod.numero
         super(SubModulo, self).save(*args, **kwargs)
+
+class Foto(models.Model):
+    nombre_foto = models.CharField(verbose_name='Nombre de la foto', max_length=100)
+    foto = models.ImageField(verbose_name='Foto', upload_to='fotos/', null=True, blank=True)
+
+    def __str__(self):
+        return "Nombre de la foto: {}".format(self.nombre_foto)
+
+    class Meta:
+        verbose_name = 'Foto'
+        verbose_name_plural = 'Fotos'
+
+class Video(models.Model):
+    nombre_video = models.CharField(verbose_name='Nombre del vídeo', max_length=100)
+    link_video = models.TextField(verbose_name='Link el vídeo', max_length=500)
+
+    def __str__(self):
+        "Nombre del vídeo: {}".format(self.nombre_video)
+
+    class Meta:
+        verbose_name = 'Vídeo'
+        verbose_name_plural = 'Vídeos'
+
+class Audio(models.Model):
+    nombre_audio = models.CharField(verbose_name='Nombre del audio', max_length=100)
+    audio = models.FileField(verbose_name='Audio', upload_to='audios/', null=True, blank=True)
+
+    def __str__(self):
+        "Nombre del audio: {}".format(self.nombre_audio)
+
+    class Meta:
+        verbose_name = 'Audio'
+        verbose_name_plural = 'Audios'
 
 class FotoSubModulo(models.Model):
     sub_modulo = models.ForeignKey(SubModulo, on_delete=models.CASCADE)

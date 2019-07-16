@@ -1,0 +1,118 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    Módulos
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                {% if curso.nombre %}
+                    Curso de {{ curso.nombre }}
+                {% else %}
+                    {{ accion }}
+                {% endif %}
+            </h1>
+        </div>
+    </nav>
+    <div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Mensaje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Campo "Título del Modulo" vacío</p>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="container-fluid mt-3 mb-5">
+        <div class="row">
+            <div class="col-xl-8 offset-xl-2">
+                <div class="card">
+          <div class="card-header curso-card-header text-white text-center">
+              <h5 class="h5">Modulos para el curso de {{ nombre_curso }}</h5>
+          </div>
+          <div class="card-body">
+              {% if mensaje %}
+                  <div class="alert alert-success" role="alert">
+                    {{ mensaje }}
+                  <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                                <i class="fas fa-times justify-end"></i>
+                            </button>
+                  </div>
+              {% endif %}
+              <form id="frm" action="/curso/modulo/agg/" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="hidden" name="idcurso" value="{{ curso.id }}" id="idcurso">
+                  <div class="form-group">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Título del Módulo</span>
+                      </div>
+                      <input id="modTitulo" required type="text" class="form-control" placeholder="Ej: Elementos electrónicos, voltaje, corriente y leyes de Kirchhoff."
+                             aria-label="Modulo" aria-describedby="basic-addon1">
+                        <div class="input-group-append">
+                            <button title="Agregar un modulo para el curso de {{ nombre_curso }}" class="btn btn-outline-info" type="button" id="addModulo">
+                                <i class="fas fa-folder-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group table-responsive">
+                      <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Título del Módulo</th>
+                              <th scope="col" class="text-center">Eliminar</th>
+                            </tr>
+                          </thead>
+                          <tbody id="tb_container">
+                            <tr id="f1">
+                              <td class="text-break">Elementos electrónicos, voltaje, corriente y leyes de Kirchhoff.</td>
+                              <td class="text-center">
+                                  <button onclick="quitar('1')" title="Eliminar modulo" class="btn btn-outline-danger btn-sm btnEliminarModulo" type="button">
+                                    <i class="fas fa-times"></i>
+                                  </button>
+                              </td>
+                            </tr>
+                          <tr id="f2">
+                              <td class="text-break">Elementos electrónicos, voltaje, corriente y leyes de Kirchhoff.</td>
+                              <td class="text-center">
+                                  <button onclick="quitar('2')" title="Eliminar modulo" class="btn btn-outline-danger btn-sm" type="button">
+                                    <i class="fas fa-times"></i>
+                                  </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+                  <div class="form-group">
+                        <button id="next" type="submit" class="btn btn-success btn-md px-5">Siguiente</button>
+                        <a href="/" class="btn btn-danger btn-md">Cancelar</a>
+                  </div>
+              </form>
+          </div>
+        </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="/static/js/form_modulo.js"></script>
+{% endblock %}

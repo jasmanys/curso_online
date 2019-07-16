@@ -13,7 +13,7 @@
                         <div id="no-valido" class="alert alert-danger" role="alert">
                             <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
                                 aria-label="Close">
-                                <span style="font-size: 20px;" aria-hidden="true">&times;</span>
+                                <i class="fas fa-times justify-end"></i>
                             </button>
                             <span id="alert-contenido">
                                 {% if error == 'no-active' %}
@@ -30,7 +30,7 @@
                     {% endif %}
 
                     <h5 class="card-title mt-3 mb-4">Inicie Sesión</h5>
-                    <form action="/login/" method="POST"> {% csrf_token %}
+                    <form id="frm" action="/login/" method="POST"> {% csrf_token %}
                         <div class="form-group row">
                             <div class="col-12">
                                 <input required type="text" class="form-control pt-4 pb-4" id="username" name="username"

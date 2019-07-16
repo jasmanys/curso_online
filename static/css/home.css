@@ -6,7 +6,7 @@
         border: none;
     }
 
-    .nav-item:hover {
+    .navbar-nav>.nav-item:hover {
         padding-bottom: -5px;
         border-bottom-width: 3px;
         border-bottom-style: solid;
@@ -15,19 +15,19 @@
 }
 
 @media (min-width: 992px) {
-    .nav-item:hover {
+    .navbar-nav>.nav-item:hover {
         border-bottom-width: 5px;
         border-bottom-style: solid;
         border-bottom-color: #38869a;
     }
 }
-.card{
+.curso-card{
     transition: box-shadow .3s;
 }
-.card:hover {
+.curso-card:hover {
    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
-.card-header{
+.curso-card-header{
     background-color:#38869a;
 }
 #nav-foto {

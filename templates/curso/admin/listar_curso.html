@@ -1,0 +1,45 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    Listado de cursos
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                Listado de cursos
+            </h1>
+        </div>
+
+    </nav>
+    <div class="container mt-3 mb-5">
+        <div class="row">
+            {% for curso in cursos %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                        <div class="card-header curso-card-header text-white">
+                            Curso de {{ curso.nombre }}
+                        </div>
+                        <div class="card-body text-center">
+                            <figure>
+                                <img src = '/media/{{ curso.icono }}' width="150px"/>
+                            </figure>
+                            <br>
+                            <a href="/curso/modulo/nuevo/{{ curso.id }}" class="card-link">Añadir Módulo</a>
+                            <a href="/curso/modulo/registros/{{ curso.id }}/" class="card-link">Módulos Registrados</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

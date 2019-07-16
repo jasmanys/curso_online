@@ -12,27 +12,27 @@
 {% block container %}
     <nav id="nav-foto" class="navbar undercontainer">
         <div class="container">
-            <h1 class="h1 text-white"> Mis Cursos</h1>
+            <h1 class="h1 text-white"> Curso de {{ curso.nombre }}</h1>
 
         </div>
 
     </nav>
     <div class="container mt-3">
     <div class="row">
-    <ul class="offset-xl-4 col-xl-8 col-lg-8 offset-lg-4 col-md-12 text-justify">
+    <ul class="offset-xl-4 col-xl-8 col-lg-8 offset-lg-4 col-md-12 text-break">
     {% for modulo in modulos %}
 
         <li>
-                {{ modulo.numero }} {{ modulo.titulo }}
+            <p>{{ modulo.numero }} {{ modulo.titulo }}</p>
             <ul>
                 {% for antemodulo in modulo.antemodulos %}
                     <li>
-                            {{ modulo.numero }}.{{ antemodulo.numero }} {{ antemodulo.titulo }}
+                            <p>{{ modulo.numero }}.{{ antemodulo.numero }} {{ antemodulo.titulo }}</p>
                         <ul>
                             {% for submodulo in antemodulo.submodulos %}
                                 <li>
 
-                                        {{ modulo.numero }}.{{ antemodulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}
+                                        <p>{{ modulo.numero }}.{{ antemodulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</p>
                                 </li>
                             {% endfor %}
                         </ul>

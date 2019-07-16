@@ -1,0 +1,108 @@
+{% extends 'base-public.html' %}
+{% block head %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+{% endblock %}
+{% block title %}
+    Módulos del curso de {{ curso.nombre }}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                Módulos del curso de {{ curso.nombre }}
+            </h1>
+        </div>
+
+    </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-justify text-break">
+              ¿Está seguro de eliminar el Módulo <strong><span id="tituloModulo"></span></strong>?<br>
+              Todos sus submodulos se eliminarán también. ¿Continuar?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            <button id="aceptarEliminar" type="button" class="btn btn-success">
+                Aceptar
+                <input type="hidden" id="idModulo" value=""/>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table table-bordered table-hover display" id="tb_modulos">
+                    <thead>
+                        <th>
+                            Número
+                        </th>
+                        <th>
+                            Título
+                        </th>
+                        <th class="text-center">
+                            Opciones
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for modulo in modulos %}
+                            <tr>
+                                <td>
+                                    {{ modulo.numero }}
+                                </td>
+                                <td>
+                                    {{ modulo.titulo }}
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                      <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Opción
+                                      </button>
+                                      <div class="dropdown-menu" aria-labelledby="btn_opcion">
+                                        <button class="dropdown-item" type="button">Agregar SubMódulo</button>
+                                        <button onclick="location='/curso/modulo/editar/{{ modulo.id }}/'" class="dropdown-item" type="button">Editar</button>
+                                        <button onclick="eliminar_modulo('{{ modulo.id }}', '{{ modulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
+                                      </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="/static/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(function(){
+            $('#tb_modulos').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+            $('#aceptarEliminar').click(() => {
+                location = '/curso/modulo/eliminar/' + $('#idModulo').val() + '/';
+            });
+        });
+        function eliminar_modulo(item, name_item) {
+            $('#tituloModulo').html(name_item);
+            $('#idModulo').val(item);
+            $('#alertaEliminar').modal('show');
+        }
+    </script>
+{% endblock %}

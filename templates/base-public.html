@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/static/css/lity.min.css">
     <script src="https://kit.fontawesome.com/9fbd7bd422.js"></script>
     <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="icon" type="image/ico" href="/static/media/logo.ico" />
     {% block head %}
 
     {% endblock %}
@@ -58,20 +59,20 @@
                     </li>
                     <li class="nav-item px-lg-4 ml-lg-4">
                         <a style="color: rgb(7, 7, 70);" href="#" class="nav-link">
-                            Link
+                            Estudiantes
                         </a>
                     </li>
                     <li class="nav-item dropdown pmd-dropdown px-lg-4 ml-lg-4">
                         <a style="color: rgb(7, 7, 70);" href="#" class="nav-link dropdown-toggle"
                             data-toggle="dropdown" id="navbardrop" data-slidebar="true" role="button"
                             aria-haspopup="true" aria-expanded="false">
-                            Usuario
+                            {{ user.username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbardrop">
-                            <a href="#" class="dropdown-item">SubItem</a>
-                            <a href="#" class="dropdown-item">SubItem</a>
+                            <a href="#" class="dropdown-item">Mi Cuenta</a>
+                            <a href="#" class="dropdown-item">Usuarios</a>
                             <div class="dropdown-divider"></div>
-                            <a href="/logout/" class="dropdown-item">LogOut</a>
+                            <a href="/logout/" class="dropdown-item">Salir</a>
                         </div>
                     </li>
                 </ul>

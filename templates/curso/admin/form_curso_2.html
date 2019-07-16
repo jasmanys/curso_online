@@ -1,0 +1,177 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    {% if accion %}
+        {{ accion }}
+    {% else %}
+        Cursos
+    {% endif %}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                {% if curso.nombre %}
+                    Curso de {{ curso.nombre }}
+                {% else %}
+                    {{ accion }}
+                {% endif %}
+            </h1>
+        </div>
+
+    </nav>
+     <div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Mensaje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Campo "Título del Modulo" vacío</p>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="container-fluid mt-3 mb-5">
+        <form id="frm" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row"><!--Datos del nuevo CURSO-->
+                <div class="col-xl-12">
+                    <div class="card">
+                      <div class="card-header curso-card-header text-white text-center">
+                          <h5 class="h5">Datos del nuevo curso</h5>       </div>
+                      <div class="card-body">
+                          <div class="form-group">
+                            <label for="nombre">
+                                Nombre del Curso:
+                            </label>
+                              <input type="text" required name="nombre" id="nombre" class="form-control" placeholder="Ej: Electricidad, Electrónica, etc." />
+                          </div>
+                          <div class="form-group">
+                            <label for="descripcion">
+                                Descripción:
+                            </label>
+                              <textarea name="descripcion" required id="descripcion" class="form-control" rows="3"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="comentario">
+                                Comentario:
+                            </label>
+                              <textarea name="comentario" required id="comentario" class="form-control" rows="3"></textarea>
+                          </div>
+                          <div class="form-group">
+                                <label for="icono">
+                                    Ícono:
+                                </label>
+                                <input style="cursor: pointer;" type="file" name="icono" id="icono" class="form-control pb-5 pt-3" accept="image/*"/>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3"><!--Modulos-->
+                <div class="col-xl-12">
+                    <div class="card">
+                      <div class="card-header curso-card-header text-white text-center">
+                          <h5 class="h5">Módulos</h5>
+                      </div>
+                      <div class="card-body">
+                          <div class="form-group">
+                              <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Título del Módulo</span>
+                                  </div>
+                                  <input id="modTitulo" type="text" class="form-control" placeholder="Ej: Elementos electrónicos, voltaje, corriente y leyes de Kirchhoff."
+                                         aria-label="Modulo" aria-describedby="basic-addon1">
+                                    <div class="input-group-append">
+                                        <button title="Agregar un modulo para el nuevo curso" class="btn btn-outline-success" type="button"
+                                                id="addModulo">
+                                            <i class="fas fa-folder-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                              <div id="containerModulos" class="accordion">
+                                  <div id="m1" class="card">
+                                      <input class="titulo_modulo" type="hidden" name="titulo_modulo[1]" value="M1" />
+                                      <div class="card-header" id="h-1">
+                                          <h2 class="mb-0">
+                                              <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                      data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                                                  M1
+                                              </button>
+                                              <button onclick="quitar('1')" title="Eliminar modulo" class="btn btn-outline-danger btn-sm" type="button">
+                                          <i class="fas fa-times"></i>
+                                            </button>
+                                          </h2>
+
+                                      </div>
+                                      <div id="collapse-1" class="collapse show" aria-labelledby="h-1" data-parent="#containerModulos">
+                                          <div class="card-body text-justify text-break">
+                                              <div class="input-group mb-3">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">Título del AnteMódulo</span>
+                                                  </div>
+                                                  <input type="text" class="form-control tituloAnteModulo" placeholder="Ej: Introducción; Voltaje, corriente, potencia, sobrecarga, cortocircuito, circuito abierto. "
+                                                         aria-label="AnteModulo" aria-describedby="basic-addon1">
+                                                    <div class="input-group-append">
+                                                        <button title="Agregar un AnteMódulo para este módulo" class="btn btn-outline-success addTituloAnteModulo" type="button">
+                                                            <i class="fas fa-folder-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                              <div id="containerAnteModulos" class="accordion">
+                                                  <div id="m1-a1" class="card">
+
+                                                  </div>
+                                              </div>
+                                          </div>
+                                        </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2"><!--Botones-->
+                <div class="col-xl-12">
+                    <div class="card">
+                      <div class="card-body">
+                          <div class="form-group">
+                              <button id="next" type="submit" class="btn btn-success btn-md px-5">Guardar Curso</button>
+                              <a href="/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+<!-- Initialize Swiper -->
+  <script>
+    const cargando = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    const err = 'Siguiente';
+    $('#frm').on('submit',() =>{
+        $('#next').html(cargando);
+    });
+  </script>
+    <script src="/static/js/form_modulo.js"></script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    Módulos para el curso de {{ curso.nombre }}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                Módulos para el curso de {{ curso.nombre }}
+            </h1>
+        </div>
+    </nav>
+    <div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Mensaje</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Campo "Título del Modulo" vacío</p>
+          </div>
+          <div class="modal-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mt-3 mb-5">
+        <div class="row"><!--Datos del nuevo CURSO-->
+            <div class="col-xl-8 offset-xl-2">
+                <div class="card">
+                    <div class="card-header curso-card-header text-white text-center">
+                        <h5 class="h5">
+                            Módulos para el curso de {{ curso.nombre }}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if error %}
+                            <div id="no-valido" class="alert alert-danger" role="alert">
+                                <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <i class="fas fa-times justify-end"></i>
+                                </button>
+                                <span id="alert-contenido">
+                                    {{ error }}
+                                </span>
+                            </div>
+                        {% endif %}
+                        {% if exito %}
+                            <div id="no-valido" class="alert alert-success" role="alert">
+                                <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <i class="fas fa-times justify-end"></i>
+                                </button>
+                                <span id="alert-contenido">
+                                    {{ exito | safe }}
+                                </span>
+                            </div>
+                        {% endif %}
+                        <form id="frm" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="id_curso" value="{{ curso.id }}" />
+                            {% if modulo %}
+                                <input type="hidden" name="id_modulo" value="{{ modulo.id }}" />
+                            {% endif %}
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Título del Módulo</span>
+                                  </div>
+                                  <input id="titulo" name="titulo" required value="{{ modulo.titulo }}" type="text" class="form-control" placeholder="Ej: Elementos electrónicos, voltaje, corriente y leyes de Kirchhoff."
+                                         aria-label="Modulo" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar Módulo</button>
+                                <a href="/curso/modulo/nuevo/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<!-- Initialize Swiper -->
+  <script>
+    const cargando = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    const err = 'Guardar Módulo';
+    $('#frm').on('submit',() =>{
+        $('#guardar').html(cargando);
+    });
+  </script>
+{% endblock %}

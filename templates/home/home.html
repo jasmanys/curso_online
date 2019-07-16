@@ -22,20 +22,50 @@
 
     <div class="container mt-3">
         <div class="row">
+        {% if user.is_superuser %}
+            <div class="col-12 col-md-6 col-lg-4">
+                    <a href="curso/nuevo/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                        <div class="card-header curso-card-header text-white">
+                            Añadir Curso
+                        </div>
+                        <div class="card-body text-center">
+                            <figure>
+                                <i class="fa fa-book" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
+                                <figcaption class="text-center mt-3">Añadir Curso</figcaption>
+                            </figure>
+                        </div>
+                    </a>
+            </div>
+            {% if cursos %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="curso/modulo/nuevo/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                        <div class="card-header curso-card-header text-white">
+                            Añadir Módulo
+                        </div>
+                        <div class="card-body text-center">
+                            <figure>
+                                <i class="fas fa-book-open" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
+                                <figcaption class="text-center mt-3">Añadir Módulo</figcaption>
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endif %}
             {% for curso in cursos %}
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div onclick="location.href = '/curso/{{ curso.nombre_link }}/{{ curso.id }}'" style="cursor: pointer;" class="card mt-3 mb-3 ">
-                        <div class="card-header text-white">
+                    <a href="/curso/{{ curso.nombre_link }}/{{ curso.id }}" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                        <div class="card-header curso-card-header text-white">
                             Curso de {{ curso.nombre }}
                         </div>
                         <div class="card-body text-center">
                             <figure>
-                                {{ curso.icono | safe }}
+                                <img src = '/media/{{ curso.icono }}' width="150px"/>
                                 <br/>
-                                <figcaption class=""text-center>Curso de {{ curso.nombre }}</figcaption>
+                                <figcaption class="text-center mt-3">Curso de {{ curso.nombre }}</figcaption>
                             </figure>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>
@@ -45,7 +75,7 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col">
-                        <small>Antony Aguirre © 2019</small>
+                        <small>Curso OnLine © 2019</small>
                     </div>
                 </div>
 
