@@ -19,7 +19,40 @@
         </div>
 
     </nav>
-
+    <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-justify text-break">
+              ¿Está seguro de eliminar el Curso de <strong><span id="nombreCurso"></span></strong>?<br>
+              Todos sus Módulos y SubMódulos se eliminarán también. ¿Continuar?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            <button id="aceptarEliminar" type="button" class="btn btn-success">
+                Aceptar
+                <input type="hidden" id="idCurso" value=""/>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if curso_eli %}
+        <div class="alert alert-success" role="alert">
+            <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                    aria-label="Close">
+                <i class="fas fa-times justify-end"></i>
+            </button>
+            <span id="alert-contenido">
+                {{ curso_eli | safe }}
+            </span>
+        </div>
+    {% endif %}
     <div class="container mt-3">
         <div class="row">
         {% if user.is_superuser %}
@@ -51,7 +84,33 @@
                     </a>
                 </div>
             {% endif %}
-        {% endif %}
+            {% for curso in cursos %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card curso-card mt-3 mb-3 ">
+                        <div class="card-header curso-card-header text-white">
+                            <a href="/curso/{{ curso.nombre_link }}/{{ curso.id }}" style="font-style: none;color:white;">
+                                Curso de {{ curso.nombre }}
+                                <button onclick="eliminar_curso('{{ curso.id }}', '{{ curso.nombre }}')" data-toggle="tooltip" data-placement="top" title="Eliminar curso de {{ curso.nombre }}" style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <i class="fas fa-times justify-end"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="card-body text-center">
+                            <figure>
+                                <img src = '/media/{{ curso.icono }}' width="150px"/>
+                                <br/>
+                                <figcaption class="text-center mt-3">
+                                    <a class="btn btn-link" href="/curso/{{ curso.nombre_link }}/{{ curso.id }}">
+                                        Curso de {{ curso.nombre }}
+                                    </a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
             {% for curso in cursos %}
                 <div class="col-12 col-md-6 col-lg-4">
                     <a href="/curso/{{ curso.nombre_link }}/{{ curso.id }}" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
@@ -68,6 +127,8 @@
                     </a>
                 </div>
             {% endfor %}
+        {% endif %}
+
         </div>
     </div>
     <div class="mt-5">
@@ -95,5 +156,17 @@
         Inline content
     </div>-->
 {% block script %}
-
+<script>
+    function eliminar_curso(item, name_item) {
+        $('#nombreCurso').html(name_item);
+        $('#idCurso').val(item);
+        $('#alertaEliminar').modal('show');
+    }
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('#aceptarEliminar').click(() => {
+            location = '/curso/eliminar/id/' + $('#idCurso').val() + '/';
+        });
+    });
+</script>
 {% endblock %}

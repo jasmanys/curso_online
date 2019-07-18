@@ -23,7 +23,7 @@ def index(request):
         lista = EstudianteCurso.objects.filter(estudiante__usuario__username=user.username).values_list('cursos__id')
         for l in lista:
             l2.append(l[0])
-        data['cursos'] = Curso.objects.filter(id__in=l2).annotate(nombre_link=Concat('abrir/', Replace(Lower(Trim("nombre")), Value(' '), Value('')))).values()
+        data['cursos'] = Curso.objects.filter(id__in=l2).annotate(nombre_link=Concat(Value('abrir/'), Replace(Lower(Trim("nombre")), Value(' '), Value('')))).values()
 
     for i in range(len(data['cursos'])):
         data['cursos'][i]['nombre_link'] = unidecode(data['cursos'][i]['nombre_link'])

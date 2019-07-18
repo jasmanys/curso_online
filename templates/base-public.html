@@ -57,11 +57,13 @@
                             Escuela Superior Naval
                         </a>
                     </li>
+                    {% if user.is_superuser %}
                     <li class="nav-item px-lg-4 ml-lg-4">
                         <a style="color: rgb(7, 7, 70);" href="#" class="nav-link">
                             Estudiantes
                         </a>
                     </li>
+                    {% endif %}
                     <li class="nav-item dropdown pmd-dropdown px-lg-4 ml-lg-4">
                         <a style="color: rgb(7, 7, 70);" href="#" class="nav-link dropdown-toggle"
                             data-toggle="dropdown" id="navbardrop" data-slidebar="true" role="button"

@@ -1,6 +1,7 @@
 ﻿from django.db import models
 from django.db.models import Max
 from estudiante.models import Estudiante
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Curso(models.Model):
     nombre = models.CharField(verbose_name='Nombre del Curso', max_length=50, unique=True)
@@ -87,9 +88,9 @@ class Modulo(models.Model):
         super(Modulo, self).save(*args, **kwargs)
 
 class SubModulo(models.Model):
-    numero = models.IntegerField(verbose_name='SubMódulo')
+    numero = models.IntegerField(verbose_name='Número SubMódulo', default=1)
     titulo = models.CharField(verbose_name='Título', max_length=200)
-    texto = models.TextField(verbose_name='Contenido', max_length=10000, blank=True)
+    contenido = RichTextUploadingField(config_name='config_ckeditor', verbose_name='Contenido', max_length=10000)
     modulo = models.ForeignKey(Modulo, verbose_name="Seleccione el Módulo al que pertenece", on_delete=models.CASCADE)
 
     def __str__(self):

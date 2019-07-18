@@ -2,7 +2,7 @@ from django import forms
 from django.shortcuts import render, redirect
 from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
-from curso.forms import CursoForm
+from curso.forms import CursoForm, SubModuloForm
 from curso.models import *
 
 @login_required(login_url='/login/')
@@ -73,12 +73,11 @@ def editar_curso(request, curso_id_ed):
 @login_required(login_url='/login/')
 def eliminar_curso(request, curso_id_el):
     data = {}
-    data['accion'] = 'Eliminar Curso'
     data['user'] = request.user
-    if request.method == 'POST':
-        pass
-    else:
-        pass
+    curso = Curso.objects.get(id = curso_id_el)
+    curso_eliminado = "El curso de <strong>{}</strong> fue eliminado".format(curso.nombre)
+    data['eliminado'] = curso.delete()
+    return redirect('/', curso_eli = curso_eliminado)
 
 @login_required(login_url='/login/')
 def agregar_modulo(request, curso_id):
@@ -103,6 +102,34 @@ def agregar_modulo(request, curso_id):
         return render(request, 'curso/admin/form_modulo.html', data)
     else:
         return render(request, 'curso/admin/form_modulo.html', data)
+
+@login_required(login_url='/login/')
+def agregar_submodulo(request, modulo_id):
+    data = {}
+    data['user'] = request.user
+    data['modulo'] = Modulo.objects.get(id=modulo_id)
+    if request.method == 'POST':
+        idcurso = request.POST['id_modulo']
+        modulo = request.POST['titulo']
+        if len(modulo) > 0:
+            mod = Modulo()
+            mod.curso_id = idcurso
+            mod.titulo = modulo
+            mod.save()
+            if mod.id:
+                data['exito'] = "Se guardó el módulo <strong>{}</strong> en el curso de <strong>{}</strong>".format(mod.titulo, mod.curso.nombre)
+            else:
+                data['titulo'] = mod.titulo
+                data['error'] = "Hubo un error al guardar el módulo"
+        else:
+            data['error'] = "No deje campos vacíos"
+        return render(request, 'curso/admin/form_submodulo.html', data)
+    else:
+        submod = SubModulo()
+        submod.numero = 1
+        submod.modulo = data['modulo']
+        data['form'] = SubModuloForm(instance=submod)
+        return render(request, 'curso/admin/form_submodulo.html', data)
 
 @login_required(login_url='/login/')
 def editar_modulo(request, modulo_id):
