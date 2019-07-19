@@ -109,21 +109,19 @@ def agregar_submodulo(request, modulo_id):
     data['user'] = request.user
     data['modulo'] = Modulo.objects.get(id=modulo_id)
     if request.method == 'POST':
-        idcurso = request.POST['id_modulo']
-        modulo = request.POST['titulo']
-        if len(modulo) > 0:
-            mod = Modulo()
-            mod.curso_id = idcurso
-            mod.titulo = modulo
-            mod.save()
-            if mod.id:
-                data['exito'] = "Se guardó el módulo <strong>{}</strong> en el curso de <strong>{}</strong>".format(mod.titulo, mod.curso.nombre)
-            else:
-                data['titulo'] = mod.titulo
-                data['error'] = "Hubo un error al guardar el módulo"
+        form = SubModuloForm(request.POST)
+        if form.is_valid():
+            form.save()
+            submod = SubModulo()
+            submod.numero = 1
+            submod.modulo = data['modulo']
+            data['form'] = SubModuloForm(instance=submod)
+            data['exito'] = "Se guardó el submódulo <strong>{}</strong>".format(form.instance.titulo)
         else:
-            data['error'] = "No deje campos vacíos"
+            data['form'] = form
+            data['error'] = "Hubo un error al guardar el submódulo"
         return render(request, 'curso/admin/form_submodulo.html', data)
+
     else:
         submod = SubModulo()
         submod.numero = 1
@@ -156,6 +154,35 @@ def editar_modulo(request, modulo_id):
         return render(request, 'curso/admin/form_modulo.html', data)
 
 @login_required(login_url='/login/')
+def editar_submodulo(request, submodulo_id):
+    data = {}
+    data['user'] = request.user
+    data['submodulo'] = SubModulo.objects.get(id=submodulo_id)
+    data['modulo'] = Modulo.objects.get(id = data['submodulo'].modulo.id)
+    data['curso'] = Curso.objects.get(id=data['modulo'].curso.id)
+    data['form'] = SubModuloForm(instance=data['submodulo'])
+    if request.method == 'POST':
+        form = SubModuloForm(request.POST, instance=data['submodulo'])
+        if form.is_valid():
+            form.save()
+            return redirect('/curso/submodulo/registros/{}/'.format(data['modulo'].id))
+        else:
+            data['form'] = form
+            data['error'] = "Hubo un error al guardar el submódulo"
+        return render(request, 'curso/admin/form_submodulo.html', data)
+    else:
+        return render(request, 'curso/admin/form_submodulo.html', data)
+
+@login_required(login_url='/login/')
+def eliminar_submodulo(request, submodulo_id):
+    data = {}
+    data['user'] = request.user
+    submodulo = SubModulo.objects.get(id=submodulo_id)
+    modulo_id = submodulo.modulo.id
+    submodulo.delete()
+    return redirect('/curso/submodulo/registros/{}/'.format(modulo_id))
+
+@login_required(login_url='/login/')
 def eliminar_modulo(request, modulo_id):
     data = {}
     data['user'] = request.user
@@ -171,3 +198,11 @@ def registro_modulos(request, curso_id):
     data['curso'] = Curso.objects.get(id=curso_id)
     data['modulos'] = Modulo.objects.filter(curso__id=curso_id)
     return render(request, 'curso/admin/listar_modulo.html', data)
+
+@login_required(login_url='/login/')
+def registro_submodulos(request, modulo_id):
+    data = {}
+    data['user'] = request.user
+    data['modulo'] = Modulo.objects.get(id = modulo_id)
+    data['submodulos'] = SubModulo.objects.filter(modulo = data['modulo'])
+    return render(request, 'curso/admin/listar_submodulo.html', data)

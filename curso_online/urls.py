@@ -33,7 +33,7 @@ urlpatterns = [
     path(r'login/', login_user, name = 'login'),
     path(r'logout/', logout_user, name = 'logout'),
     url(r'ckeditor/', include('ckeditor_uploader.urls')),
-    #url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
-    #url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

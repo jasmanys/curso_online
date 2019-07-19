@@ -66,15 +66,16 @@
                                 <td>
                                     {{ modulo.titulo }}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <div class="dropdown">
                                       <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Opción
                                       </button>
                                       <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                        <a href="/curso/submodulo/nuevo/{{ modulo.id }}/" class="dropdown-item">Agregar SubMódulo</a>
-                                        <a href="/curso/modulo/editar/{{ modulo.id }}/" class="dropdown-item">Editar</a>
-                                        <button onclick="eliminar_modulo('{{ modulo.id }}', '{{ modulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
+                                          <a href="/curso/submodulo/nuevo/{{ modulo.id }}/" class="dropdown-item">Agregar SubMódulo</a>
+                                          <a href="/curso/submodulo/registros/{{ modulo.id }}/" class="dropdown-item">Ver SubMódulos Registrados</a>
+                                          <a href="/curso/modulo/editar/{{ modulo.id }}/" class="dropdown-item">Editar</a>
+                                          <button onclick="eliminar_modulo('{{ modulo.id }}', '{{ modulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
                                       </div>
                                     </div>
                                 </td>

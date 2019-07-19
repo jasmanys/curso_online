@@ -58,10 +58,16 @@
                         </a>
                     </li>
                     {% if user.is_superuser %}
-                    <li class="nav-item px-lg-4 ml-lg-4">
-                        <a style="color: rgb(7, 7, 70);" href="/admin/estudiante/estudiante/" class="nav-link">
+                    <li class="nav-item dropdown pmd-dropdown px-lg-4 ml-lg-4">
+                        <a style="color: rgb(7, 7, 70);" href="#" class="nav-link dropdown-toggle"
+                         data-toggle="dropdown" id="navbardropest" data-slidebar="true" role="button"
+                            aria-haspopup="true" aria-expanded="false">
                             Estudiantes
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="navbardropest">
+                            <a href="/admin/estudiante/estudiante/add/" class="dropdown-item">Añadir</a>
+                            <a href="/admin/curso/estudiantecurso/add/" class="dropdown-item">Asignar Cursos</a>
+                        </div>
                     </li>
                     {% endif %}
                     <li class="nav-item dropdown pmd-dropdown px-lg-4 ml-lg-4">
