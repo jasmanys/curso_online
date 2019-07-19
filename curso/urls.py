@@ -3,7 +3,9 @@ from curso.views import *
 
 urlpatterns = [
     #link's estudiante
-    re_path(r'^abrir/(?P<curso_nombre>)/(?P<curso_id>[0-9]+)$', seleccionar_curso),
+    re_path(r'^abrir/(?P<curso_nombre>.*)/(?P<curso_id>[0-9]+)/$', abrir_curso),
+    #re_path(r'^modulo/abrir/id/(?P<modulo_id>[0-9]+)/$', abrir_modulo),
+    #re_path(r'^submodulo/abrir/id/(?P<submodulo_id>[0-9]+)/$', abrir_submodulo),
     #link's admin
     re_path(r'^editar/id/(?P<curso_id_ed>[0-9]+)$', editar_curso),
     re_path(r'^eliminar/id/(?P<curso_id_el>[0-9]+)/$', eliminar_curso),

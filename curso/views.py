@@ -5,31 +5,49 @@ from django.contrib.auth.decorators import login_required
 from curso.forms import CursoForm, SubModuloForm
 from curso.models import *
 
+
+@login_required(login_url='/login/')
+def abrir_curso(request, curso_nombre, curso_id):
+    data = {}
+    data['user'] = request.user
+    estudiante_curso = EstudianteCurso.objects.get(estudiante__usuario__username=request.user.username)
+    id_cursos = [str(x[0]) for x in estudiante_curso.cursos.all().values_list('id')]
+    if curso_id in id_cursos:
+        if request.method == 'POST':
+            pass
+        else:
+            curso = Curso.objects.get(pk = curso_id)
+            data['curso'] = curso
+            modulos = Modulo.objects.filter(curso__id = curso_id).values()
+            for i in range(len(modulos)):
+                modulos[i]['submodulos'] = SubModulo.objects.filter(modulo__id = modulos[i]['id']).values()
+            data['modulos'] = modulos
+            return render(request, 'curso/modulo/indice_curso.html', data)
+    else:
+        return redirect('/')
+
+@login_required(login_url='/login/')
+def abrir_modulo(request, modulo_id):
+    data = {}
+    data['user'] = request.user
+    modulo = Modulo.objects.get(id = modulo_id)
+    estudiante_curso = EstudianteCurso.objects.get(estudiante__usuario__username=request.user.username)
+    id_cursos = [x[0] for x in estudiante_curso.cursos.all().values_list('id')]
+    if modulo.curso.id in id_cursos:
+        if request.method == 'POST':
+            pass
+        else:
+            data['submodulos'] = SubModulo.objects.filter(modulo = modulo)
+            return render(request, 'curso/modulo/indice_modulo.html', data)
+    else:
+        return redirect('/')
+
 @login_required(login_url='/login/')
 def seleccionar_curso(request):
     data = {}
     data['user'] = request.user
     data['cursos'] = Curso.objects.all()
     return render(request, 'curso/admin/listar_curso.html', data)
-"""def seleccionar_curso(request, curso_nombre, curso_id):
-    data = {}
-    data['user'] = request.user
-    curso = Curso.objects.get(pk = curso_id)
-    data['curso'] = curso
-    modulos = Modulo.objects.filter(curso__id = curso_id).values()
-    for i in range(len(modulos)):
-        modulos[i]['antemodulos'] = AnteModulo.objects.filter(modulo__id = modulos[i]['id']).values()
-        submodulos = []#
-        for j in range(len(modulos[i]['antemodulos'])):
-            submodulos = SubModulo.objects.filter(antemodulo__id=modulos[i]['antemodulos'][j]['id']).values()
-            modulos[i]['antemodulos'][j]['submodulos'] = submodulos
-            submodulos = []  #
-
-    data['modulos'] = modulos
-    if request.user.is_superuser:
-        return render(request, 'curso/admin/form_curso.html', data)
-    else:
-        return render(request, 'curso/modulo/indice_curso.html', data)"""
 
 @login_required(login_url='/login/')
 def agregar_curso(request):

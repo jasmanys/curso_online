@@ -3,7 +3,7 @@
 
 {% endblock %}
 {% block title %}
-    Indice del curso
+    Indice del curso de {{ curso.nombre }}
 {% endblock %}
 {% block style %}
 
@@ -18,32 +18,33 @@
 
     </nav>
     <div class="container mt-3">
-    <div class="row">
-    <ul class="offset-xl-4 col-xl-8 col-lg-8 offset-lg-4 col-md-12 text-break">
-    {% for modulo in modulos %}
-
-        <li>
-            <p>{{ modulo.numero }} {{ modulo.titulo }}</p>
-            <ul>
-                {% for antemodulo in modulo.antemodulos %}
-                    <li>
-                            <p>{{ modulo.numero }}.{{ antemodulo.numero }} {{ antemodulo.titulo }}</p>
+        <div class="row">
+            <div class="offset-xl-2 col-xl-8 col-lg-8 offset-lg-2 col-md-12 text-break text-justify">
+                <div class="card">
+                    <div class="card-header curso-card-header text-white text-center">
+                        <h5 class="h5">
+                            Índice
+                        </h5>
+                    </div>
+                    <div class="card-body">
                         <ul>
-                            {% for submodulo in antemodulo.submodulos %}
-                                <li>
-
-                                        <p>{{ modulo.numero }}.{{ antemodulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</p>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-
-    {% endfor %}
-     </ul>
-</div>
+                        {% for modulo in modulos %}
+                            <li>
+                                <p><a href="/curso/modulo/abrir/id/{{ modulo.id }}/">Módulo {{ modulo.numero }}: {{ modulo.titulo }}</a></p>
+                                <ul>
+                                    {% for submodulo in modulo.submodulos %}
+                                        <li>
+                                            <p><a href="/curso/submodulo/abrir/id/{{ submodulo.id }}/">{{ modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</a></p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
