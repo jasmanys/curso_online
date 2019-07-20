@@ -58,6 +58,7 @@
     const err = 'Siguiente';
     $('#frm').on('submit',() =>{
         $('#guardar').html(cargando);
+        $('#guardar').attr("disabled", true);
     });
   </script>
 {% endblock %}

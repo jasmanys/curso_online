@@ -101,6 +101,7 @@
     const err = 'Guardar Módulo';
     $('#frm').on('submit',() =>{
         $('#guardar').html(cargando);
+        $('#guardar').attr("disabled", true);
     });
   </script>
 {% endblock %}

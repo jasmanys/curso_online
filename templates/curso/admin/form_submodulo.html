@@ -72,7 +72,7 @@
                             {{ form.as_p }}
                             <div class="form-group">
                                 <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar SubMódulo</button>
-                                <a href="/curso/modulo/registros/{{ modulo.curso.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                                <a href="/curso/submodulo/registros/{{ modulo.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
                             </div>
                         </form>
                     </div>
@@ -90,6 +90,7 @@
     const err = 'Guardar SubMódulo';
     $('#frm').on('submit',() =>{
         $('#guardar').html(cargando);
+        $('#guardar').attr("disabled", true);
     });
   </script>
 {% endblock %}
