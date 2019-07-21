@@ -28,8 +28,8 @@
                             </span>
                         </div>
                     {% endif %}
-
-                    <h5 class="card-title mt-3 mb-4">Inicie Sesión</h5>
+                    <center><img title="Escuela Superior Naval" onclick="window.open('http://186.3.65.147:8069/page/homepage')" style="cursor: pointer;" src="/static/media/logo.png" width="40px" /></center>
+                    <h5 class="card-title mt-3 mb-4 text-center">Inicie Sesión</h5>
                     <form id="frm" action="/login/" method="POST"> {% csrf_token %}
                         <div class="form-group row">
                             <div class="col-12">
@@ -37,20 +37,20 @@
                                     placeholder="Username o e-mail" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row mt-4">
                             <div class="col-12">
                                 <input required type="password" class="form-control pt-4 pb-4" id="password" name="password"
                                     placeholder="Contraseña" />
                             </div>
                         </div>
-                        <div class="form-group mt-4 row mb-5">
+                        <div class="form-group mt-4 row">
                             <div class="col-12 col-lg-6">
                                 <button id="btnLogin" type="submit" class="p-2 px-3 btn btn-info btn-block">Iniciar
                                     sesión</button>
                             </div>
                             <div id="btnOlvidoContrasena" class="col-12 col-lg-6">
-                                <button type="button" class="p-2 btn btn-link btn-block text-md-center">¿Olvidó la
-                                    contraseña?</button>
+                                <a href="/forget/password/1C1CHBF_esEC825EC82569i57j0l51359j0j7/" class="p-2 btn btn-link btn-block text-md-center">¿Olvidó la
+                                    contraseña?</a>
                             </div>
                         </div>
                     </form>

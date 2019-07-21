@@ -31,6 +31,12 @@ def index(request):
     return render(request, 'home/home.html', data)
 
 # Create your views here.
+def forget_password(request):
+    data = {}
+    if request.method == 'POST':
+        pass
+    return render(request, 'login/forget_password.html', data)
+
 def login_user(request):
     data = {}
     if not request.user.id:
