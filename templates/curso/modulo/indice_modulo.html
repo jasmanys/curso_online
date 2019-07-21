@@ -1,0 +1,44 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    {{ modulo.numero }} {{ modulo.titulo }}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">{{ modulo.numero }} {{ modulo.titulo }}</h1>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="offset-xl-2 col-xl-8 col-lg-8 offset-lg-2 col-md-12 text-break text-justify">
+                <div class="card">
+                    <div class="card-header curso-card-header text-white text-center">
+                        <h5 class="h5">
+                            Índice
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            {% for submodulo in submodulos %}
+                                <li>
+                                    <p><a href="/curso/submodulo/abrir/id/{{ submodulo.id }}/">{{ modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</a></p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

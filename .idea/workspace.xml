@@ -2,33 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/dialogs/html5audio.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/icons/hidpi/html5audio.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/icons/html5audio.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/bg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/de.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/el.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/es.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/fa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/fr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/ru.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/uk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/uz.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/lang/zh-cn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/html5audio/plugin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/curso/modulo/contenido_submodulo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso_online/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso_online/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_curso/curso_electricidad.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ckeditor/ckeditor/ckeditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/ckeditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ckeditor/ckeditor/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_curso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_modulo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_submodulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_submodulo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base-public.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-public.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +39,18 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/curso/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/curso/admin/listar_submodulo.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="549">
@@ -67,11 +59,71 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/curso/admin/form_submodulo.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
               <caret line="74" column="68" selection-start-line="74" selection-start-column="68" selection-end-line="74" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/curso/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="57" column="81" lean-forward="true" selection-start-line="57" selection-start-column="81" selection-end-line="57" selection-end-column="81" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/curso/modulo/contenido_submodulo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base-public.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1190">
+              <caret line="82" column="116" selection-start-line="82" selection-start-column="116" selection-end-line="82" selection-end-column="116" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/curso/modulo/indice_curso.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="444">
+              <caret line="54" column="14" lean-forward="true" selection-end-line="54" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/curso/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,8 +134,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -156,10 +208,7 @@
         <option value="$PROJECT_DIR$/static/js/jquery.dataTables.min.js" />
         <option value="$PROJECT_DIR$/curso/forms.py" />
         <option value="$PROJECT_DIR$/templates/home/home.html" />
-        <option value="$PROJECT_DIR$/curso/urls.py" />
         <option value="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" />
-        <option value="$PROJECT_DIR$/curso/views.py" />
-        <option value="$PROJECT_DIR$/templates/base-public.html" />
         <option value="$PROJECT_DIR$/static/js/login.js" />
         <option value="$PROJECT_DIR$/templates/curso/admin/form_curso.html" />
         <option value="$PROJECT_DIR$/templates/curso/admin/form_modulo.html" />
@@ -170,6 +219,11 @@
         <option value="$PROJECT_DIR$/static/ckeditor/ckeditor/config.js" />
         <option value="$PROJECT_DIR$/curso_online/settings.py" />
         <option value="$PROJECT_DIR$/templates/curso/admin/form_submodulo.html" />
+        <option value="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" />
+        <option value="$PROJECT_DIR$/curso/urls.py" />
+        <option value="$PROJECT_DIR$/curso/views.py" />
+        <option value="$PROJECT_DIR$/templates/base-public.html" />
+        <option value="$PROJECT_DIR$/templates/curso/modulo/contenido_submodulo.html" />
       </list>
     </option>
   </component>
@@ -198,6 +252,11 @@
             <path>
               <item name="git" type="b2602c69:ProjectViewProjectNode" />
               <item name="git" type="462c0819:PsiDirectoryNode" />
+              <item name="curso" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="git" type="b2602c69:ProjectViewProjectNode" />
+              <item name="git" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -211,7 +270,7 @@
               <item name="git" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="curso" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="modulo" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -320,15 +379,15 @@
       <workItem from="1563411315525" duration="8923000" />
       <workItem from="1563484289303" duration="9988000" />
       <workItem from="1563557462851" duration="9638000" />
-      <workItem from="1563618397414" duration="11220000" />
+      <workItem from="1563618397414" duration="12660000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234282000" />
+    <option name="totallyTimeSpent" value="235722000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49801588" visible="true" weight="0.22768533" />
@@ -359,12 +418,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/media/audios/1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/fotos_curso/1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/media/uploads/1.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -466,16 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/curso/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="70" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/curso_online/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -493,44 +536,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/curso/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/curso/modulo/indice_curso.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/curso/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/listar_modulo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base-public.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="67" column="95" selection-start-line="67" selection-start-column="90" selection-end-line="67" selection-end-column="95" />
         </state>
       </provider>
     </entry>
@@ -725,6 +734,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="74" column="68" selection-start-line="74" selection-start-column="68" selection-end-line="74" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/curso/modulo/indice_curso.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="54" column="14" lean-forward="true" selection-end-line="54" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curso/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curso/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curso/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="57" column="81" lean-forward="true" selection-start-line="57" selection-start-column="81" selection-end-line="57" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base-public.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="82" column="116" selection-start-line="82" selection-start-column="116" selection-end-line="82" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/curso/modulo/contenido_submodulo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>

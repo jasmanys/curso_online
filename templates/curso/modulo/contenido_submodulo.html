@@ -1,0 +1,29 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    {{ submodulo.modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">{{ submodulo.modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</h1>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col text-break text-justify">
+                {{ submodulo.contenido | safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

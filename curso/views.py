@@ -38,7 +38,24 @@ def abrir_modulo(request, modulo_id):
             pass
         else:
             data['submodulos'] = SubModulo.objects.filter(modulo = modulo)
+            data['modulo'] = modulo
             return render(request, 'curso/modulo/indice_modulo.html', data)
+    else:
+        return redirect('/')
+
+@login_required(login_url='/login/')
+def abrir_submodulo(request, submodulo_id):
+    data = {}
+    data['user'] = request.user
+    submodulo = SubModulo.objects.get(id = submodulo_id)
+    estudiante_curso = EstudianteCurso.objects.get(estudiante__usuario__username=request.user.username)
+    id_cursos = [x[0] for x in estudiante_curso.cursos.all().values_list('id')]
+    if submodulo.modulo.curso.id in id_cursos:
+        if request.method == 'POST':
+            pass
+        else:
+            data['submodulo'] = submodulo
+            return render(request, 'curso/modulo/contenido_submodulo.html', data)
     else:
         return redirect('/')
 
