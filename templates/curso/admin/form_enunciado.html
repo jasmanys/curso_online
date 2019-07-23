@@ -1,0 +1,53 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    Enunciados para el submódulo {{ submodulo.modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                Enunciados para el submódulo {{ submodulo.modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}
+            </h1>
+        </div>
+    </nav>
+    <div class="container mt-3 mb-5">
+        <div class="row">
+            <div class="col-xl-8 offset-xl-2">
+                <form id="frm" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form_enunciado_evaluacion.as_p }}
+                    <div class="form-group">
+                        <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar Enunciado</button>
+                        <a href="/evaluacion/listar/submodulo/{{ submodulo.modulo.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<!-- Initialize Swiper -->
+  <script>
+    const cargando = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    const err = 'Guardar Módulo';
+    $(function () {
+        $('#frm').on('submit',() =>{
+            $('#guardar').html(cargando);
+            $('#guardar').attr("disabled", true);
+        });
+        $('#id_tipo_respuesta').change(function () {
+            if($('#id_tipo_respuesta option:selected').val() != ''){
+
+            }
+        });
+    });
+  </script>
+{% endblock %}

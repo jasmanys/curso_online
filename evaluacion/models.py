@@ -3,8 +3,8 @@ from curso.models import Modulo, SubModulo
 from estudiante.models import Estudiante
 
 class Evaluacion(models.Model):
-    modulo = models.ForeignKey(Modulo, verbose_name='Modulo', on_delete=models.CASCADE)
-    calificacion_maxima = models.DecimalField(decimal_places=2, max_digits=4)
+    modulo = models.ForeignKey(Modulo, verbose_name='Módulo', on_delete=models.CASCADE, unique=True)
+    calificacion_maxima = models.FloatField(default=100)
 
     def __str__(self):
         return self.modulo
@@ -13,22 +13,20 @@ class Evaluacion(models.Model):
         verbose_name = 'Evaluación'
         verbose_name_plural = 'Evaluaciones'
 
-class TipoRespuesta(models.Model):
-    descripcion = models.CharField(verbose_name='Descripción', max_length=50)
-
-    def __str__(self):
-        return self.descripcion
-
-    class Meta:
-        verbose_name = 'Tipo de Respuesta'
-        verbose_name_plural = 'Tipos de Respuestas'
-
 class EnunciadoEvaluacion(models.Model):
+    RESPUESTA_UNICA = 0
+    OPCION_MULTIPLE = 1
+    RELACIONAR_CONCEPTO = 2
+    RESPUESTA_CHOICES = (
+        (RESPUESTA_UNICA, 'Respuesta única'),
+        (OPCION_MULTIPLE, 'Opción múltiple'),
+        (RELACIONAR_CONCEPTO, 'Relacionar concepto'),
+    )
     evaluacion = models.ForeignKey(Evaluacion, verbose_name='Evaluación', on_delete=models.CASCADE)
     submodulo = models.ForeignKey(SubModulo, verbose_name='SubModulo', on_delete=models.CASCADE)
     enunciado = models.TextField(verbose_name='Enunciado', max_length=250)
-    tipo_respuesta = models.ForeignKey(TipoRespuesta, verbose_name='Tipo de Respuesta', on_delete=models.SET_NULL, null=True, blank=True)
-    foto = models.CharField(verbose_name='Foto', max_length=300, blank=True)
+    tipo_respuesta = models.IntegerField(verbose_name='Tipo de Respuesta', choices=RESPUESTA_CHOICES)
+    foto = models.ImageField(verbose_name='Imagen para el enunciado (Opcional)', upload_to='fotos_enunciado/', blank=True, null=True)
 
     def __str__(self):
         return self.enunciado
@@ -81,7 +79,7 @@ class RelacionarConcepto(models.Model):
 class EstudianteEvaluacion(models.Model):
     estudiante = models.ForeignKey(Estudiante, on_delete=models.PROTECT)
     evaluacion = models.ForeignKey(Evaluacion, on_delete=models.PROTECT)
-    calificacion = models.DecimalField(decimal_places=2, max_digits=4)
+    calificacion = models.FloatField()
 
     def __str__(self):
         return 'Estudiante: {} - Evaluacion: {} - Calificacion: {}'.format(self.estudiante.nombres(),
@@ -95,8 +93,8 @@ class EstudianteEvaluacion(models.Model):
 class DetalleEstudianteEvaluacion(models.Model):
     estudiante_evaluacion = models.ForeignKey(EstudianteEvaluacion, on_delete=models.PROTECT)
     enunciado_evaluacion = models.ForeignKey(EnunciadoEvaluacion, on_delete=models.PROTECT)
-    calificacion_obtenida = models.DecimalField(decimal_places=2, max_digits=4)
-    calificacion_maxima = models.DecimalField(decimal_places=2, max_digits=4)
+    calificacion_obtenida = models.FloatField()
+    calificacion_maxima = models.FloatField()
 
     def __str__(self):
         return 'Estudiante: {} - Enunciado: {} - Calificacion: {}/{}'.format(self.estudiante_evaluacion.estudiante.nombres(),

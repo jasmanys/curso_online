@@ -14,40 +14,41 @@
 
     <nav id="nav-foto" class="navbar py-lg-4 undercontainer">
         <div class="container">
-            <h1 class="h1 text-white"> Mis Cursos</h1>
+            <h1 class="h1 text-white"> {% if user.is_superuser %}Administrador de Cursos Online{% else %}Mis Cursos{% endif %}</h1>
             <img src="/static/media/logo.png" class="navbar-brand justify-end" />
         </div>
 
     </nav>
-    <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body text-justify text-break">
-              ¿Está seguro de eliminar el Curso de <strong><span id="nombreCurso"></span></strong>?<br>
-              Todos sus Módulos y SubMódulos se eliminarán también. ¿Continuar?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
-            <button id="aceptarEliminar" type="button" class="btn btn-success">
-                Aceptar
-                <input type="hidden" id="idCurso" value=""/>
-            </button>
+    {% if user.is_superuser %}
+        <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-justify text-break">
+                  ¿Está seguro de eliminar el Curso de <strong><span id="nombreCurso"></span></strong>?<br>
+                  Todos sus Módulos y SubMódulos se eliminarán también. ¿Continuar?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                <button id="aceptarEliminar" type="button" class="btn btn-success">
+                    Aceptar
+                    <input type="hidden" id="idCurso" value=""/>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+    {% endif %}
     {% if curso_eli %}
         <div class="alert alert-success" role="alert">
             <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
                     aria-label="Close">
-                <i class="fas fa-times justify-end"></i>
-            </button>
+                <i class="fas fa-times justify-end"></i>            </button>
             <span id="alert-contenido">
                 {{ curso_eli | safe }}
             </span>
@@ -73,12 +74,27 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <a href="curso/modulo/nuevo/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
                         <div class="card-header curso-card-header text-white">
-                            Añadir Módulo
+                            Módulos
                         </div>
                         <div class="card-body text-center">
                             <figure>
                                 <i class="fas fa-book-open" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
-                                <figcaption class="text-center mt-3">Añadir Módulo</figcaption>
+                                <figcaption class="text-center mt-3">Módulos</figcaption>
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+            {% if submodulos_count and submodulos_count > 0 %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="/evaluacion/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                        <div class="card-header curso-card-header text-white">
+                            Evaluaciones
+                        </div>
+                        <div class="card-body text-center">
+                            <figure>
+                                <i class="fas fa-tasks" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
+                                <figcaption class="text-center mt-3">Evaluaciones</figcaption>
                             </figure>
                         </div>
                     </a>

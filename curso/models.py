@@ -89,7 +89,7 @@ class Modulo(models.Model):
 
 class SubModulo(models.Model):
     numero = models.IntegerField(verbose_name='Número SubMódulo', default=1)
-    titulo = models.CharField(verbose_name='Título', max_length=200)
+    titulo = models.CharField(verbose_name='Título', max_length=200, unique=True)
     contenido = RichTextUploadingField(config_name='config_ckeditor', verbose_name='Contenido', max_length=10000)
     modulo = models.ForeignKey(Modulo, verbose_name="Seleccione el Módulo al que pertenece", on_delete=models.CASCADE)
 

@@ -3,7 +3,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 {% endblock %}
 {% block title %}
-    Módulos del curso de {{ curso.nombre }}
+    {% if eval %}
+        Evaluación
+    {% else %}
+        Módulos del curso de {{ curso.nombre }}
+    {% endif %}
 {% endblock %}
 {% block style %}
 
@@ -13,35 +17,41 @@
     <nav id="nav-foto" class="navbar undercontainer">
         <div class="container">
             <h1 class="h1 text-white">
-                Módulos del curso de {{ curso.nombre }}
+                {% if eval %}
+                    (Evaluación) Módulos del curso de {{ curso.nombre }}
+                {% else %}
+                    Módulos del curso de {{ curso.nombre }}
+                {% endif %}
             </h1>
         </div>
 
     </nav>
-    <!-- Modal -->
-    <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body text-justify text-break">
-              ¿Está seguro de eliminar el Módulo <strong><span id="tituloModulo"></span></strong>?<br>
-              Todos sus submodulos se eliminarán también. ¿Continuar?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
-            <button id="aceptarEliminar" type="button" class="btn btn-success">
-                Aceptar
-                <input type="hidden" id="idModulo" value=""/>
-            </button>
+    {% if not eval %}
+        <!-- Modal -->
+        <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-justify text-break">
+                  ¿Está seguro de eliminar el Módulo <strong><span id="tituloModulo"></span></strong>?<br>
+                  Todos sus submodulos se eliminarán también. ¿Continuar?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                <button id="aceptarEliminar" type="button" class="btn btn-success">
+                    Aceptar
+                    <input type="hidden" id="idModulo" value=""/>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+    {% endif %}
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-12 table-responsive">
@@ -67,17 +77,28 @@
                                     {{ modulo.titulo }}
                                 </td>
                                 <td class="text-center">
-                                    <div class="dropdown">
-                                      <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Opción
-                                      </button>
-                                      <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                          <a href="/curso/submodulo/nuevo/{{ modulo.id }}/" class="dropdown-item">Agregar SubMódulo</a>
-                                          <a href="/curso/submodulo/registros/{{ modulo.id }}/" class="dropdown-item">Ver SubMódulos Registrados</a>
-                                          <a href="/curso/modulo/editar/{{ modulo.id }}/" class="dropdown-item">Editar</a>
-                                          <button onclick="eliminar_modulo('{{ modulo.id }}', '{{ modulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
-                                      </div>
-                                    </div>
+                                    {% if eval %}
+                                        {% if modulo.eval_count > 0 %}
+                                            <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="btn btn-outline-primary">Ver Evaluación Registrada</a>
+                                        {% else %}
+                                            <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="btn btn-outline-primary">Registrar Evaluación</a>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="dropdown">
+                                          <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opción
+                                          </button>
+                                          <div class="dropdown-menu" aria-labelledby="btn_opcion">
+                                              <a href="/curso/submodulo/nuevo/{{ modulo.id }}/" class="dropdown-item">Agregar SubMódulo</a>
+                                              <a href="/curso/submodulo/registros/{{ modulo.id }}/" class="dropdown-item">Ver SubMódulos Registrados</a>
+                                              {% if modulo.submodulos_count and modulo.submodulos_count > 0 %}
+                                                  <a href="/curso/evaluacion/nuevo/{{ modulo.id }}/" class="dropdown-item">Agregar Evaluación</a>
+                                              {% endif %}
+                                              <a href="/curso/modulo/editar/{{ modulo.id }}/" class="dropdown-item">Editar</a>
+                                              <button onclick="eliminar_modulo('{{ modulo.id }}', '{{ modulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
+                                          </div>
+                                        </div>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

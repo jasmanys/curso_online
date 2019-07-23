@@ -6,7 +6,7 @@ from django.db.models.functions import Lower, Trim, Replace, Concat
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
-from curso.models import Curso, EstudianteCurso
+from curso.models import Curso, EstudianteCurso, SubModulo
 from unidecode import unidecode
 
 @login_required(login_url='/login/')
@@ -19,6 +19,7 @@ def index(request):
         for i in range(len(cursos)):
             cursos[i]['nombre_link'] = 'editar/id'
         data['cursos'] = cursos
+        data['submodulos_count'] = SubModulo.objects.count()
     else:
         lista = EstudianteCurso.objects.filter(estudiante__usuario__username=user.username).values_list('cursos__id')
         for l in lista:

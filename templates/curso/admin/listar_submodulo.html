@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 {% endblock %}
 {% block title %}
-    Submódulos del módulo de {{ modulo.titulo }}
+    {% if eval %}Registrar enunciados{% else %}Submódulos del módulo de {{ modulo.titulo }} {% endif %}
 {% endblock %}
 {% block style %}
 
@@ -13,36 +13,38 @@
     <nav id="nav-foto" class="navbar undercontainer">
         <div class="container">
             <h1 class="h1 text-white">
-                Submódulos del módulo de {{ modulo.titulo }}
+                {% if eval %}Seleccione el submódulo para registrar los enunciados de la evaluación{% else %}Submódulos del módulo de {{ modulo.titulo }}{% endif %}
             </h1>
         </div>
 
     </nav>
-    <!-- Modal -->
-    <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body text-justify text-break">
-              ¿Está seguro de eliminar el SubMódulo <strong><span id="tituloSubModulo"></span></strong>?
-              <br>
-              ¿Continuar?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
-            <button id="aceptarEliminar" type="button" class="btn btn-success">
-                Aceptar
-                <input type="hidden" id="idSubModulo" value=""/>
-            </button>
+    {% if not eval %}
+        <!-- Modal -->
+        <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-justify text-break">
+                  ¿Está seguro de eliminar el SubMódulo <strong><span id="tituloSubModulo"></span></strong>?
+                  <br>
+                  ¿Continuar?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                <button id="aceptarEliminar" type="button" class="btn btn-success">
+                    Aceptar
+                    <input type="hidden" id="idSubModulo" value=""/>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+    {% endif %}
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-12 table-responsive">
@@ -68,15 +70,27 @@
                                     {{ submodulo.titulo }}
                                 </td>
                                 <td class="text-center">
-                                    <div class="dropdown">
-                                      <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Opción
-                                      </button>
-                                      <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                          <a href="/curso/submodulo/editar/{{ submodulo.id }}/" class="dropdown-item">Editar</a>
-                                          <button onclick="eliminar_submodulo('{{ submodulo.id }}', '{{ submodulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
-                                      </div>
-                                    </div>
+                                    {% if eval %}
+                                        {% if submodulo.count_enunciado > 0 %}
+                                            <a href="/evaluacion/editar/enunciado/{{ submodulo.id }}/" class="btn btn-outline-primary btn-sm">
+                                                Editar Enunciados
+                                            </a>
+                                        {% else %}
+                                            <a href="/evaluacion/agregar/enunciado/{{ submodulo.id }}/" class="btn btn-outline-primary btn-sm">
+                                                Agregar Enunciados
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Opción
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btn_opcion">
+                                                <a href="/curso/submodulo/editar/{{ submodulo.id }}/" class="dropdown-item">Editar</a>
+                                                <button onclick="eliminar_submodulo('{{ submodulo.id }}', '{{ submodulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
+                                            </div>
+                                        </div>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

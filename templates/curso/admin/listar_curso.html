@@ -3,7 +3,11 @@
 
 {% endblock %}
 {% block title %}
-    Listado de cursos
+    {% if eval %}
+        Evaluaciones
+    {% else %}
+        Listado de cursos
+    {% endif %}
 {% endblock %}
 {% block style %}
 
@@ -13,7 +17,11 @@
     <nav id="nav-foto" class="navbar undercontainer">
         <div class="container">
             <h1 class="h1 text-white">
-                Listado de cursos
+                {% if eval %}
+                    Evaluaciones
+                {% else %}
+                    Listado de cursos
+                {% endif %}
             </h1>
         </div>
 
@@ -31,8 +39,12 @@
                                 <img src = '/media/{{ curso.icono }}' width="150px"/>
                             </figure>
                             <br>
-                            <a href="/curso/modulo/nuevo/{{ curso.id }}" class="card-link">Añadir Módulo</a>
-                            <a href="/curso/modulo/registros/{{ curso.id }}/" class="card-link">Módulos Registrados</a>
+                            {% if eval %}
+                                <a href="/evaluacion/modulos/{{ curso.id }}" class="btn btn-link"><i class="fas fa-tasks justify-end"></i> Evaluación del curso de {{ curso.nombre }}</a>
+                            {% else %}
+                                <a href="/curso/modulo/nuevo/{{ curso.id }}" class="card-link">Añadir Módulo</a>
+                                <a href="/curso/modulo/registros/{{ curso.id }}/" class="card-link">Módulos Registrados</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -30,6 +30,7 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'estudiante/', include(('estudiante.urls', 'estudiante'))),
     path(r'curso/', include('curso.urls')),
+    path(r'evaluacion/', include('evaluacion.urls')),
     path(r'login/', login_user, name = 'login'),
     path(r'logout/', logout_user, name = 'logout'),
     path(r'forget/password/1C1CHBF_esEC825EC82569i57j0l51359j0j7/', forget_password, name = 'forget_password'),

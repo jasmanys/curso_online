@@ -4,6 +4,7 @@ from django.db import DatabaseError, transaction
 from django.contrib.auth.decorators import login_required
 from curso.forms import CursoForm, SubModuloForm
 from curso.models import *
+from evaluacion.models import Evaluacion
 
 
 @login_required(login_url='/login/')
@@ -231,7 +232,8 @@ def registro_modulos(request, curso_id):
     data = {}
     data['user'] = request.user
     data['curso'] = Curso.objects.get(id=curso_id)
-    data['modulos'] = Modulo.objects.filter(curso__id=curso_id)
+    modulos = Modulo.objects.filter(curso__id=curso_id)
+    data['modulos'] = modulos
     return render(request, 'curso/admin/listar_modulo.html', data)
 
 @login_required(login_url='/login/')
