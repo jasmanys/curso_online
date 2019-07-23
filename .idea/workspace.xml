@@ -4,35 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/templates/curso/admin/listar_submodulo.html" line="86" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/curso/migrations/0002_auto_20190722_1542.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/curso/migrations/0003_auto_20190722_1832.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0002_auto_20190722_0652.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0003_auto_20190722_0705.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0004_auto_20190722_0710.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0005_auto_20190722_1104.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0006_auto_20190722_1542.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0007_auto_20190722_1832.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0008_auto_20190722_2226.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/curso/admin/form_enunciado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autenticacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/autenticacion/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso_online/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso_online/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/listar_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/listar_curso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/listar_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/listar_modulo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/listar_submodulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/listar_submodulo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html" afterDir="false" />
-    </list>
+    <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/curso/admin/form_enunciado.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="492">
-              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
             </state>
           </provider>
         </entry>
@@ -124,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/evaluacion/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="36" lean-forward="true" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+            <state relative-caret-position="356">
+              <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -415,15 +387,15 @@
       <workItem from="1563675424398" duration="303000" />
       <workItem from="1563721474098" duration="9607000" />
       <workItem from="1563795969335" duration="4717000" />
-      <workItem from="1563823878620" duration="14172000" />
+      <workItem from="1563823878620" duration="14568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="264683000" />
+    <option name="totallyTimeSpent" value="265079000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49801588" visible="true" weight="0.19515885" />
@@ -764,16 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/curso/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1088">
-          <caret line="20" column="34" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/curso/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -821,16 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/evaluacion/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="36" lean-forward="true" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/curso/admin/listar_modulo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-151">
@@ -841,7 +793,27 @@
     <entry file="file://$PROJECT_DIR$/templates/curso/admin/form_enunciado.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="492">
-          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curso/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1088">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluacion/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
