@@ -20,7 +20,7 @@ class EnunciadoEvaluacion(models.Model):
     RESPUESTA_CHOICES = (
         (RESPUESTA_UNICA, 'Respuesta única'),
         (OPCION_MULTIPLE, 'Opción múltiple'),
-        (RELACIONAR_CONCEPTO, 'Relacionar concepto'),
+        #(RELACIONAR_CONCEPTO, 'Relacionar concepto'),
     )
     evaluacion = models.ForeignKey(Evaluacion, verbose_name='Evaluación', on_delete=models.CASCADE)
     submodulo = models.ForeignKey(SubModulo, verbose_name='SubModulo', on_delete=models.CASCADE)
@@ -37,7 +37,7 @@ class EnunciadoEvaluacion(models.Model):
 
 class OpcionEnunciado(models.Model):
     enunciado_evaluacion = models.ForeignKey(EnunciadoEvaluacion, verbose_name='Enunciado Evaluacion', on_delete=models.PROTECT)
-    opcion = models.TextField(verbose_name='Enunciado', max_length=100)
+    opcion = models.TextField(verbose_name='Enunciado', max_length=200)
 
     def __str__(self):
         return self.opcion

@@ -19,15 +19,47 @@
     </nav>
     <div class="container mt-3 mb-5">
         <div class="row">
-            <div class="col-xl-8 offset-xl-2">
+            <div class="col-xl-6">
+                {% if error %}
+                    <div id="no-valido" class="alert alert-danger" role="alert">
+                        <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <i class="fas fa-times justify-end"></i>
+                        </button>
+                        <span id="alert-contenido">
+                            {{ error }}
+                        </span>
+                    </div>
+                {% endif %}
+                {% if exito %}
+                    <div id="no-valido" class="alert alert-success" role="alert">
+                        <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <i class="fas fa-times justify-end"></i>
+                        </button>
+                        <span id="alert-contenido">
+                            {{ exito | safe }}
+                        </span>
+                    </div>
+                {% endif %}
                 <form id="frm" action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form_enunciado_evaluacion.as_p }}
+                    <select style="display:none;" required name="lista_de_enunciados" id="id_lista_de_enunciados" multiple="multiple">
+
+                    </select>
+                    <div id="containerButton" class="form-group">
+
+                    </div>
                     <div class="form-group">
                         <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar Enunciado</button>
                         <a href="/evaluacion/listar/submodulo/{{ submodulo.modulo.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
                     </div>
                 </form>
+            </div>
+            <div id="containerEnunciados" class="form-group col-xl-6">
+                <input type="hidden" id="tipo_enunciado" value="{{ hidden_tipo_enunciado }}" />
+
             </div>
         </div>
     </div>
@@ -35,19 +67,5 @@
 
 {% block script %}
 <!-- Initialize Swiper -->
-  <script>
-    const cargando = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
-    const err = 'Guardar Módulo';
-    $(function () {
-        $('#frm').on('submit',() =>{
-            $('#guardar').html(cargando);
-            $('#guardar').attr("disabled", true);
-        });
-        $('#id_tipo_respuesta').change(function () {
-            if($('#id_tipo_respuesta option:selected').val() != ''){
-
-            }
-        });
-    });
-  </script>
+  <script src="/static/js/form_enunciado.js"></script>
 {% endblock %}
