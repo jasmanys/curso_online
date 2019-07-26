@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 from curso.models import *
@@ -44,6 +44,81 @@ def registro_evaluacion(request, modulo_id):
     data['submodulos'] = submodulos
     data['eval'] = True
     return render(request, 'curso/admin/listar_submodulo.html', data)
+
+@login_required(login_url='/login/')
+def eliminar_evaluacion(request, modulo_id):
+    data = {}
+    data['user'] = request.user
+    mod = Modulo.objects.get(id = modulo_id)
+    try:
+        with transaction.atomic():
+            ev = Evaluacion.objects.get(modulo=mod)
+            ev.delete()
+    except DatabaseError:
+        pass
+    return redirect('/evaluacion/modulos/{}/'.format(mod.curso.id))
+
+@login_required(login_url='/login/')
+def registros_enunciado(request, submodulo_id):
+    data = {}
+    data['user'] = request.user
+    data['submodulo'] = SubModulo.objects.get(id = submodulo_id)
+    data['enunciados'] = EnunciadoEvaluacion.objects.filter(submodulo__id=submodulo_id)
+    return render(request, 'curso/admin/listar_enunciado.html', data)
+
+@login_required(login_url='/login/')
+def editar_enunciado(request, enunciado_id):
+    data = {}
+    data['user'] = request.user
+    data['enunciado_evaluacion'] = EnunciadoEvaluacion.objects.get(id=enunciado_id)
+    data['hidden_tipo_enunciado'] = data['enunciado_evaluacion'].tipo_respuesta
+    opciones_enunciado = OpcionEnunciado.objects.filter(enunciado_evaluacion=data['enunciado_evaluacion']).values()
+    for i in range(len(opciones_enunciado)):
+        if data['hidden_tipo_enunciado'] in [0, 1]:
+            opciones_enunciado[i]['respuesta'] = SeleccionMultiple.objects.get(opcion_enunciado__id=opciones_enunciado[i]['id']).respuesta
+            opciones_enunciado[i]['fr'] = i+1
+    data['opciones_enunciado'] = opciones_enunciado
+    data['eval'] = True
+    form = None
+    if request.method == 'POST':
+        try:
+            with transaction.atomic():
+                form = EnunciadoEvaluacionForm(request.POST, request.FILES, instance=data['enunciado_evaluacion'])
+                if form.is_valid():
+                    form.save()
+                    opcion_enunciados = OpcionEnunciado.objects.filter(enunciado_evaluacion = form.instance).values()
+                    for oe in opcion_enunciados:
+                        oeo = OpcionEnunciado.objects.get(id=oe['id'])
+                        seleccion_multiple = SeleccionMultiple.objects.filter(opcion_enunciado=oeo).values()
+                        for sm in seleccion_multiple:
+                            sml = SeleccionMultiple.objects.get(id=sm['id'])
+                            sml.delete()
+                        oeo.delete()
+                    for lis in request.POST.getlist('lista_de_enunciados'):
+                        temp = lis.split('|')
+                        opcion_enunciado = OpcionEnunciado()
+                        opcion_enunciado.enunciado_evaluacion = form.instance
+                        opcion_enunciado.opcion = temp[0]
+                        opcion_enunciado.save()
+                        if form.instance.tipo_respuesta in [0, 1]:
+                            seleccion_multiple = SeleccionMultiple()
+                            seleccion_multiple.opcion_enunciado = opcion_enunciado
+                            if temp[len(temp) - 1] == 'true':
+                                seleccion_multiple.respuesta = True
+                            else:
+                                seleccion_multiple.respuesta = False
+                            seleccion_multiple.save()
+                    data['exito'] = "Se editó el enunciado <strong>{}</strong>".format(form.instance.enunciado)
+                    form = None
+                else:
+                    data['error'] = "error en el form"
+        except DatabaseError:
+            data['error'] = "error al guardar el enunciado"
+    if form:
+        data['form_enunciado_evaluacion'] = form
+    else:
+        data['form_enunciado_evaluacion'] = EnunciadoEvaluacionForm(instance=data['enunciado_evaluacion'])
+    return render(request, 'curso/admin/form_enunciado.html', data)
 
 @login_required(login_url='/login/')
 def registro_enunciado(request, submodulo_id):

@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 {% endblock %}
 {% block title %}
-    {% if eval %}Registrar enunciados{% else %}Submódulos del módulo de {{ modulo.titulo }} {% endif %}
+    Enunciados de la evaluación
 {% endblock %}
 {% block style %}
 
@@ -13,10 +13,9 @@
     <nav id="nav-foto" class="navbar undercontainer">
         <div class="container">
             <h1 class="h1 text-white">
-                {% if eval %}Seleccione el submódulo para registrar los enunciados de la evaluación{% else %}Submódulos del módulo de {{ modulo.titulo }}{% endif %}
+                Enunciados de la evaluación
             </h1>
         </div>
-
     </nav>
     {% if not eval %}
         <!-- Modal -->
@@ -51,53 +50,33 @@
                 <table class="table table-bordered table-hover display" id="tb_submodulos">
                     <thead>
                         <th>
-                            Número
+                            Enunciado
                         </th>
                         <th>
-                            Título
+                            Tipo de respuesta
                         </th>
                         <th class="text-center">
                             Opciones
                         </th>
                     </thead>
                     <tbody>
-                        {% for submodulo in submodulos %}
+                        {% for enunciado in enunciados %}
                             <tr>
                                 <td>
-                                    {{ submodulo.numero }}
+                                    {{ enunciado.enunciado }}
                                 </td>
                                 <td>
-                                    {{ submodulo.titulo }}
+                                    {{ enunciado.ret_tipo_respuesta }}
                                 </td>
                                 <td class="text-center">
-                                    {% if eval %}
-                                        <div class="dropdown">
-                                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Opción
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                                {% if submodulo.count_enunciado > 0 %}
-                                                    <a href="/evaluacion/registros/enunciado/{{ submodulo.id }}/" class="dropdown-item">
-                                                        Enunciados Registrados
-                                                    </a>
-                                                {% else %}
-                                                    <a href="/evaluacion/agregar/enunciado/{{ submodulo.id }}/" class="dropdown-item">
-                                                        Agregar Enunciado
-                                                    </a>
-                                                {% endif %}
-                                            </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opción
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btn_opcion">
+                                            <a href="/evaluacion/editar/enunciado/{{ enunciado.id }}/" class="dropdown-item">Editar</a>
                                         </div>
-                                    {% else %}
-                                        <div class="dropdown">
-                                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Opción
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                                <a href="/curso/submodulo/editar/{{ submodulo.id }}/" class="dropdown-item">Editar</a>
-                                                <button onclick="eliminar_submodulo('{{ submodulo.id }}', '{{ submodulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
-                                            </div>
-                                        </div>
-                                    {% endif %}
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -106,7 +85,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block script %}

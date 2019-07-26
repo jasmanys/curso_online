@@ -22,6 +22,7 @@ class EnunciadoEvaluacion(models.Model):
         (OPCION_MULTIPLE, 'Opción múltiple'),
         #(RELACIONAR_CONCEPTO, 'Relacionar concepto'),
     )
+    tipo_respuesta_dict = dict(RESPUESTA_CHOICES)
     evaluacion = models.ForeignKey(Evaluacion, verbose_name='Evaluación', on_delete=models.CASCADE)
     submodulo = models.ForeignKey(SubModulo, verbose_name='SubModulo', on_delete=models.CASCADE)
     enunciado = models.TextField(verbose_name='Enunciado', max_length=250)
@@ -30,6 +31,9 @@ class EnunciadoEvaluacion(models.Model):
 
     def __str__(self):
         return self.enunciado
+
+    def ret_tipo_respuesta(self):
+        return self.tipo_respuesta_dict[self.tipo_respuesta]
 
     class Meta:
         verbose_name = 'Enunciado'

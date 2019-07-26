@@ -79,7 +79,15 @@
                                 <td class="text-center">
                                     {% if eval %}
                                         {% if modulo.eval_count > 0 %}
-                                            <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="btn btn-outline-primary">Ver Evaluación Registrada</a>
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Opción
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="btn_opcion">
+                                                    <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="dropdown-item">Ver Evaluación Registrada</a>
+                                                    <a href="/evaluacion/eliminar/{{ modulo.id }}/" class="dropdown-item">Eliminar Evaluación</a>
+                                                </div>
+                                            </div>
                                         {% else %}
                                             <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="btn btn-outline-primary">Registrar Evaluación</a>
                                         {% endif %}
