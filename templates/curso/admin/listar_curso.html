@@ -27,6 +27,12 @@
 
     </nav>
     <div class="container mt-3 mb-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Cursos Registrados</li>
+          </ol>
+        </nav>
         <div class="row">
             {% for curso in cursos %}
                 <div class="col-12 col-md-6 col-lg-4">

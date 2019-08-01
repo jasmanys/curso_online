@@ -45,7 +45,18 @@
           </div>
         </div>
     {% endif %}
-    <div class="container mt-5 mb-5">
+    <div class="container mt-3 mb-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              {% if eval %}
+                  <li class="breadcrumb-item"><a href="/evaluacion/modulos/{{ modulo.curso.id }}/">Módulos Registrados</a></li>
+              {% else %}
+                  <li class="breadcrumb-item"><a href="/curso/modulo/registros/{{ modulo.curso.id }}/">Módulos Registrados</a></li>
+              {% endif %}
+              <li class="breadcrumb-item active" aria-current="page">Submódulos Registrados</li>
+          </ol>
+        </nav>
         <div class="row">
             <div class="col-12 table-responsive">
                 <table class="table table-bordered table-hover display" id="tb_submodulos">
@@ -80,11 +91,10 @@
                                                     <a href="/evaluacion/registros/enunciado/{{ submodulo.id }}/" class="dropdown-item">
                                                         Enunciados Registrados
                                                     </a>
-                                                {% else %}
-                                                    <a href="/evaluacion/agregar/enunciado/{{ submodulo.id }}/" class="dropdown-item">
-                                                        Agregar Enunciado
-                                                    </a>
                                                 {% endif %}
+                                                <a href="/evaluacion/agregar/enunciado/{{ submodulo.id }}/" class="dropdown-item">
+                                                    Agregar Enunciado
+                                                </a>
                                             </div>
                                         </div>
                                     {% else %}

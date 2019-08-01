@@ -35,7 +35,21 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid mt-3 mb-5">
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              {% if agregar_submodulo %}
+                <li class="breadcrumb-item"><a href="/curso/modulo/registros/{{ modulo.curso.id }}/">Módulos Registrados</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Registrar Submódulo</li>
+              {% else %}
+                  <li class="breadcrumb-item"><a href="/curso/submodulo/registros/{{ modulo.id }}/">Submódulos Registrados</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"> Editar Submódulo</li>
+              {% endif %}
+          </ol>
+        </nav>
+    </div>
+    <div class="container-fluid mb-5">
         <div class="row"><!--Datos del nuevo CURSO-->
             <div class="col-xl-8 offset-xl-2">
                 <div class="card">
@@ -72,7 +86,11 @@
                             {{ form.as_p }}
                             <div class="form-group">
                                 <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar SubMódulo</button>
-                                <a href="/curso/submodulo/registros/{{ modulo.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                                {% if agregar_submodulo %}
+                                    <a href="/curso/modulo/registros/{{ modulo.curso.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                                {% else %}
+                                    <a href="/curso/submodulo/registros/{{ modulo.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                                {% endif %}
                             </div>
                         </form>
                     </div>

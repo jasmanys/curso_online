@@ -144,6 +144,7 @@ def agregar_submodulo(request, modulo_id):
     data = {}
     data['user'] = request.user
     data['modulo'] = Modulo.objects.get(id=modulo_id)
+    data['agregar_submodulo'] = True
     if request.method == 'POST':
         form = SubModuloForm(request.POST)
         if form.is_valid():

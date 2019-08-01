@@ -55,17 +55,22 @@
         </div>
     {% endif %}
     <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+            <li class="breadcrumb-item active" aria-current="page">Home</li>
+          </ol>
+        </nav>
         <div class="row">
         {% if user.is_superuser %}
             <div class="col-12 col-md-6 col-lg-4">
                     <a href="curso/nuevo/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
                         <div class="card-header curso-card-header text-white">
-                            Añadir Curso
+                            Agregar Curso
                         </div>
                         <div class="card-body text-center">
                             <figure>
                                 <i class="fa fa-book" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
-                                <figcaption class="text-center mt-3">Añadir Curso</figcaption>
+                                <figcaption class="text-center mt-3">Agregar Curso</figcaption>
                             </figure>
                         </div>
                     </a>

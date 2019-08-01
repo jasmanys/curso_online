@@ -38,6 +38,7 @@ def registro_modulos_para_add_evaluacion(request, curso_id):
 def registro_evaluacion(request, modulo_id):
     data = {}
     data['user'] = request.user
+    data['modulo'] = Modulo.objects.get(id=modulo_id)
     submodulos = SubModulo.objects.filter(modulo__id=modulo_id).values()
     for i in range(len(submodulos)):
         submodulos[i]['count_enunciado'] = EnunciadoEvaluacion.objects.filter(submodulo__id=submodulos[i]['id']).count()
@@ -125,6 +126,7 @@ def registro_enunciado(request, submodulo_id):
     data = {}
     data['user'] = request.user
     data['submodulo'] = SubModulo.objects.get(id=submodulo_id)
+    data['agregar_enunciado'] = True
     data['enunciado_evaluacion'] = EnunciadoEvaluacion.objects.filter(submodulo__id=submodulo_id)
     data['eval'] = True
     form = None

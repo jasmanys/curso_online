@@ -53,6 +53,17 @@
         </div>
     {% endif %}
     <div class="container mt-5 mb-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              {% if eval %}
+                  <li class="breadcrumb-item"><a href="/evaluacion/">Cursos Registrados</a></li>
+              {% else %}
+                  <li class="breadcrumb-item"><a href="/curso/modulo/nuevo/">Cursos Registrados</a></li>
+              {% endif %}
+              <li class="breadcrumb-item active" aria-current="page">Módulos Registrados</li>
+          </ol>
+        </nav>
         <div class="row">
             <div class="col-12 table-responsive">
                 <table class="table table-bordered table-hover display" id="tb_modulos">

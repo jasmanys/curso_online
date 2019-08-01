@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/curso/admin/listar_enunciado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evaluacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_curso.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_enunciado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_enunciado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_modulo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_submodulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_submodulo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/admin/listar_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/listar_curso.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/admin/listar_enunciado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/listar_enunciado.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/curso/admin/listar_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/listar_modulo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/curso/admin/listar_submodulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/listar_submodulo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,40 +49,6 @@
         <option value="HTML File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>undercon</find>
-      <find>storage</find>
-      <find>ImageField</find>
-      <find>FileField</find>
-      <find>Show</find>
-      <find>Search</find>
-      <find>Next</find>
-      <find>exampleModalCenter</find>
-      <find>exampleModalLongTitle</find>
-      <find>No data available in table</find>
-      <find>Showing 0 to 0 of 0 entries</find>
-      <find>indice_curso.html</find>
-      <find>a.url</find>
-      <find>editado</find>
-      <find>src</find>
-      <find>frameborder</find>
-      <find>3Ciframe</find>
-      <find>cke_116_textInput</find>
-      <find>_textInput</find>
-      <find>YouTube</find>
-      <find>IFr</find>
-      <find>Cute</find>
-      <find>Cut</find>
-      <find>360</find>
-      <find>responsive</find>
-      <find>button</find>
-      <find>DecimalField</find>
-      <find>FloatField</find>
-      <find>registro_evaluacion</find>
-      <find>evaluacion/nuevo</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -200,7 +168,10 @@
       <workItem from="1563973149576" duration="640000" />
       <workItem from="1563983587663" duration="18033000" />
       <workItem from="1564090801651" duration="1257000" />
-      <workItem from="1564092949241" duration="10480000" />
+      <workItem from="1564092949241" duration="11119000" />
+      <workItem from="1564425033603" duration="1205000" />
+      <workItem from="1564521880527" duration="599000" />
+      <workItem from="1564629289012" duration="6513000" />
     </task>
     <servers />
   </component>
@@ -212,7 +183,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
