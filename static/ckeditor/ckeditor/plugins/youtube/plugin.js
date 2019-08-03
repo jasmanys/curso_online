@@ -103,7 +103,7 @@
 											id : 'txtWidth',
 											width : '60px',
 											label : editor.lang.youtube.txtWidth,
-											'default' : editor.config.youtube_width != null ? editor.config.youtube_width : '560',
+											'default' : editor.config.youtube_width != null ? editor.config.youtube_width : '400',
 											validate : function () {
 												if (this.getValue()) {
 													var width = parseInt (this.getValue()) || 0;
