@@ -16,6 +16,14 @@
         </div>
     </nav>
     <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ curso_link }}">Índice del curso de {{ submodulo.modulo.curso.nombre }}</a></li>
+              <li class="breadcrumb-item"><a href="/curso/modulo/abrir/id/{{ submodulo.modulo.id }}/">Índice del módulo {{ submodulo.modulo.titulo }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Contenido de {{ submodulo.titulo }}</li>
+          </ol>
+        </nav>
         <div class="row">
             <div class="col text-break text-justify mb-5">
                 {{ submodulo.contenido | safe }}

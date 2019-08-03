@@ -40,6 +40,7 @@ def abrir_modulo(request, modulo_id):
         else:
             data['submodulos'] = SubModulo.objects.filter(modulo = modulo)
             data['modulo'] = modulo
+            data['curso_link'] = "/curso/abrir/{}/{}/".format(modulo.curso.nombre.replace(' ', '').lower(), modulo.curso.id)
             return render(request, 'curso/modulo/indice_modulo.html', data)
     else:
         return redirect('/')
@@ -56,6 +57,7 @@ def abrir_submodulo(request, submodulo_id):
             pass
         else:
             data['submodulo'] = submodulo
+            data['curso_link'] = "/curso/abrir/{}/{}/".format(submodulo.modulo.curso.nombre.replace(' ', '').lower(), submodulo.modulo.curso.id)
             return render(request, 'curso/modulo/contenido_submodulo.html', data)
     else:
         return redirect('/')
