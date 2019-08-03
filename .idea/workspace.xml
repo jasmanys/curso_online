@@ -4,7 +4,25 @@
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_curso/curso_electricidad.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/18/fig1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/18/fig1_thumb.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/18/fig2.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/18/fig2_thumb.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/18/fig3.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/18/fig3_thumb.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/image-20190720054509-1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/image-20190720054509-1_thumb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/image-20190720060924-1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/image-20190720060924-1_thumb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/image-20190720061642-2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/image-20190720061642-2_thumb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/image-20190720061652-3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/image-20190720061652-3_thumb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/voltaje.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/2019/07/20/voltaje_thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/contenido_submodulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/contenido_submodulo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -164,7 +182,8 @@
       <workItem from="1564521880527" duration="599000" />
       <workItem from="1564629289012" duration="6513000" />
       <workItem from="1564637695217" duration="384000" />
-      <workItem from="1564689422358" duration="2159000" />
+      <workItem from="1564689422358" duration="2203000" />
+      <workItem from="1564781322266" duration="2218000" />
     </task>
     <servers />
   </component>
