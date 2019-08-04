@@ -112,3 +112,7 @@ class SubModulo(models.Model):
             mod = SubModulo.objects.get(id=self.id)
             self.numero = mod.numero
         super(SubModulo, self).save(*args, **kwargs)
+
+class EstudianteSubModulo(models.Model):
+    estudiante = models.OneToOneField(Estudiante, verbose_name='Estudiante Del Curso', on_delete=models.CASCADE)
+    submodulos = models.ManyToManyField(SubModulo, verbose_name='SubModulos cursados', null=True, blank=True)

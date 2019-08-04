@@ -35,7 +35,7 @@
                         <ul>
                             {% for submodulo in submodulos %}
                                 <li>
-                                    <p><a href="/curso/submodulo/abrir/id/{{ submodulo.id }}/">{{ modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</a></p>
+                                    <p><a href="/curso/submodulo/abrir/id/{{ submodulo.id }}/">{{ modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</a>{{ submodulo.completado | safe }}</p>
                                 </li>
                             {% endfor %}
                         </ul>
