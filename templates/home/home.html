@@ -177,6 +177,7 @@
         Inline content
     </div>-->
 {% block script %}
+    {% if user.is_superuser %}
 <script>
     function eliminar_curso(item, name_item) {
         $('#nombreCurso').html(name_item);
@@ -190,4 +191,5 @@
         });
     });
 </script>
+    {% endif %}
 {% endblock %}

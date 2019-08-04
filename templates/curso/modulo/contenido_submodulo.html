@@ -19,18 +19,28 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-white">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ curso_link }}">Índice del curso de {{ submodulo.modulo.curso.nombre }}</a></li>
-              <li class="breadcrumb-item"><a href="/curso/modulo/abrir/id/{{ submodulo.modulo.id }}/">Índice del módulo {{ submodulo.modulo.titulo }}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Contenido de {{ submodulo.titulo }}</li>
+              <li class="breadcrumb-item"><a href="{{ curso_link }}">Curso de {{ submodulo.modulo.curso.nombre }}</a></li>
+              <li class="breadcrumb-item"><a href="/curso/modulo/abrir/id/{{ submodulo.modulo.id }}/">{{ submodulo.modulo.numero }}. {{ submodulo.modulo.titulo }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ submodulo.modulo.numero }}.{{ submodulo.numero }}. {{ submodulo.titulo }}</li>
           </ol>
         </nav>
         <div class="row">
-            <div class="col text-break text-justify mb-5">
+            <div class="col text-break text-justify">
                 {{ submodulo.contenido | safe }}
             </div>
+        </div>
+        <div class="row mb-5">
+            {% for e in enlaces %}
+                {{ e | safe }}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
 
 {% block script %}
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+    </script>
 {% endblock %}

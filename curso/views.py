@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from curso.forms import CursoForm, SubModuloForm
 from curso.models import *
 from evaluacion.models import Evaluacion
+from django.core.exceptions import ObjectDoesNotExist
 
 
 @login_required(login_url='/login/')
@@ -58,6 +59,27 @@ def abrir_submodulo(request, submodulo_id):
         else:
             data['submodulo'] = submodulo
             data['curso_link'] = "/curso/abrir/{}/{}/".format(submodulo.modulo.curso.nombre.replace(' ', '').lower(), submodulo.modulo.curso.id)
+            data['enlaces'] = []
+            if submodulo.numero > 1:
+                try:
+                    subm = SubModulo.objects.get(modulo=submodulo.modulo, numero=submodulo.numero - 1)
+                    a = '<div class="col-lg-2 col-md-4 col-xs-12 text-break text-justify">'
+                    a += '<a class="btn btn-link btn-lg btn-block" data-toggle="tooltip" data-placement="top" title="Ir a {}" href="{}">Anterior</a>'.format(
+                        str(subm.modulo.numero) + '.' + str(subm.numero) + ' ' + subm.titulo, '/curso/submodulo/abrir/id/{}/'.format(subm.id))
+                    a += '</div>'
+                    data['enlaces'].append(a)
+                except ObjectDoesNotExist:
+                    pass
+            try:
+                subm = SubModulo.objects.get(modulo=submodulo.modulo, numero=submodulo.numero + 1)
+                a = '<div class="col-lg-2 offset-lg-8 col-md-4 offset-md-4 col-xs-12 text-break text-justify">'
+                a += '<a class="btn btn-link btn-lg btn-block" data-toggle="tooltip" data-placement="top" title="Ir a {}" href="{}">Siguiente</a>'.format(
+                    str(subm.modulo.numero) + '.' + str(subm.numero) + ' ' + subm.titulo,
+                    '/curso/submodulo/abrir/id/{}/'.format(subm.id))
+                a += '</div>'
+                data['enlaces'].append(a)
+            except ObjectDoesNotExist:
+                pass
             return render(request, 'curso/modulo/contenido_submodulo.html', data)
     else:
         return redirect('/')
