@@ -36,11 +36,19 @@
                         <ul>
                         {% for modulo in modulos %}
                             <li>
-                                <p><a href="/curso/modulo/abrir/id/{{ modulo.id }}/">Módulo {{ modulo.numero }}: {{ modulo.titulo }}</a>{{ modulo.completado | safe }}</p>
+                                {% if modulo.habilitado %}
+                                    <p><a href="/curso/modulo/abrir/id/{{ modulo.id }}/">Módulo {{ modulo.numero }}: {{ modulo.titulo }}</a>{{ modulo.completado | safe }}</p>
+                                {% else %}
+                                    <p>Módulo {{ modulo.numero }}: {{ modulo.titulo }}</p>
+                                {% endif %}
                                 <ul>
                                     {% for submodulo in modulo.submodulos %}
                                         <li>
-                                            <p><a href="/curso/submodulo/abrir/id/{{ submodulo.id }}/">{{ modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</a>{{ submodulo.terminado | safe }}</p>
+                                            {% if modulo.habilitado %}
+                                                <p><a href="/curso/submodulo/abrir/id/{{ submodulo.id }}/">{{ modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</a>{{ submodulo.terminado | safe }}</p>
+                                            {% else %}
+                                                <p>{{ modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</p>
+                                            {% endif %}
                                         </li>
                                     {% endfor %}
                                 </ul>

@@ -5,6 +5,7 @@ from estudiante.models import Estudiante
 class Evaluacion(models.Model):
     modulo = models.ForeignKey(Modulo, verbose_name='Módulo', on_delete=models.CASCADE, unique=True)
     calificacion_maxima = models.FloatField(default=100)
+    calificacion_minima = models.FloatField(default=70)
 
     def __str__(self):
         return self.modulo

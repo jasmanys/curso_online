@@ -20,14 +20,16 @@ def abrir_curso(request, curso_nombre, curso_id):
         else:
             curso = Curso.objects.get(pk = curso_id)
             data['curso'] = curso
-           #""" & nbsp; & nbsp; & nbsp; & nbsp; < i
-            #class ="fas fa-check text-success" > < / i >"""
             modulos = Modulo.objects.filter(curso__id = curso_id).values()
             for i in range(len(modulos)):
+                if i == 0:
+                    modulos[i]['habilitado'] = True
                 modulos[i]['submodulos'] = SubModulo.objects.filter(modulo__id = modulos[i]['id']).values()
                 try:
                     if len(modulos[i]['submodulos']) == EstudianteSubModulo.objects.get(estudiante=estudiante_curso.estudiante).submodulos.count():
                         modulos[i]['completado'] = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-award text-success"></i>'
+                        if i < len(modulos):
+                            modulos[i+1]['habilitado'] = True
                 except ObjectDoesNotExist:
                     pass
                 for ind in range(len(modulos[i]['submodulos'])):

@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/curso/migrations/0004_estudiantesubmodulo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/curso/migrations/0005_auto_20190803_2223.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0011_evaluacion_calificacion_minima.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +170,8 @@
       <workItem from="1564689422358" duration="2203000" />
       <workItem from="1564781322266" duration="6704000" />
       <workItem from="1564848578554" duration="11031000" />
-      <workItem from="1564922503921" duration="4164000" />
+      <workItem from="1564922503921" duration="6600000" />
+      <workItem from="1564967608522" duration="603000" />
     </task>
     <servers />
   </component>
