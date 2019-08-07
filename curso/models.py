@@ -115,4 +115,4 @@ class SubModulo(models.Model):
 
 class EstudianteSubModulo(models.Model):
     estudiante = models.OneToOneField(Estudiante, verbose_name='Estudiante Del Curso', on_delete=models.CASCADE)
-    submodulos = models.ManyToManyField(SubModulo, verbose_name='SubModulos cursados', null=True, blank=True)
+    submodulos = models.ManyToManyField(SubModulo, verbose_name='SubModulos cursados')

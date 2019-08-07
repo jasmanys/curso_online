@@ -1,6 +1,6 @@
 from django import forms
 
-from evaluacion.models import EnunciadoEvaluacion
+from evaluacion.models import EnunciadoEvaluacion, OpcionEnunciado
 
 
 class EnunciadoEvaluacionForm(forms.ModelForm):

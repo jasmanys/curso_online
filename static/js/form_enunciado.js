@@ -14,6 +14,108 @@ function button_enunciado(label, funcion){
     html += '</div>';
     return html;
 }
+function addImage(idImg){
+    var file = $('#fileImg')[0].files[0];
+    imageType = /image.*/;
+
+    if (!file.type.match(imageType)){
+        return;
+    }
+    result = null;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        result=e.target.result;
+        $('#'+idImg).attr("src",result);
+    };
+    reader.readAsDataURL(file);
+    return result;
+}
+function button_enunciado_file(label, funcion){
+    var html = '<div class="input-group mb-3">';
+    html += '<div class="input-group-prepend">';
+    html += '<span class="input-group-text" id="basic-addon1">'+ label + '</span>';//Agregar Opción
+    html += '</div>';
+    html += '<input title="Imagen para la opción" id="fileImg" style="cursor:pointer;" type="file" accept="image/*" class="form-control pb-5 pt-3" aria-label="Opcion" aria-describedby="basic-addon1"/>';
+    html += '<div class="input-group-append">';
+    html += '<button onclick="' + funcion + '" title="Agregar" class="btn btn-outline-info" type="button" id="add">';
+    html += '<i class="fas fa-folder-plus"></i>';
+    html += '</button>';
+    html += '</div>';
+    html += '</div>';
+    return html;
+}
+function agregar_opcion_img_rm(){
+    if($('#fileImg')[0].files.length > 0){
+        var c = $('#containerEnunciados>.custom-checkbox').length + 1;
+        var contenido = $('#containerEnunciados>.custom-checkbox').toArray();
+        var check = $('#containerEnunciados>.custom-checkbox .custom-control-input').toArray();
+        var valores = '';
+        var valores_select = '';
+        for(var i = 0; i < contenido.length; i++){
+            valores += valor_checkbox_img(i+1, '<img id="imgfc'+ (i+1) +'" class="img-fluid" src="'+ $('#imgfc'+(i+1)).attr('src')+'" width="400px"/>', $('#imgfc'+(i+1)).attr('src'));
+            valores_select += '<option value="' + $('#imgfc'+(i+1)).attr('src') +'" selected>' + $('#imgfc'+(i+1)).attr('src') + '</option>';
+        }
+        valores += valor_checkbox_img(c, '<img id="imgfc'+ c +'" class="img-fluid" src="" width="400px"/>', 'nel');
+        valores_select += '<option value="' + c +'" selected>' + 'nel' + '</option>';
+        valores += '<input type="hidden" id="tipo_enunciado" value="" />';
+        $('#containerEnunciados').html(valores);
+        $('#id_lista_de_enunciados').html(valores_select);
+        $('#tipo_enunciado').val($('#id_tipo_respuesta option:selected').val());
+        check = $('#containerEnunciados>.custom-checkbox .custom-control-input').toArray();
+        $(check[0]).attr('checked', 'checked');
+        var temp = $('#id_lista_de_enunciados>option').toArray();
+        $(temp[0]).val($(temp[0]).val()+'|true');
+        $(temp[0]).html($(temp[0]).val());
+        var res = addImage('imgfc'+c);
+        $('#fileImg').val(null);
+        alert(res);
+    }
+}
+function agregar_opcion_img_ru(){
+    if($('#fileImg')[0].files.length > 0){
+        var c = $('#containerEnunciados>.custom-radio').length + 1;
+        var contenido = $('#containerEnunciados>.custom-radio').toArray();
+        var radio = $('#containerEnunciados>.custom-radio .custom-control-input').toArray();
+        var valores = '';
+        var valores_select = '';
+        for(var i = 0; i < contenido.length; i++){
+            valores += valor_radio_img(i+1, i+1);
+            valores_select += '<option value="' + $(radio[i]).val() +'" selected>' + $(radio[i]).val() + '</option>';
+        }
+        valores += valor_radio_img(c, c);
+        valores_select += '<option value="' + c +'" selected>' + c + '</option>';
+        valores += '<input type="hidden" id="tipo_enunciado" value="" />';
+        $('#containerEnunciados').html(valores);
+        $('#id_lista_de_enunciados').html(valores_select);
+        $('#tipo_enunciado').val($('#id_tipo_respuesta option:selected').val());
+        radio = $('#containerEnunciados>.custom-radio .custom-control-input').toArray();
+        $(radio[0]).attr('checked', 'checked');
+        var temp = $('#id_lista_de_enunciados>option').toArray();
+        $(temp[0]).val($(temp[0]).val()+'|true');
+        $(temp[0]).html($(temp[0]).val());
+        $('#fileImg').val(null);
+    }
+}
+function valor_checkbox_img(item, val_item, src_img) {
+    var valores = '';
+    var outImg = val_item;
+    valores += '<div style="cursor: pointer;" id="fc' + item + '" class="custom-control custom-checkbox my-1">';
+    valores += '<input name="lista_enunciado[' + item + ']" value="' + src_img + '" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado' + item + '">';
+    valores += '<label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado' + item + '">' + outImg + '</label>';
+    valores += '</div>';
+    //addImage('imgfc' + item);
+    return valores;
+}
+function valor_radio_img(item, val_item) {
+    var valores = '';
+    var outImg = '<img id="imgfc'+ item +'" class="img-fluid" src="" width="400px"/>';
+    valores += '<div style="cursor: pointer;" id="fr' + item + '" class="custom-control custom-radio my-1 mr-sm-2">';
+    valores += '<input name="lista_enunciado" value="' + val_item + '" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado' + item + '">';
+    valores += '<label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado' + item + '">' + outImg + '</label>';
+    valores += '</div>';
+    //addImage('imgfc' + item);
+    return valores;
+}
 function no_desc_empty() {
     if($('#desc').val() != ''){
         return true;
@@ -104,7 +206,10 @@ $(function () {
                     html=button_enunciado('Agregar Opcion', 'agregar_opcion_rm()');
                     break;
                 case '2':
-                    html='';
+                    html=button_enunciado_file('Agregar Imagen', 'agregar_opcion_img_ru()');
+                    break;
+                case '3':
+                    html=button_enunciado_file('Agregar Imagen', 'agregar_opcion_img_rm()');
                     break;
             }
         }

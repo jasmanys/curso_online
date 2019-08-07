@@ -203,5 +203,11 @@ CKEDITOR_CONFIGS = {
             'elementspath',
         ]),
 
-    }
+    },
+    'imagen_opcion':{
+        'toolbar': [
+            {'name': 'insert',
+                'items': ['Image',]},
+        ]
+    },
 }

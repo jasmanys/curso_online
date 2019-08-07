@@ -3,7 +3,7 @@ from curso.models import Modulo, SubModulo
 from estudiante.models import Estudiante
 
 class Evaluacion(models.Model):
-    modulo = models.ForeignKey(Modulo, verbose_name='Módulo', on_delete=models.CASCADE, unique=True)
+    modulo = models.OneToOneField(Modulo, verbose_name='Módulo', on_delete=models.CASCADE)
     calificacion_maxima = models.FloatField(default=100)
     calificacion_minima = models.FloatField(default=70)
 
@@ -17,16 +17,20 @@ class Evaluacion(models.Model):
 class EnunciadoEvaluacion(models.Model):
     RESPUESTA_UNICA = 0
     OPCION_MULTIPLE = 1
-    RELACIONAR_CONCEPTO = 2
+    RESPUESTA_UNICA_CON_IMAGEN = 2
+    OPCION_MULTIPLE_CON_IMAGEN = 3
+    RELACIONAR_CONCEPTO = 4
     RESPUESTA_CHOICES = (
         (RESPUESTA_UNICA, 'Respuesta única'),
         (OPCION_MULTIPLE, 'Opción múltiple'),
+        (RESPUESTA_UNICA_CON_IMAGEN, 'Respuesta única (con imagen)'),
+        (OPCION_MULTIPLE_CON_IMAGEN, 'Opción múltiple (con imagen)'),
         #(RELACIONAR_CONCEPTO, 'Relacionar concepto'),
     )
     tipo_respuesta_dict = dict(RESPUESTA_CHOICES)
     evaluacion = models.ForeignKey(Evaluacion, verbose_name='Evaluación', on_delete=models.CASCADE)
     submodulo = models.ForeignKey(SubModulo, verbose_name='SubModulo', on_delete=models.CASCADE)
-    enunciado = models.TextField(verbose_name='Enunciado', max_length=250)
+    enunciado = models.TextField(verbose_name='Enunciado', max_length=500)
     tipo_respuesta = models.IntegerField(verbose_name='Tipo de Respuesta', choices=RESPUESTA_CHOICES)
     foto = models.ImageField(verbose_name='Imagen para el enunciado (Opcional)', upload_to='fotos_enunciado/', blank=True, null=True)
 
@@ -42,7 +46,8 @@ class EnunciadoEvaluacion(models.Model):
 
 class OpcionEnunciado(models.Model):
     enunciado_evaluacion = models.ForeignKey(EnunciadoEvaluacion, verbose_name='Enunciado Evaluacion', on_delete=models.PROTECT)
-    opcion = models.TextField(verbose_name='Enunciado', max_length=200)
+    opcion = models.TextField(verbose_name='Enunciado', max_length=200, null=True, blank=True)
+    imagen = models.ImageField(verbose_name='Imagen', upload_to='fotos_opciones_enunciado/', null=True, blank=True)
 
     def __str__(self):
         return self.opcion

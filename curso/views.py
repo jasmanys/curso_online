@@ -25,13 +25,6 @@ def abrir_curso(request, curso_nombre, curso_id):
                 if i == 0:
                     modulos[i]['habilitado'] = True
                 modulos[i]['submodulos'] = SubModulo.objects.filter(modulo__id = modulos[i]['id']).values()
-                try:
-                    if len(modulos[i]['submodulos']) == EstudianteSubModulo.objects.get(estudiante=estudiante_curso.estudiante).submodulos.count():
-                        modulos[i]['completado'] = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-award text-success"></i>'
-                        if i < len(modulos):
-                            modulos[i+1]['habilitado'] = True
-                except ObjectDoesNotExist:
-                    pass
                 for ind in range(len(modulos[i]['submodulos'])):
                     if EstudianteSubModulo.objects.filter(estudiante=estudiante_curso.estudiante, submodulos__id=modulos[i]['submodulos'][ind]['id']).exists():
                         modulos[i]['submodulos'][ind]['terminado'] = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-check text-success"></i>'
