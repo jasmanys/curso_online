@@ -101,21 +101,26 @@ def registros_enunciado(request, submodulo_id):
     data['enunciados'] = EnunciadoEvaluacion.objects.filter(submodulo__id=submodulo_id)
     return render(request, 'curso/admin/listar_enunciado.html', data)
 
-@login_required(login_url='/login/')
-def editar_enunciado(request, enunciado_id):
+def ret_data_editar_enunciado(request, enunciado_id):
     data = {}
     data['user'] = request.user
     data['enunciado_evaluacion'] = EnunciadoEvaluacion.objects.get(id=enunciado_id)
     data['hidden_tipo_enunciado'] = data['enunciado_evaluacion'].tipo_respuesta
     opciones_enunciado = OpcionEnunciado.objects.filter(enunciado_evaluacion=data['enunciado_evaluacion']).values()
     for i in range(len(opciones_enunciado)):
-        if data['hidden_tipo_enunciado'] in [0, 1]:
-            opciones_enunciado[i]['respuesta'] = SeleccionMultiple.objects.get(opcion_enunciado__id=opciones_enunciado[i]['id']).respuesta
-            if opciones_enunciado[i]['imagen']:
-                opciones_enunciado[i]['opcion'] = OpcionEnunciado.objects.get(id=opciones_enunciado[i]['id']).imagen_base64
-            opciones_enunciado[i]['fr'] = i+1
+        opciones_enunciado[i]['respuesta'] = SeleccionMultiple.objects.get(
+            opcion_enunciado__id=opciones_enunciado[i]['id']).respuesta
+        if opciones_enunciado[i]['imagen']:
+            opciones_enunciado[i]['opcion'] = OpcionEnunciado.objects.get(id=opciones_enunciado[i]['id']).imagen_base64
+        opciones_enunciado[i]['fr'] = i + 1
     data['opciones_enunciado'] = opciones_enunciado
     data['eval'] = True
+    return data
+
+@login_required(login_url='/login/')
+def editar_enunciado(request, enunciado_id):
+    data = {}
+    data = ret_data_editar_enunciado(request, enunciado_id)
     form = None
     if request.method == 'POST':
         try:
@@ -140,7 +145,7 @@ def editar_enunciado(request, enunciado_id):
                         elif form.instance.tipo_respuesta in [2, 3]:
                             opcion_enunciado.imagen = decode_base64_file(temp[0])
                         opcion_enunciado.save()
-                        if form.instance.tipo_respuesta in [0, 1]:
+                        if form.instance.tipo_respuesta in [0, 1, 2, 3]:
                             seleccion_multiple = SeleccionMultiple()
                             seleccion_multiple.opcion_enunciado = opcion_enunciado
                             if temp[len(temp) - 1] == 'true':
@@ -148,8 +153,8 @@ def editar_enunciado(request, enunciado_id):
                             else:
                                 seleccion_multiple.respuesta = False
                             seleccion_multiple.save()
+                    data = ret_data_editar_enunciado(request, enunciado_id)
                     data['exito'] = "Se editó el enunciado <strong>{}</strong>".format(form.instance.enunciado)
-                    form = None
                 else:
                     data['error'] = "error en el form"
         except DatabaseError:
@@ -184,7 +189,7 @@ def registro_enunciado(request, submodulo_id):
                         elif form.instance.tipo_respuesta in [2, 3]:
                             opcion_enunciado.imagen = decode_base64_file(temp[0])
                         opcion_enunciado.save()
-                        if form.instance.tipo_respuesta in [0, 1]:
+                        if form.instance.tipo_respuesta in [0, 1, 2, 3]:
                             seleccion_multiple = SeleccionMultiple()
                             seleccion_multiple.opcion_enunciado = opcion_enunciado
                             if temp[len(temp)-1] == 'true':
@@ -192,7 +197,7 @@ def registro_enunciado(request, submodulo_id):
                             else:
                                 seleccion_multiple.respuesta = False
                             seleccion_multiple.save()
-                    data['exito'] = "Se guardó el enunciado <strong>{}</strong>".format(form.instance.enunciado)
+                    data['exito'] = 'Se guardó el enunciado <strong><a title="¿Editar?" href="/evaluacion/editar/enunciado/{}/">{}</a></strong>'.format(form.instance.id, form.instance.enunciado)
                     form = None
                 else:
                     data['error'] = "error en el form"

@@ -61,8 +61,10 @@ class OpcionEnunciado(models.Model):
 
     @property
     def imagen_base64(self):
-        with open(settings.MEDIA_ROOT+"/"+self.imagen, "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read())
+        with open(self.imagen.path, "rb") as image_file:
+            sp = self.imagen.path.split('.')
+            data = image_file.read()
+            encoded_string = "data:image/{};base64,{}".format(sp[len(sp) - 1], base64.b64encode(data).decode())
         if encoded_string:
             return encoded_string
         else:

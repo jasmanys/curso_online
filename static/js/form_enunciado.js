@@ -21,14 +21,12 @@ function addImage(idImg){
     if (!file.type.match(imageType)){
         return;
     }
-    result = null;
     var reader = new FileReader();
     reader.onload = function (e) {
-        result=e.target.result;
+        var result=e.target.result;
         $('#'+idImg).attr("src",result);
     };
     reader.readAsDataURL(file);
-    return result;
 }
 function button_enunciado_file(label, funcion){
     var html = '<div class="input-group mb-3">';
@@ -52,10 +50,10 @@ function agregar_opcion_img_rm(){
         var valores = '';
         var valores_select = '';
         for(var i = 0; i < contenido.length; i++){
-            valores += valor_checkbox_img(i+1, '<img id="imgfc'+ (i+1) +'" class="img-fluid" src="'+ $('#imgfc'+(i+1)).attr('src')+'" width="400px"/>', $('#imgfc'+(i+1)).attr('src'));
+            valores += valor_checkbox_img(i+1, '<img id="imgfc'+ (i+1) +'" class="img-fluid" src="'+ $('#imgfc'+(i+1)).attr('src')+'" width="200px"/>', $('#imgfc'+(i+1)).attr('src'));
             valores_select += '<option value="' + $('#imgfc'+(i+1)).attr('src') +'" selected>' + $('#imgfc'+(i+1)).attr('src') + '</option>';
         }
-        valores += valor_checkbox_img(c, '<img id="imgfc'+ c +'" class="img-fluid" src="" width="400px"/>', 'nel');
+        valores += valor_checkbox_img(c, '<img id="imgfc'+ c +'" class="img-fluid" src="" width="200px"/>', 'None');
         valores_select += '<option value="' + c +'" selected>' + 'nel' + '</option>';
         valores += '<input type="hidden" id="tipo_enunciado" value="" />';
         $('#containerEnunciados').html(valores);
@@ -66,9 +64,8 @@ function agregar_opcion_img_rm(){
         var temp = $('#id_lista_de_enunciados>option').toArray();
         $(temp[0]).val($(temp[0]).val()+'|true');
         $(temp[0]).html($(temp[0]).val());
-        var res = addImage('imgfc'+c);
+        addImage('imgfc'+c);
         $('#fileImg').val(null);
-        alert(res);
     }
 }
 function agregar_opcion_img_ru(){
@@ -79,11 +76,11 @@ function agregar_opcion_img_ru(){
         var valores = '';
         var valores_select = '';
         for(var i = 0; i < contenido.length; i++){
-            valores += valor_radio_img(i+1, i+1);
-            valores_select += '<option value="' + $(radio[i]).val() +'" selected>' + $(radio[i]).val() + '</option>';
+            valores += valor_radio_img(i+1, '<img id="imgfc'+ (i+1) +'" class="img-fluid" src="'+ $('#imgfc'+(i+1)).attr('src')+'" width="200px"/>', $('#imgfc'+(i+1)).attr('src'));
+            valores_select += '<option value="' + $('#imgfc'+(i+1)).attr('src') +'" selected>' + $('#imgfc'+(i+1)).attr('src') + '</option>';
         }
-        valores += valor_radio_img(c, c);
-        valores_select += '<option value="' + c +'" selected>' + c + '</option>';
+        valores += valor_radio_img(c, '<img id="imgfc'+ c +'" class="img-fluid" src="" width="200px"/>', 'None');
+        valores_select += '<option value="' + c +'" selected>' + 'None' + '</option>';
         valores += '<input type="hidden" id="tipo_enunciado" value="" />';
         $('#containerEnunciados').html(valores);
         $('#id_lista_de_enunciados').html(valores_select);
@@ -93,6 +90,7 @@ function agregar_opcion_img_ru(){
         var temp = $('#id_lista_de_enunciados>option').toArray();
         $(temp[0]).val($(temp[0]).val()+'|true');
         $(temp[0]).html($(temp[0]).val());
+        addImage('imgfc'+c);
         $('#fileImg').val(null);
     }
 }
@@ -106,11 +104,11 @@ function valor_checkbox_img(item, val_item, src_img) {
     //addImage('imgfc' + item);
     return valores;
 }
-function valor_radio_img(item, val_item) {
+function valor_radio_img(item, val_item, src_img) {
     var valores = '';
-    var outImg = '<img id="imgfc'+ item +'" class="img-fluid" src="" width="400px"/>';
+    var outImg = val_item;
     valores += '<div style="cursor: pointer;" id="fr' + item + '" class="custom-control custom-radio my-1 mr-sm-2">';
-    valores += '<input name="lista_enunciado" value="' + val_item + '" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado' + item + '">';
+    valores += '<input name="lista_enunciado" value="' + src_img + '" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado' + item + '">';
     valores += '<label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado' + item + '">' + outImg + '</label>';
     valores += '</div>';
     //addImage('imgfc' + item);
@@ -239,8 +237,30 @@ $(function () {
         }
         $('#id_lista_de_enunciados').html(valores_select);
     });
-    $('#frm').on('submit',() =>{
+    $('#guardar').on('click',(e) =>{
+        var tipo_enunciado = $('#id_tipo_respuesta option:selected').val();
+        if(tipo_enunciado == '2' || tipo_enunciado == '3'){
+            switch (tipo_enunciado) {
+                case '2':
+                    var arr = $('#containerEnunciados>.custom-radio .custom-control-input').toArray();
+                    break;
+                case '3':
+                    var arr = $('#containerEnunciados>.custom-checkbox .custom-control-input').toArray();
+                    break;
+            }
+            var valores_select = '';
+            for(var i = 0; i < arr.length; i++){
+                if($(arr[i]).is(':checked')){
+                    valores_select += '<option value="' + $('#imgfc'+(i+1)).attr('src') +'|true" selected>' + $('#imgfc'+(i+1)).attr('src') + '|true</option>';
+                }else{
+                    valores_select += '<option value="' + $('#imgfc'+(i+1)).attr('src') +'" selected>' + $('#imgfc'+(i+1)).attr('src') + '</option>';
+                }
+            }
+            $(arr[arr.length - 1]).val($('#imgfc'+arr.length).attr('src'));
+            $('#id_lista_de_enunciados').html(valores_select);
+        }
         $('#guardar').html(cargando);
         $('#guardar').attr("disabled", true);
+        $('#frm').submit();
     });
 });

@@ -98,7 +98,7 @@
                         {% endif %}
                     </div>
                     <div class="form-group">
-                        <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar Enunciado</button>
+                        <button id="guardar" type="button" class="btn btn-success btn-md px-5">Guardar Enunciado</button>
                         {% if not agregar_enunciado %}
                             <a href="/evaluacion/registros/enunciado/{{ enunciado_evaluacion.submodulo.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
                         {% else %}
@@ -128,6 +128,30 @@
                                 <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" />
                             {% endif %}
                             <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ oe.fr }}">{{ oe.opcion }}</label>
+                        </div>
+                    {% endif %}
+                    {% if hidden_tipo_enunciado == 2 %}
+                        <div style="cursor: pointer;" id="fr{{ oe.fr }}" class="custom-control custom-radio my-1 mr-sm-2">
+                            {% if oe.respuesta %}
+                                <input name="lista_enunciado" value="{{ oe.opcion }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" checked />
+                            {% else %}
+                                <input name="lista_enunciado" value="{{ oe.opcion }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" />
+                            {% endif %}
+                            <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ oe.fr }}">
+                                <img id="imgfc{{ oe.fr }}" class="img-fluid" src="{{ oe.opcion }}" width="200px">
+                            </label>
+                        </div>
+                    {% endif %}
+                    {% if hidden_tipo_enunciado == 3 %}
+                        <div style="cursor: pointer;" id="fc{{ oe.fr }}" class="custom-control custom-checkbox my-1">
+                            {% if oe.respuesta %}
+                                <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" checked />
+                            {% else %}
+                                <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" />
+                            {% endif %}
+                            <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ oe.fr }}">
+                                <img id="imgfc{{ oe.fr }}" class="img-fluid" src="{{ oe.opcion }}" width="200px">
+                            </label>
                         </div>
                     {% endif %}
                 {% endfor %}
