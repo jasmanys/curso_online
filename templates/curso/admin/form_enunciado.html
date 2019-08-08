@@ -70,15 +70,26 @@
                         {% if hidden_tipo_enunciado %}
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"> Agregar Opción </span>
+                                    <span class="input-group-text" id="basic-addon1"> {% if hidden_tipo_enunciado == 0 or hidden_tipo_enunciado == 1 %}Agregar Opción{% endif %}{% if hidden_tipo_enunciado == 2 or hidden_tipo_enunciado == 3 %}Agregar Imagen{% endif %} </span>
                                 </div>
-                                <input id="desc" type="text" class="form-control" aria-label="Opcion" aria-describedby="basic-addon1"/>
+                                {% if hidden_tipo_enunciado == 0 or hidden_tipo_enunciado == 1 %}
+                                    <input id="desc" type="text" class="form-control" aria-label="Opcion" aria-describedby="basic-addon1"/>
+                                {% endif %}
+                                {% if hidden_tipo_enunciado == 2 or hidden_tipo_enunciado == 3 %}
+                                    <input title="Imagen para la opción" id="fileImg" style="cursor:pointer;" type="file" accept="image/*" class="form-control pb-5 pt-3" aria-label="Opcion" aria-describedby="basic-addon1">
+                                {% endif %}
                                 <div class="input-group-append">
                                     {% if hidden_tipo_enunciado == 0 %}
                                         <button onclick="agregar_opcion_ru()" title="Agregar" class="btn btn-outline-info" type="button" id="add">
                                     {% endif %}
                                     {% if hidden_tipo_enunciado == 1 %}
                                         <button onclick="agregar_opcion_rm()" title="Agregar" class="btn btn-outline-info" type="button" id="add">
+                                    {% endif %}
+                                    {% if hidden_tipo_enunciado == 2 %}
+                                        <button onclick="agregar_opcion_img_ru()" title="Agregar" class="btn btn-outline-info" type="button" id="add">
+                                    {% endif %}
+                                    {% if hidden_tipo_enunciado == 3 %}
+                                        <button onclick="agregar_opcion_img_rm()" title="Agregar" class="btn btn-outline-info" type="button" id="add">
                                     {% endif %}
                                             <i class="fas fa-folder-plus"></i>
                                         </button>

@@ -1,5 +1,8 @@
+import base64
+
 from django.db import models
 from curso.models import Modulo, SubModulo
+from curso_online import settings
 from estudiante.models import Estudiante
 
 class Evaluacion(models.Model):
@@ -55,6 +58,15 @@ class OpcionEnunciado(models.Model):
     class Meta:
         verbose_name = 'Opción del Enunciado'
         verbose_name_plural = 'Opciones del Enunciado'
+
+    @property
+    def imagen_base64(self):
+        with open(settings.MEDIA_ROOT+"/"+self.imagen, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read())
+        if encoded_string:
+            return encoded_string
+        else:
+            return self.imagen
 
 class SeleccionMultiple(models.Model):
     opcion_enunciado = models.ForeignKey(OpcionEnunciado, on_delete=models.CASCADE)

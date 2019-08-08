@@ -5,7 +5,41 @@ from curso.models import *
 from evaluacion.forms import EnunciadoEvaluacionForm
 from evaluacion.models import *
 from django.db import DatabaseError, transaction
+#Imagen decoded
+def decode_base64_file(data):
+    def get_file_extension(file_name, decoded_file):
+        import imghdr
+        extension = imghdr.what(file_name, decoded_file)
+        extension = "jpg" if extension == "jpeg" else extension
+        return extension
 
+    from django.core.files.base import ContentFile
+    import base64
+    import six
+    import uuid
+
+    # Check if this is a base64 string
+    if isinstance(data, six.string_types):
+        # Check if the base64 string is in the "data:" format
+        if 'data:' in data and ';base64,' in data:
+            # Break out the header from the base64 content
+            header, data = data.split(';base64,')
+
+        # Try to decode the file. Return validation error if it fails.
+        try:
+            decoded_file = base64.b64decode(data)
+        except TypeError:
+            TypeError('invalid_image')
+
+        # Generate file name:
+        file_name = str(uuid.uuid4())[:12] # 12 characters are more than enough.
+        # Get the file name extension:
+        file_extension = get_file_extension(file_name, decoded_file)
+
+        complete_file_name = "{}.{}".format(file_name, file_extension)
+
+        return ContentFile(decoded_file, name=complete_file_name)
+#Imagen decoded
 
 @login_required(login_url='/login/')
 def view(request):
@@ -77,6 +111,8 @@ def editar_enunciado(request, enunciado_id):
     for i in range(len(opciones_enunciado)):
         if data['hidden_tipo_enunciado'] in [0, 1]:
             opciones_enunciado[i]['respuesta'] = SeleccionMultiple.objects.get(opcion_enunciado__id=opciones_enunciado[i]['id']).respuesta
+            if opciones_enunciado[i]['imagen']:
+                opciones_enunciado[i]['opcion'] = OpcionEnunciado.objects.get(id=opciones_enunciado[i]['id']).imagen_base64
             opciones_enunciado[i]['fr'] = i+1
     data['opciones_enunciado'] = opciones_enunciado
     data['eval'] = True
@@ -99,7 +135,10 @@ def editar_enunciado(request, enunciado_id):
                         temp = lis.split('|')
                         opcion_enunciado = OpcionEnunciado()
                         opcion_enunciado.enunciado_evaluacion = form.instance
-                        opcion_enunciado.opcion = temp[0]
+                        if form.instance.tipo_respuesta in [0, 1]:
+                            opcion_enunciado.opcion = temp[0]
+                        elif form.instance.tipo_respuesta in [2, 3]:
+                            opcion_enunciado.imagen = decode_base64_file(temp[0])
                         opcion_enunciado.save()
                         if form.instance.tipo_respuesta in [0, 1]:
                             seleccion_multiple = SeleccionMultiple()
@@ -140,7 +179,10 @@ def registro_enunciado(request, submodulo_id):
                         temp = lis.split('|')
                         opcion_enunciado = OpcionEnunciado()
                         opcion_enunciado.enunciado_evaluacion = form.instance
-                        opcion_enunciado.opcion = temp[0]
+                        if form.instance.tipo_respuesta in [0, 1]:
+                            opcion_enunciado.opcion = temp[0]
+                        elif form.instance.tipo_respuesta in [2, 3]:
+                            opcion_enunciado.imagen = decode_base64_file(temp[0])
                         opcion_enunciado.save()
                         if form.instance.tipo_respuesta in [0, 1]:
                             seleccion_multiple = SeleccionMultiple()
