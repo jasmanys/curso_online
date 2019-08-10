@@ -2,26 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/autenticacion/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/autenticacion/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/form_usuario.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/listar_estudiante.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/listar_usuario.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/estudiante/form_estudiante.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/estudiante/listar_estudiante.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/usuario/form_usuario.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/usuario/listar_usuario.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/estudiante/migrations/0002_auto_20190810_1034.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/estudiante/migrations/0003_auto_20190810_1137.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autenticacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/autenticacion/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso_online/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso_online/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso_online/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso_online/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/estudiante/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/estudiante/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/estudiante/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/estudiante/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/estudiante/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/estudiante/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/estudiante/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/estudiante/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-public.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-public.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_curso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/listar_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/listar_curso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/estudiante/form_estudiante.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/estudiante/form_estudiante.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +179,8 @@
       <workItem from="1565225710511" duration="9754000" />
       <workItem from="1565295243648" duration="9307000" />
       <workItem from="1565352887868" duration="23266000" />
-      <workItem from="1565436978159" duration="935000" />
+      <workItem from="1565436978159" duration="3622000" />
+      <workItem from="1565443771765" duration="9754000" />
     </task>
     <servers />
   </component>
