@@ -10,8 +10,6 @@
 {% endblock %}
 
 {% block container %}
-
-
     <nav id="nav-foto" class="navbar py-lg-4 undercontainer">
         <div class="container">
             <h1 class="h1 text-white"> {% if user.is_superuser %}Administrador de Cursos Online{% else %}Mis Cursos{% endif %}</h1>
@@ -61,95 +59,94 @@
           </ol>
         </nav>
         <div class="row">
-        {% if user.is_superuser %}
-            <div class="col-12 col-md-6 col-lg-4">
-                    <a href="curso/nuevo/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
-                        <div class="card-header curso-card-header text-white">
-                            Agregar Curso
-                        </div>
-                        <div class="card-body text-center">
-                            <figure>
-                                <i class="fa fa-book" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
-                                <figcaption class="text-center mt-3">Agregar Curso</figcaption>
-                            </figure>
-                        </div>
-                    </a>
-            </div>
-            {% if cursos %}
+            {% if user.is_superuser %}
                 <div class="col-12 col-md-6 col-lg-4">
-                    <a href="curso/modulo/nuevo/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
-                        <div class="card-header curso-card-header text-white">
-                            Módulos
-                        </div>
-                        <div class="card-body text-center">
-                            <figure>
-                                <i class="fas fa-book-open" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
-                                <figcaption class="text-center mt-3">Módulos</figcaption>
-                            </figure>
-                        </div>
-                    </a>
+                        <a href="curso/nuevo/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                            <div class="card-header curso-card-header text-white">
+                                Agregar Curso
+                            </div>
+                            <div class="card-body text-center">
+                                <figure>
+                                    <i class="fa fa-book" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
+                                    <figcaption class="text-center mt-3">Agregar Curso</figcaption>
+                                </figure>
+                            </div>
+                        </a>
                 </div>
-            {% endif %}
-            {% if submodulos_count and submodulos_count > 0 %}
-                <div class="col-12 col-md-6 col-lg-4">
-                    <a href="/evaluacion/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
-                        <div class="card-header curso-card-header text-white">
-                            Evaluaciones
-                        </div>
-                        <div class="card-body text-center">
-                            <figure>
-                                <i class="fas fa-tasks" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
-                                <figcaption class="text-center mt-3">Evaluaciones</figcaption>
-                            </figure>
-                        </div>
-                    </a>
-                </div>
-            {% endif %}
-            {% for curso in cursos %}
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card curso-card mt-3 mb-3 ">
-                        <div class="card-header curso-card-header text-white">
-                            <a href="/curso/{{ curso.nombre_link }}/{{ curso.id }}" style="font-style: none;color:white;">
-                                Curso de {{ curso.nombre }}
-                                <button onclick="eliminar_curso('{{ curso.id }}', '{{ curso.nombre }}')" data-toggle="tooltip" data-placement="top" title="Eliminar curso de {{ curso.nombre }}" style="padding: 0px;" type="button" class="close" data-dismiss="alert"
-                                    aria-label="Close">
-                                    <i class="fas fa-times justify-end"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <figure>
-                                <img src = '/media/{{ curso.icono }}' width="150px"/>
-                                <br/>
-                                <figcaption class="text-center mt-3">
-                                    <a class="btn btn-link" href="/curso/{{ curso.nombre_link }}/{{ curso.id }}">
-                                        Curso de {{ curso.nombre }}
-                                    </a>
-                                </figcaption>
-                            </figure>
+                {% if cursos %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="curso/modulo/nuevo/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                            <div class="card-header curso-card-header text-white">
+                                Módulos
+                            </div>
+                            <div class="card-body text-center">
+                                <figure>
+                                    <i class="fas fa-book-open" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
+                                    <figcaption class="text-center mt-3">Módulos</figcaption>
+                                </figure>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if submodulos_count and submodulos_count > 0 %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="/evaluacion/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                            <div class="card-header curso-card-header text-white">
+                                Evaluaciones
+                            </div>
+                            <div class="card-body text-center">
+                                <figure>
+                                    <i class="fas fa-tasks" style="font-size: 100px;color:#38869a;" aria-hidden="true"></i>
+                                    <figcaption class="text-center mt-3">Evaluaciones</figcaption>
+                                </figure>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+                {% for curso in cursos %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card curso-card mt-3 mb-3 ">
+                            <div class="card-header curso-card-header text-white">
+                                <a href="/curso/{{ curso.nombre_link }}/{{ curso.id }}" style="font-style: none;color:white;">
+                                    Curso de {{ curso.nombre }}
+                                    <button onclick="eliminar_curso('{{ curso.id }}', '{{ curso.nombre }}')" data-toggle="tooltip" data-placement="top" title="Eliminar curso de {{ curso.nombre }}" style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+                                        <i class="fas fa-times justify-end"></i>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="card-body text-center">
+                                <figure>
+                                    <img src = '/media/{{ curso.icono }}' width="150px"/>
+                                    <br/>
+                                    <figcaption class="text-center mt-3">
+                                        <a class="btn btn-link" href="/curso/{{ curso.nombre_link }}/{{ curso.id }}">
+                                            Curso de {{ curso.nombre }}
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            {% for curso in cursos %}
-                <div class="col-12 col-md-6 col-lg-4">
-                    <a href="/curso/{{ curso.nombre_link }}/{{ curso.id }}/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
-                        <div class="card-header curso-card-header text-white">
-                            Curso de {{ curso.nombre }}
-                        </div>
-                        <div class="card-body text-center">
-                            <figure>
-                                <img src = '/media/{{ curso.icono }}' width="150px"/>
-                                <br/>
-                                <figcaption class="text-center mt-3">Curso de {{ curso.nombre }}</figcaption>
-                            </figure>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        {% endif %}
-
+                {% endfor %}
+            {% else %}
+                {% for curso in cursos %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="/curso/{{ curso.nombre_link }}/{{ curso.id }}/" style="font-style: none;" class="card curso-card mt-3 mb-3 ">
+                            <div class="card-header curso-card-header text-white">
+                                Curso de {{ curso.nombre }}
+                            </div>
+                            <div class="card-body text-center">
+                                <figure>
+                                    <img src = '/media/{{ curso.icono }}' width="150px"/>
+                                    <br/>
+                                    <figcaption class="text-center mt-3">Curso de {{ curso.nombre }}</figcaption>
+                                </figure>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="mt-5">
@@ -160,7 +157,6 @@
                         <small>Curso OnLine © 2019</small>
                     </div>
                 </div>
-
             </div>
         </footer>
     </div>

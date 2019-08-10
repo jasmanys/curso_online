@@ -1,0 +1,97 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                {{ title }}
+            </h1>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+          </ol>
+        </nav>
+    </div>
+    <div class="container-fluid mt-3 mb-5">
+        <div class="row"><!--Datos del nuevo CURSO-->
+            <div class="col-xl-8 offset-xl-2">
+                <div class="card">
+                    <div class="card-header curso-card-header text-white text-center">
+                        <h5 class="h5">
+                            Editar Usuario
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if error %}
+                            <div id="no-valido" class="alert alert-danger" role="alert">
+                                <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <i class="fas fa-times justify-end"></i>
+                                </button>
+                                <span id="alert-contenido">
+                                    {{ error }}
+                                </span>
+                            </div>
+                        {% endif %}
+                        {% if exito %}
+                            <div id="no-valido" class="alert alert-success" role="alert">
+                                <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <i class="fas fa-times justify-end"></i>
+                                </button>
+                                <span id="alert-contenido">
+                                    {{ exito | safe }}
+                                </span>
+                            </div>
+                        {% endif %}
+                        <form id="frm" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <p>
+                                <label for="id_check_contrasena">
+                                    ¿Cambiar contraseña?:
+                                </label>
+                                <input value="change_password" type="checkbox" name="check_contrasena" id="id_check_contrasena" />
+                            </p>
+                            <p id="p_id_contrasena" style="display: none;">
+                                <label for="id_contrasena">
+                                    Nueva Contraseña:
+                                </label>
+                                <input type="password" class="form-control-sm" name="contrasena" id="id_contrasena" />
+                            </p>
+                            <p id="p_id_confirmar_contrasena" style="display: none;">
+                                <label for="id_confirmar_contrasena">
+                                    Confirmar Contraseña:
+                                </label>
+                                <input type="password" class="form-control-sm" name="confirmar_contrasena" id="id_confirmar_contrasena" />
+                                <small id="no_coincide" style="display: none;" class="form-text text-danger">Las contraseñas no coinciden</small>
+                            </p>
+                            <p>
+                                <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar</button>
+                                <a href="/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<!-- Initialize Swiper -->
+  <script src="/static/js/form_usuario.js"></script>
+{% endblock %}

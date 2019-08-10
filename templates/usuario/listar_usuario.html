@@ -1,0 +1,114 @@
+{% extends 'base-public.html' %}
+{% block head %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+{% endblock %}
+{% block title %}
+    Usuarios Registrados
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                Usuarios Registrados
+            </h1>
+        </div>
+    </nav>
+    <div class="container mt-3 mb-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Usuarios Registrados</li>
+          </ol>
+        </nav>
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table table-bordered table-hover display" id="tb_usuarios">
+                    <thead>
+                        <th>
+                            Nombre de usuario
+                        </th>
+                        <th>
+                            Correo Electrónico
+                        </th>
+                        <th>
+                            Nombres
+                        </th>
+                        <th>
+                            Apellidos
+                        </th>
+                        <th>
+                            Es Staff
+                        </th>
+                        <th>
+                            Activo
+                        </th>
+                        <th>
+                            Es Administrador
+                        </th>
+                        <th class="text-center">
+                            Opciones
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for user in usuarios %}
+                            <tr>
+                                <td>
+                                    {{ user.username }}
+                                </td>
+                                <td>
+                                    {{ user.email }}
+                                </td>
+                                <td>
+                                    {{ user.first_name }}
+                                </td>
+                                <td>
+                                    {{ user.last_name }}
+                                </td>
+                                <td class="text-center">
+                                    {% if user.is_staff %}
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="fas fa-times-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% if user.is_active %}
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="fas fa-times-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% if user.is_superuser %}
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="fas fa-times-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opción
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btn_opcion">
+                                            <a href="/autenticacion/usuario/editar/{{ user.id }}/" class="dropdown-item">Editar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="/static/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/listar_usuario.js"></script>
+{% endblock %}

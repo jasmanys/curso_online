@@ -1,0 +1,97 @@
+{% extends 'base-public.html' %}
+{% block head %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+{% endblock %}
+{% block title %}
+    Estudiantes Registrados
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                Estudiantes Registrados
+            </h1>
+        </div>
+    </nav>
+    <div class="container mt-3 mb-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Estudiantes Registrados</li>
+          </ol>
+        </nav>
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table table-bordered table-hover display" id="tb_estudiantes">
+                    <thead>
+                        <th>
+                            Username
+                        </th>
+                        <th>
+                            Cédula
+                        </th>
+                        <th>
+                            email
+                        </th>
+                        <th>
+                            Nombres
+                        </th>
+                        <th>
+                            Celular
+                        </th>
+                        <th>
+                            Fecha de nacimiento
+                        </th>
+                        <th class="text-center">
+                            Opciones
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for estudiante in estudiantes %}
+                            <tr>
+                                <td>
+                                    {{ estudiante.usuario.username }}
+                                </td>
+                                <td>
+                                    {{ estudiante.cedula }}
+                                </td>
+                                <td>
+                                    {{ estudiante.usuario.email }}
+                                </td>
+                                <td>
+                                    {{ estudiante.usuario.first_name }} {{ estudiante.usuario.last_name }}
+                                </td>
+                                <td>
+                                    {{ estudiante.celular }}
+                                </td>
+                                <td>
+                                    {{ estudiante.fecha_nacimiento }}
+                                </td>
+                                <td class="text-center">
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opción
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btn_opcion">
+                                            <a href="/estudiante/editar/{{ estudiante.id }}/" class="dropdown-item">Editar</a>
+                                            <button onclick="eliminar_estudiante('{{ estudiante.id }}', '{{ estudiante.usuario.first_name }} {{ estudiante.usuario.last_name }}')" class="dropdown-item" type="button">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="/static/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/listar_estudiante.js"></script>
+{% endblock %}

@@ -28,6 +28,7 @@ admin.site.site_header = "Administracion de Cursos"
 urlpatterns = [
     path(r'', index),
     path(r'admin/', admin.site.urls),
+    path(r'autenticacion/', include(('autenticacion.urls', 'autenticacion'))),
     path(r'estudiante/', include(('estudiante.urls', 'estudiante'))),
     path(r'curso/', include('curso.urls')),
     path(r'evaluacion/', include('evaluacion.urls')),

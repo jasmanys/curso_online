@@ -1,0 +1,209 @@
+{% extends 'base-public.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                {{ title }}
+            </h1>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+          </ol>
+        </nav>
+    </div>
+    <div class="container-fluid mt-3 mb-5">
+        <div class="card">
+            <div class="card-header curso-card-header text-white text-center">
+                <h5 class="h5">
+                    {{ title }}
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                    <div id="no-valido" class="alert alert-danger" role="alert">
+                        <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <i class="fas fa-times justify-end"></i>
+                        </button>
+                        <span id="alert-contenido">
+                            {{ error }}
+                        </span>
+                    </div>
+                {% endif %}
+                {% if exito %}
+                    <div id="no-valido" class="alert alert-success" role="alert">
+                        <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <i class="fas fa-times justify-end"></i>
+                        </button>
+                        <span id="alert-contenido">
+                            {{ exito | safe }}
+                        </span>
+                    </div>
+                {% endif %}
+                <form id="frm" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="border-top p-2 pb-4">
+                        <legend  class="w-auto text-muted">Datos de la cuenta</legend>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <label class="text-muted" for="id_username">
+                                    <span class="d-xs-inline d-sm-inline d-md-none d-lg-inline d-xl-inline">Nombre de</span> Usuario:
+                                </label>
+                                <input type="text" required value="" name="username" id="id_username" class="form-control" />
+                                <small class="form-text text-info"><span class="d-md-none d-xs-inline d-sm-inline d-lg-inline d-xl-inline">Servirá</span> para iniciar sesión</small>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label class="text-muted" for="id_password">
+                                    Contraseña:
+                                </label>
+                                <input type="password" value="" required name="password" id="id_password" class="form-control" />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label class="text-muted" for="id_confirm_password">
+                                    Confirmar Contraseña:
+                                </label>
+                                <input type="password" value="" required name="confirm_password" id="id_confirm_password" class="form-control" />
+                            </div>
+                            <!--<div class="col-md-3 col-sm-11">
+                                <label for="id_usuario">
+                                    <span class="d-xs-inline d-sm-inline d-md-none d-lg-inline d-xl-inline">Seleccione</span> Usuario:
+                                </label>
+                                <select required name="usuario" id="id_usuario" class="selectpicker form-control" data-live-search="true">
+                                    <option selected>------------------</option>
+                                    {% for usuario in usuarios %}
+                                        <option data-valueUsuario ="{'username': '{{ usuario.username }}', 'first_name': '{{ usuario.first_name }}', 'last_name': '{{ usuario.last_name }}','email': '{{ usuario.email }}'" value="{{ usuario.id }}" data-tokens="{{ usuario.username }}">{{ usuario.username }}</option>
+                                    {% endfor %}
+                                </select>
+                                <small class="form-text text-info"><span class="d-md-none d-xs-inline d-sm-inline d-lg-inline d-xl-inline">Servirá</span> para iniciar sesión</small>
+                            </div>
+                            <div class="col-1">
+                                <label style="cursor: pointer;" for="id_check_nuevo_usuario">
+                                    ¿Agregar?
+                                </label>
+                                <input value="check_nuevo_usuario" type="checkbox" class="d-none" name="check_nuevo_usuario" id="id_check_nuevo_usuario" />
+                                <i onclick="check(true)" id="add_nuevo_usuario" title="Agregar Nuevo Usuario" style="cursor: pointer;font-size: 20px; " class="far fa-plus-square text-success"></i>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label for="id_usuario_email">
+                                    Contraseña:
+                                </label>
+                                <input type="text" id="id_usuario_email" value="" class="form-control datos_usuario" readonly />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label for="id_usuario_email">
+                                    Confirmar Contraseña:
+                                </label>
+                                <input type="text" id="id_usuario_email" value="" class="form-control datos_usuario" readonly />
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <label for="id_usuario_nombres">
+                                    Nombres:
+                                </label>
+                                <input name="usuario_apellidos" type="text" id="id_usuario_nombres" value="" class="form-control datos_usuario" readonly />
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <label for="id_usuario_apellidos">
+                                    Apellidos:
+                                </label>
+                                <input name="usuario_apellidos" type="text" id="id_usuario_apellidos" value="" class="form-control datos_usuario" readonly />
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <label for="id_usuario_email">
+                                    Correo Electrónico:
+                                </label>
+                                <input type="email" id="id_usuario_email" value="" class="form-control datos_usuario" readonly />
+                            </div>-->
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6 col-sm-12">
+                                <label class="text-muted" for="id_first_name">
+                                    Nombres:
+                                </label>
+                                <input type="text" required value="" name="first_name" id="id_first_name" class="form-control" />
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label class="text-muted" for="id_last_name">
+                                    Apellidos:
+                                </label>
+                                <input type="text" required value="" name="last_name" id="id_last_name" class="form-control" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border-top p-2 pb-4">
+                        <legend  class="w-auto text-muted">Datos del Estudiante</legend>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <label class="text-muted" for="id_fecha_nacimiento">
+                                    Fecha de nacimiento:
+                                </label>
+                                <input type="date" required value="" name="fecha_nacimiento" id="id_fecha_nacimiento" class="form-control" />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label class="text-muted" for="id_celular">
+                                    Celular:
+                                </label>
+                                <input type="text" required value="" name="celular" id="id_celular" class="form-control" />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label class="text-muted" for="id_cedula">
+                                    Cédula:
+                                </label>
+                                <input type="text" required value="" name="cedula" id="id_cedula" class="form-control" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col">
+                            <button id="guardar" type="submit" class="btn btn-success btn-md px-5">Guardar</button>
+                            <a href="/" class="btn btn-danger btn-md px-5">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<!-- Initialize Swiper -->
+    <script>
+        /*function check(value){
+            $('input[name=check_nuevo_usuario]').prop('checked', value);
+        }
+        $(function () {
+            $('#add_nuevo_usuario').click(function () {
+                if($(this).attr('class') == 'far fa-plus-square text-success'){
+                    $(this).attr('class', 'fas fa-plus-square text-success');
+                    $(this).attr('onclick', 'check(false)');
+                }else{
+                    $(this).attr('class', 'far fa-plus-square text-success');
+                    $(this).attr('onclick', 'check(true)');
+                }
+            });
+            $('input[name=check_nuevo_usuario]').change(function () {
+                if($(this).is(':checked')){
+                    $('#add_nuevo_usuario').attr('class', 'fas fa-plus-square text-success');
+                    $('#add_nuevo_usuario').attr('onclick', 'check(false)');
+                }else{
+                    $('#add_nuevo_usuario').attr('class', 'far fa-plus-square text-success');
+                    $('#add_nuevo_usuario').attr('onclick', 'check(true)');
+                }
+            });
+        });*/
+    </script>
+{% endblock %}

@@ -3,11 +3,45 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Value
 from django.db.models.functions import Lower, Trim, Replace, Concat
-from django.http import JsonResponse
+#from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
+from autenticacion.forms import UserForm
 from curso.models import Curso, EstudianteCurso, SubModulo
 from unidecode import unidecode
+
+@login_required(login_url='/login/')
+def registros_usuario(request):
+    data = {}
+    data['user'] = request.user
+    data['usuarios'] = User.objects.all()
+    return render(request, 'usuario/listar_usuario.html', data)
+
+@login_required(login_url='/login/')
+def editar_cuenta(request, user_id):
+    data = {}
+    data['user'] = request.user
+    data['usuario'] = User.objects.get(id=user_id)
+    data['form'] = UserForm(instance=data['usuario'])
+    if str(request.user.id) == str(user_id):
+        data['title'] = 'Mi Cuenta'
+    else:
+        data['title'] = 'Editar Cuenta'
+    if request.method == 'POST':
+        user = data['usuario']
+        if 'check_contrasena' in request.POST and 'contrasena' in request.POST and 'confirmar_contrasena' in request.POST:
+            if request.POST['contrasena'] == request.POST['confirmar_contrasena']:
+                user.set_password(request.POST['contrasena'])
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            data['exito'] = 'Se editó la cuenta <strong>{}</strong>'.format(form.instance.username)
+        else:
+            data['error'] = 'Hubo un error al editar la cuenta <strong>{}</strong>'.format(user.username)
+        data['form'] = form
+    if not request.user.is_superuser and request.user.id != user_id:
+        return redirect('/')
+    return render(request, 'usuario/form_usuario.html', data)
 
 @login_required(login_url='/login/')
 def index(request):
@@ -29,6 +63,8 @@ def index(request):
     for i in range(len(data['cursos'])):
         data['cursos'][i]['nombre_link'] = unidecode(data['cursos'][i]['nombre_link'])
     data['user'] = user
+    if 'next' in request.GET:
+        return redirect(request.GET['next'])
     return render(request, 'home/home.html', data)
 
 # Create your views here.
