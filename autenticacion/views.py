@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db import transaction, DatabaseError
 from django.db.models import Value
 from django.db.models.functions import Lower, Trim, Replace, Concat
 #from django.http import JsonResponse
@@ -42,6 +43,46 @@ def editar_cuenta(request, user_id):
     if not request.user.is_superuser and request.user.id != user_id:
         return redirect('/')
     return render(request, 'usuario/form_usuario.html', data)
+
+@login_required(login_url='/login/')
+def registrar_cuenta(request):
+    data = {}
+    data['user'] = request.user
+    data['form'] = UserForm()
+    data['b'] = True
+    data['title'] = 'Registrar Cuenta'
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        m_user = User()
+        if request.POST['contrasena'] == request.POST['confirmar_contrasena']:
+            m_user.set_password(request.POST['contrasena'])
+            form.instance = m_user
+            if form.is_valid():
+                form.save()
+                data['exito'] = 'Se registró la cuenta <strong>{}</strong>'.format(form.instance.username)
+                data['form'] = UserForm()
+            else:
+                data['error'] = 'Hubo un error al registrar la cuenta'
+                data['form'] = form
+        else:
+            data['error'] = 'Contraseñas no coinciden'
+            data['form'] = form
+    return render(request, 'usuario/form_usuario.html', data)
+
+@login_required(login_url='/login/')
+def eliminar_cuenta(request, user_id):
+    data = {}
+    data['user'] = request.user
+    if request.user.id != user_id:
+        try:
+            with transaction.atomic():
+                user = User.objects.get(id=user_id)
+                user.delete()
+        except DatabaseError:
+            pass
+        except Exception:
+            pass
+    return redirect('/autenticacion/usuario/registros/')
 
 @login_required(login_url='/login/')
 def index(request):

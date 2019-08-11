@@ -60,23 +60,23 @@
                         <form id="frm" action="" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <p>
+                            <p {% if b %}style="display: none;"{% endif %}>
                                 <label for="id_check_contrasena">
                                     ¿Cambiar contraseña?:
                                 </label>
-                                <input value="change_password" type="checkbox" name="check_contrasena" id="id_check_contrasena" />
+                                <input value="change_password" type="checkbox" name="check_contrasena" id="id_check_contrasena" {% if b %}checked{% endif %}/>
                             </p>
-                            <p id="p_id_contrasena" style="display: none;">
+                            <p id="p_id_contrasena" {% if not b %}style="display: none;"{% endif %}>
                                 <label for="id_contrasena">
                                     Nueva Contraseña:
                                 </label>
-                                <input type="password" class="form-control-sm" name="contrasena" id="id_contrasena" />
+                                <input  {% if b %}required{% endif %} type="password" class="form-control-sm" name="contrasena" id="id_contrasena" />
                             </p>
-                            <p id="p_id_confirmar_contrasena" style="display: none;">
+                            <p id="p_id_confirmar_contrasena" {% if not b %}style="display: none;"{% endif %}>
                                 <label for="id_confirmar_contrasena">
                                     Confirmar Contraseña:
                                 </label>
-                                <input type="password" class="form-control-sm" name="confirmar_contrasena" id="id_confirmar_contrasena" />
+                                <input {% if b %}required{% endif %}  type="password" class="form-control-sm" name="confirmar_contrasena" id="id_confirmar_contrasena" />
                                 <small id="no_coincide" style="display: none;" class="form-text text-danger">Las contraseñas no coinciden</small>
                             </p>
                             <p>

@@ -10,6 +10,30 @@
 {% endblock %}
 
 {% block container %}
+    <!-- Modal -->
+    <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-justify text-break">
+                  ¿Está seguro de eliminar al Usuario <strong><span id="datosUsuario"></span></strong>?<br>
+                  ¿Continuar?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                <button id="aceptarEliminar" type="button" class="btn btn-success">
+                    Aceptar
+                    <input type="hidden" id="idUsuario" value=""/>
+                </button>
+              </div>
+            </div>
+        </div>
+    </div>
     <nav id="nav-foto" class="navbar undercontainer">
         <div class="container">
             <h1 class="h1 text-white">
@@ -54,36 +78,36 @@
                         </th>
                     </thead>
                     <tbody>
-                        {% for user in usuarios %}
+                        {% for usuario in usuarios %}
                             <tr>
                                 <td>
-                                    {{ user.username }}
+                                    {{ usuario.username }}
                                 </td>
                                 <td>
-                                    {{ user.email }}
+                                    {{ usuario.email }}
                                 </td>
                                 <td>
-                                    {{ user.first_name }}
+                                    {{ usuario.first_name }}
                                 </td>
                                 <td>
-                                    {{ user.last_name }}
+                                    {{ usuario.last_name }}
                                 </td>
                                 <td class="text-center">
-                                    {% if user.is_staff %}
+                                    {% if usuario.is_staff %}
                                         <i class="fas fa-check-circle text-success"></i>
                                     {% else %}
                                         <i class="fas fa-times-circle text-danger"></i>
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
-                                    {% if user.is_active %}
+                                    {% if usuario.is_active %}
                                         <i class="fas fa-check-circle text-success"></i>
                                     {% else %}
                                         <i class="fas fa-times-circle text-danger"></i>
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
-                                    {% if user.is_superuser %}
+                                    {% if usuario.is_superuser %}
                                         <i class="fas fa-check-circle text-success"></i>
                                     {% else %}
                                         <i class="fas fa-times-circle text-danger"></i>
@@ -95,7 +119,10 @@
                                             Opción
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                            <a href="/autenticacion/usuario/editar/{{ user.id }}/" class="dropdown-item">Editar</a>
+                                            <a href="/autenticacion/usuario/editar/{{ usuario.id }}/" class="dropdown-item">Editar</a>
+                                            {% if user.id != usuario.id %}
+                                            <button type="button" onclick="eliminar_usuario('{{ usuario.id }}', 'Username: {{ usuario.username }} - Nombres: {{ usuario.first_name }} {{ usuario.last_name }} - E-Mail: {{ usuario.email }}')" class="dropdown-item">Eliminar</button>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </td>

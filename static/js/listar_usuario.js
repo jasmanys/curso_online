@@ -1,12 +1,12 @@
-/*function eliminar_modulo(item, name_item) {
-    $('#tituloModulo').html(name_item);
-    $('#idModulo').val(item);
+function eliminar_usuario(item, name_item) {
+    $('#datosUsuario').html(name_item);
+    $('#idUsuario').val(item);
     $('#alertaEliminar').modal('show');
-}*/
+}
 $(function(){
     $('#tb_usuarios').DataTable();
     $('.dataTables_length').addClass('bs-select');
-    /*$('#aceptarEliminar').click(() => {
-        location = '/curso/modulo/eliminar/' + $('#idModulo').val() + '/';
-    });*/
+    $('#aceptarEliminar').click(() => {
+        location = '/autenticacion/usuario/eliminar/' + $('#idUsuario').val() + '/';
+    });
 });

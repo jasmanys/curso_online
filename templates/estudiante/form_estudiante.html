@@ -57,6 +57,7 @@
                 {% endif %}
                 <form id="frm" action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    {% if not editar %}
                     <fieldset class="border-top p-2 pb-4">
                         <legend  class="w-auto text-muted">Datos de la cuenta</legend>
                         {{ form_user.non_field_errors }}
@@ -105,6 +106,9 @@ no puede ser completamente numérica.</small>
                             </div>
                         </div>
                     </fieldset>
+                    {% else %}
+                        <input type="hidden" name="estudiante_id" value="{{ form_estudiante.instance.id }}" />
+                    {% endif %}
                     <fieldset class="border-top p-2 pb-4">
                         <legend  class="w-auto text-muted">Datos del Estudiante</legend>
                         <div class="row">
@@ -140,50 +144,10 @@ no puede ser completamente numérica.</small>
 {% endblock %}
 
 {% block script %}
-<!-- Initialize Swiper -->
-<script>
-const cargando = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
-const err = 'Siguiente';
-$(function () {
-    $('label').each(function () {
-            $(this).attr('class', 'text-muted');
-        }
-    );
-    $('#frm').submit(function (e) {
-        if($('#id_password').val()!=$('#id_password2').val()){
-            e.preventDefault();
-            $('#confirmar_pass').attr('class','form-text text-danger font-weight-bold');
-            return;
-        }else{
-            $('#confirmar_pass').attr('class','form-text text-info');
-        }
-        $('#guardar').html(cargando);
-        $('#guardar').attr("disabled", true);
-    });
-});
-
-        /*function check(value){
-            $('input[name=check_nuevo_usuario]').prop('checked', value);
-        }
-        $(function () {
-            $('#add_nuevo_usuario').click(function () {
-                if($(this).attr('class') == 'far fa-plus-square text-success'){
-                    $(this).attr('class', 'fas fa-plus-square text-success');
-                    $(this).attr('onclick', 'check(false)');
-                }else{
-                    $(this).attr('class', 'far fa-plus-square text-success');
-                    $(this).attr('onclick', 'check(true)');
-                }
-            });
-            $('input[name=check_nuevo_usuario]').change(function () {
-                if($(this).is(':checked')){
-                    $('#add_nuevo_usuario').attr('class', 'fas fa-plus-square text-success');
-                    $('#add_nuevo_usuario').attr('onclick', 'check(false)');
-                }else{
-                    $('#add_nuevo_usuario').attr('class', 'far fa-plus-square text-success');
-                    $('#add_nuevo_usuario').attr('onclick', 'check(true)');
-                }
-            });
-        });*/
-    </script>
+    {% if editar %}
+        <script>
+        var editar = '{{ editar }}';var __id12458ase2 = '{{ form_estudiante.fecha_nacimiento }}';
+        </script>
+    {% endif %}
+    <script src="/static/js/form_estudiante.js"></script>
 {% endblock %}

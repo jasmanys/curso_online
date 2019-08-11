@@ -22,7 +22,7 @@ def registros_estudiantes(request):
 def registrar_estudiante(request):
     data = {}
     data['title'] = 'Registrar Estudiante'
-    data['usuarios'] = User.objects.filter(is_active=True, is_superuser=False).all()
+    #data['usuarios'] = User.objects.filter(is_active=True, is_superuser=False, is_staff=False).all()
     data['user'] = request.user
     data['form_user'] = UserForm()
     data['form_estudiante'] = EstudianteForm()
@@ -40,7 +40,45 @@ def registrar_estudiante(request):
                 else:
                     data['form_user'] = form_user
                     data['form_estudiante'] = form_estudiante
-                    data['error'] = 'Error en los datos'.format()
+                    data['error'] = 'Error en los datos'
         except DatabaseError:
-            data['error'] = 'Error al registrar'.format()
+            data['error'] = 'Error al registrar'
     return render(request, 'estudiante/form_estudiante.html', data)
+
+@login_required(login_url='/login/')
+def editar_estudiante(request, estudiante_id):
+    data = {}
+    data['title'] = 'Editar Estudiante'
+    #data['usuarios'] = User.objects.filter(is_active=True, is_superuser=False, is_staff=False).all()
+    data['user'] = request.user
+    estudiante = Estudiante.objects.get(id=estudiante_id)
+    data['editar'] = True
+    data['form_estudiante'] = EstudianteForm(instance=estudiante)
+    if request.method == 'POST':
+        estudiante = Estudiante.objects.get(id=request.POST['estudiante_id'])
+        form_estudiante = EstudianteForm(request.POST, instance=estudiante)
+        try:
+            with transaction.atomic():
+                if form_estudiante.is_valid():
+                    form_estudiante.save()
+                    data['exito'] = 'Se editó el registro del estudiante <strong>Username: {} - Nombres: {} - Cédula: {}</strong> correctamente'.format(form_estudiante.instance.usuario.username, form_estudiante.instance.usuario.first_name + ' ' + form_estudiante.instance.usuario.last_name, form_estudiante.instance.cedula)
+                else:
+                    data['form_estudiante'] = form_estudiante
+                    data['error'] = 'Error en los datos'
+        except DatabaseError:
+            data['error'] = 'Error al registrar'
+    return render(request, 'estudiante/form_estudiante.html', data)
+
+@login_required(login_url='/login/')
+def eliminar_estudiante(request, estudiante_id):
+    data = {}
+    data['user'] = request.user
+    try:
+        with transaction.atomic():
+            estudiante = Estudiante.objects.get(id=estudiante_id)
+            estudiante.delete()
+    except DatabaseError:
+        pass
+    except Exception:
+        pass
+    return redirect('/estudiante/registros/')

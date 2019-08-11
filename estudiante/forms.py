@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 
 from estudiante.models import Estudiante
 
-
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
