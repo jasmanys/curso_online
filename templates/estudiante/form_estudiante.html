@@ -57,6 +57,9 @@
                 {% endif %}
                 <form id="frm" action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    {% if asignar_estudiante %}
+                        <input type="hidden" name="user_id" value="{{ form_user.instance.id }}" />
+                    {% endif %}
                     {% if not editar %}
                     <fieldset class="border-top p-2 pb-4">
                         <legend  class="w-auto text-muted">Datos de la cuenta</legend>
@@ -88,6 +91,7 @@
                                 {{ form_user.username }}
                                 <small class="form-text text-info">{{ form_user.username.help_text|safe }}</small>
                             </div>
+                            {% if not asignar_estudiante %}
                             <div class="col-md-4 col-sm-12">
                                 <small class="form-text text-danger">{{ form_user.password.errors }}</small>
                                 {{ form_user.password.label_tag }}
@@ -104,6 +108,7 @@ no puede ser completamente numérica.</small>
                                 <input type="password" value="" required name="password2" id="id_password2" class="form-control" />
                                 <small id="confirmar_pass" class="form-text text-info">Para verificar, introduzca la misma contraseña anterior.</small>
                             </div>
+                            {% endif %}
                         </div>
                     </fieldset>
                     {% else %}
@@ -146,8 +151,13 @@ no puede ser completamente numérica.</small>
 {% block script %}
     {% if editar %}
         <script>
-        var editar = '{{ editar }}';var __id12458ase2 = '{{ form_estudiante.fecha_nacimiento }}';
+        var editar = '{{ editar }}';var __id12458ase2 = '{{ form_estudiante.fecha_nacimiento }}';var __id12458ase25 = '{{ asignar_estudiante }}';
         </script>
+    {% endif %}
+    {% if asignar_estudiante %}
+    <script>
+        var __id12458ase25 = '{{ asignar_estudiante }}';
+    </script>
     {% endif %}
     <script src="/static/js/form_estudiante.js"></script>
 {% endblock %}

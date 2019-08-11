@@ -10,12 +10,14 @@ $(function () {
         }
     );
     $('#frm').submit(function (e) {
-        if($('#id_password').val()!=$('#id_password2').val()){
-            e.preventDefault();
-            $('#confirmar_pass').attr('class','form-text text-danger font-weight-bold');
-            return;
-        }else{
-            $('#confirmar_pass').attr('class','form-text text-info');
+        if(typeof __id12458ase25 == 'undefined'){
+            if($('#id_password').val()!=$('#id_password2').val()){
+                e.preventDefault();
+                $('#confirmar_pass').attr('class','form-text text-danger font-weight-bold');
+                return;
+            }else{
+                $('#confirmar_pass').attr('class','form-text text-info');
+            }
         }
         $('#guardar').html(cargando);
         $('#guardar').attr("disabled", true);

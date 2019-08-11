@@ -11,11 +11,18 @@ from autenticacion.forms import UserForm
 from curso.models import Curso, EstudianteCurso, SubModulo
 from unidecode import unidecode
 
+from estudiante.models import Estudiante
+
+
 @login_required(login_url='/login/')
 def registros_usuario(request):
     data = {}
     data['user'] = request.user
-    data['usuarios'] = User.objects.all()
+    usuarios = User.objects.all().values()
+    for i in range(len(usuarios)):
+        if not Estudiante.objects.filter(usuario__id=usuarios[i]['id']).exists() and not usuarios[i]['is_superuser']:
+            usuarios[i]['no_es_estudiante'] = True
+    data['usuarios'] = usuarios
     return render(request, 'usuario/listar_usuario.html', data)
 
 @login_required(login_url='/login/')

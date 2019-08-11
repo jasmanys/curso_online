@@ -77,8 +77,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbardrop">
                             {% if user.is_superuser %}
-                                <a href="/autenticacion/usuario/nuevo/" class="dropdown-item">Añadir Usuario</a>
                                 <a href="/autenticacion/usuario/registros/" class="dropdown-item">Usuarios</a>
+                                <a href="/autenticacion/usuario/nuevo/" class="dropdown-item">Añadir Usuario</a>
                                 <a href="/autenticacion/usuario/{{ user.id }}/mi_cuenta/" class="dropdown-item">Mi Cuenta</a>
                             {% endif %}
                             <div class="dropdown-divider"></div>

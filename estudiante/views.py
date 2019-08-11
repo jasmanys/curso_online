@@ -43,6 +43,35 @@ def registrar_estudiante(request):
                     data['error'] = 'Error en los datos'
         except DatabaseError:
             data['error'] = 'Error al registrar'
+            data['form_user'] = form_user
+            data['form_estudiante'] = form_estudiante
+    return render(request, 'estudiante/form_estudiante.html', data)
+
+@login_required(login_url='/login/')
+def registrar_estudiante_usuario(request, user_id):
+    data = {}
+    user = User.objects.get(id=user_id)
+    data['title'] = 'Asignar como Estudiante al usuario {}'.format(user.username)
+    data['form_user'] = UserForm(instance=user)
+    data['asignar_estudiante'] = True
+    data['form_estudiante'] = EstudianteForm()
+    if request.method == 'POST':
+        form_estudiante = EstudianteForm(request.POST)
+        try:
+            with transaction.atomic():
+                if form_estudiante.is_valid():
+                    user_i = User.objects.get(id=int(request.POST['user_id']))
+                    est = Estudiante(usuario=user_i)
+                    form_estudiante = EstudianteForm(request.POST, instance=est)
+                    form_estudiante.save()
+                    data['exito'] = 'El estudiante <strong>Username: {} - Nombres: {} - Cédula: {}</strong> se registró correctamente'.format(form_estudiante.instance.usuario.username, form_estudiante.instance.usuario.first_name + ' ' + form_estudiante.instance.usuario.last_name,form_estudiante.instance.cedula)
+                    return redirect('/estudiante/registros/')
+                else:
+                    data['form_estudiante'] = form_estudiante
+                    data['error'] = 'Error en los datos'
+        except DatabaseError:
+            data['error'] = 'Error al registrar'
+            data['form_estudiante'] = form_estudiante
     return render(request, 'estudiante/form_estudiante.html', data)
 
 @login_required(login_url='/login/')
@@ -62,6 +91,7 @@ def editar_estudiante(request, estudiante_id):
                 if form_estudiante.is_valid():
                     form_estudiante.save()
                     data['exito'] = 'Se editó el registro del estudiante <strong>Username: {} - Nombres: {} - Cédula: {}</strong> correctamente'.format(form_estudiante.instance.usuario.username, form_estudiante.instance.usuario.first_name + ' ' + form_estudiante.instance.usuario.last_name, form_estudiante.instance.cedula)
+                    return redirect('/estudiante/registros/')
                 else:
                     data['form_estudiante'] = form_estudiante
                     data['error'] = 'Error en los datos'
