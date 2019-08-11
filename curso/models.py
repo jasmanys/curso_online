@@ -18,7 +18,7 @@ class Curso(models.Model):
         verbose_name_plural = 'Cursos'
 
 class EstudianteCurso(models.Model):
-    estudiante = models.ForeignKey(Estudiante, verbose_name='Elija al Estudiante', on_delete=models.PROTECT)
+    estudiante = models.OneToOneField(Estudiante, verbose_name='Elija al Estudiante', on_delete=models.PROTECT)
     cursos = models.ManyToManyField(Curso, verbose_name="Cursos")
 
     def __str__(self):

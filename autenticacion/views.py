@@ -43,7 +43,7 @@ def editar_cuenta(request, user_id):
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            data['exito'] = 'Se editó la cuenta <strong>{}</strong>'.format(form.instance.username)
+            return redirect('/autenticacion/usuario/registros/')
         else:
             data['error'] = 'Hubo un error al editar la cuenta <strong>{}</strong>'.format(user.username)
         data['form'] = form

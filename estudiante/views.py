@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction, DatabaseError
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from estudiante.forms import UserForm, EstudianteForm
+from curso.models import EstudianteCurso
+from estudiante.forms import UserForm, EstudianteForm, AsignarEstudianteForm
 from estudiante.models import Estudiante
 import re
 val_usuario = re.compile('[a-z0-9@.+-_]{4,150}')
@@ -17,6 +19,70 @@ def registros_estudiantes(request):
     data['user'] = request.user
     data['estudiantes'] = Estudiante.objects.all()
     return render(request, 'estudiante/listar_estudiante.html', data)
+
+@login_required(login_url='/login/')
+def registros_cursos_asignados(request):
+    data = {}
+    data['user'] = request.user
+    data['cursos_asignados'] = EstudianteCurso.objects.all()
+    return render(request, 'estudiante/lista_cursos_asignados.html', data)
+
+@login_required(login_url='/login/')
+def asignar_curso_estudiante(request):
+    data = {}
+    data['user'] = request.user
+    data['title'] = 'Asignar Cursos'
+    data['form'] = AsignarEstudianteForm()
+    if request.method == 'POST':
+        form = AsignarEstudianteForm(request.POST)
+        try:
+            with transaction.atomic():
+                if form.is_valid():
+                    form.save()
+                    data['exito'] = 'Registro realizado correctamente'
+                else:
+                    data['form'] = form
+                    data['error'] = 'Error en los datos'
+        except DatabaseError:
+            data['error'] = 'Error al registrar'
+            data['form'] = form
+    return render(request, 'estudiante/form_asignar_curso.html', data)
+
+@login_required(login_url='/login/')
+def editar_curso_asignado(request, curso_asignado_id):
+    data = {}
+    data['user'] = request.user
+    data['title'] = 'Editar Asignación de Cursos'
+    curso_asignado = EstudianteCurso.objects.get(id=curso_asignado_id)
+    data['form'] = AsignarEstudianteForm(instance=curso_asignado)
+    if request.method == 'POST':
+        form = AsignarEstudianteForm(request.POST, instance=curso_asignado)
+        try:
+            with transaction.atomic():
+                if form.is_valid():
+                    form.save()
+                    return redirect('/estudiante/cursos_asignados/')
+                else:
+                    data['form'] = form
+                    data['error'] = 'Error en los datos'
+        except DatabaseError:
+            data['error'] = 'Error al registrar'
+            data['form'] = form
+    return render(request, 'estudiante/form_asignar_curso.html', data)
+
+@login_required(login_url='/login/')
+def eliminar_curso_asignado(request, curso_asignado_id):
+    data = {}
+    data['user'] = request.user
+    try:
+        with transaction.atomic():
+            curso_asignado = EstudianteCurso.objects.get(id=curso_asignado_id)
+            curso_asignado.delete()
+    except DatabaseError:
+        pass
+    except ObjectDoesNotExist:
+        pass
+    return redirect('/estudiante/cursos_asignados/')
 
 @login_required(login_url='/login/')
 def registrar_estudiante(request):

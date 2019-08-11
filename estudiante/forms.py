@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from curso.models import EstudianteCurso
 from estudiante.models import Estudiante
 
 class UserForm(forms.ModelForm):
@@ -23,4 +24,13 @@ class EstudianteForm(forms.ModelForm):
             'fecha_nacimiento': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'celular': forms.TextInput(attrs={'class': 'form-control', 'pattern':"[0-9]{10,15}"}),
             'cedula': forms.TextInput(attrs={'class': 'form-control', 'pattern':"[0-9]{10}"}),
+        }
+
+class AsignarEstudianteForm(forms.ModelForm):
+    class Meta:
+        model = EstudianteCurso
+        fields = '__all__'
+        widgets = {
+            'estudiante': forms.Select(attrs={'class': 'selectpicker form-control', 'data-live-search':"true"}),
+            'cursos': forms.SelectMultiple(attrs={'class': 'selectpicker form-control', 'data-live-search':"true"}),
         }

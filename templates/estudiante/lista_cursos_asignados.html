@@ -1,0 +1,99 @@
+{% extends 'base-public.html' %}
+{% block head %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+{% endblock %}
+{% block title %}
+    Cursos Asignados
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block container %}
+    <!-- Modal -->
+    <div class="modal fade" id="alertaEliminar" tabindex="-1" role="dialog" aria-labelledby="alertaEliminarCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-justify text-break">
+                  ¿Está seguro de eliminar los cursos que se le asignaron al estudiante <strong><span id="datosEst"></span></strong>?<br>
+                  ¿Continuar?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                <button id="aceptarEliminar" type="button" class="btn btn-success">
+                    Aceptar
+                    <input type="hidden" id="idCursoAsignado" value=""/>
+                </button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <nav id="nav-foto" class="navbar undercontainer">
+        <div class="container">
+            <h1 class="h1 text-white">
+                Cursos Asignados
+            </h1>
+        </div>
+    </nav>
+    <div class="container mt-3 mb-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Cursos Asignados</li>
+          </ol>
+        </nav>
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table table-bordered table-hover display" id="tb_estudiantes">
+                    <thead>
+                        <th>
+                            Estudiante
+                        </th>
+                        <th>
+                            Cursos
+                        </th>
+                        <th class="text-center">
+                            Opciones
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for ca in cursos_asignados %}
+                            <tr>
+                                <td>
+                                    Usuario: {{ ca.estudiante.usuario.username }} - Nombres: {{ ca.estudiante.usuario.first_name }} {{ ca.estudiante.usuario.last_name }} - Cédula: {{ ca.estudiante.cedula }}
+                                </td>
+                                <td>
+                                    {% for curso_asignado in ca.cursos.all %}
+                                        {{ curso_asignado.nombre }},
+                                    {% endfor %}
+                                </td>
+                                <td class="text-center">
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opción
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btn_opcion">
+                                            <a href="/estudiante/cursos_asignados/editar/{{ ca.id }}/" class="dropdown-item">Editar</a>
+                                            <button onclick="eliminar_curso_asignado('{{ ca.id }}', 'Username: {{ ca.estudiante.usuario.username}} - Cédula: {{ ca.estudiante.cedula}} - Nombres: {{ ca.estudiante.usuario.first_name }} {{ ca.estudiante.usuario.last_name }}')" class="dropdown-item" type="button">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="/static/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/listar_cursos_asignados.js"></script>
+{% endblock %}
