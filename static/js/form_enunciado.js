@@ -160,6 +160,7 @@ function agregar_opcion_rm(){
         $(temp[0]).val($(temp[0]).val()+'|true');
         $(temp[0]).html($(temp[0]).val());
         $('#desc').val('');
+        $('#desc').focus();
     }
 }
 function agregar_opcion_ru(){
@@ -185,6 +186,7 @@ function agregar_opcion_ru(){
         $(temp[0]).val($(temp[0]).val()+'|true');
         $(temp[0]).html($(temp[0]).val());
         $('#desc').val('');
+        $('#desc').focus();
     }
 }
 $(function () {
