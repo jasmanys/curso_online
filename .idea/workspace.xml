@@ -2,36 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/dialog.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/dialog_ie.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/dialog_ie7.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/dialog_ie8.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/dialog_iequirks.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/editor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/editor_ie.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/editor_ie7.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/editor_ie8.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/editor_iequirks.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/icons.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/icons_hidpi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/images/dialog_sides.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/images/dialog_sides.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/images/dialog_sides_rtl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/images/mini.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/images/spinner.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/images/sprites.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/images/sprites_ie6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/images/toolbar_start.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/skins/kama/skin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/12/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/12/image_dOByQWp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/12/image_dOByQWp_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/12/image_thumb.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curso_online/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso_online/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ckeditor/ckeditor/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/image/dialogs/image.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/image/dialogs/image.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/specialchar/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/specialchar/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/form_enunciado.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/form_enunciado.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_submodulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_submodulo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/contenido_submodulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/contenido_submodulo.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +54,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -204,7 +182,8 @@
       <workItem from="1565436978159" duration="3622000" />
       <workItem from="1565443771765" duration="20470000" />
       <workItem from="1565499368312" duration="580000" />
-      <workItem from="1565526142692" duration="16435000" />
+      <workItem from="1565526142692" duration="17062000" />
+      <workItem from="1565644468082" duration="1894000" />
     </task>
     <servers />
   </component>
@@ -223,5 +202,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
