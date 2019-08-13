@@ -2,73 +2,110 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_4beU9gq.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_4beU9gq_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_7bkVetm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_7bkVetm_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_83EY46I.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_83EY46I_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_9adLO3J.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_9adLO3J_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_B6RbL7Q.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_B6RbL7Q_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_EL4gKas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_EL4gKas_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ImmVSxo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ImmVSxo_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_K1sHyO5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_K1sHyO5_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_LSdSkkh.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_LSdSkkh_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_MZQ3Q0T.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_MZQ3Q0T_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Mcd9DKY.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Mcd9DKY_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Mwr0QbO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Mwr0QbO_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_NgxFqGU.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_NgxFqGU_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ObMYcwq.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ObMYcwq_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_QDTcQcg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_QDTcQcg_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_W2vXApC.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_W2vXApC_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_XAzgvtF.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_XAzgvtF_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_XDkRq5n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_XDkRq5n_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_YDYIxFj.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_YDYIxFj_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ZgSN5nZ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ZgSN5nZ_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_depfRBm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_depfRBm_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_enmesrN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_enmesrN_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_juA9EdX.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_juA9EdX_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_kOfrGss.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_kOfrGss_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_p6DL5ms.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_p6DL5ms_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_pNMXiXr.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_pNMXiXr_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_tf4WzCO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_tf4WzCO_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_u2Yl4kn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_u2Yl4kn_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ubosMfQ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ubosMfQ_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_wSlYFCr.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_wSlYFCr_thumb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_xsUNCwC.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_xsUNCwC_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_0BbHN6Q.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_0BbHN6Q_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_1LUWdwp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_1LUWdwp_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_2AGqAEu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_2AGqAEu_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_4k3pupM.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_4k3pupM_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_5KhRtmK.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_5KhRtmK_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_5ah3fTm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_5ah3fTm_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_BuwdhgT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_BuwdhgT_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_D3kJxR8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_D3kJxR8_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_GzfrlsI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_GzfrlsI_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_HmrCbTi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_HmrCbTi_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_L9BZcx3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_L9BZcx3_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_LxDV8Lr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_LxDV8Lr_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_MYBMGLt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_MYBMGLt_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_MnSg32N.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_MnSg32N_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Mta6wr0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Mta6wr0_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_NVsQImu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_NVsQImu_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_OPyoDSu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_OPyoDSu_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_OWTCfHz.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_OWTCfHz_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_PbxQI9J.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_PbxQI9J_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_PtDckHX.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_PtDckHX_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Q4YkUe0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Q4YkUe0_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_QxvqI7K.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_QxvqI7K_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_RB8aHPu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_RB8aHPu_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_RvsJFyI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_RvsJFyI_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_SDR29Zr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_SDR29Zr_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_SrXiOdR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_SrXiOdR_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_To9sWmY.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_To9sWmY_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_UqnPIJ6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_UqnPIJ6_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_XuNBb9m.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_XuNBb9m_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_XzNClFC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_XzNClFC_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_YFzxSxw.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_YFzxSxw_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_YKw1IRf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_YKw1IRf_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_YZ7pBSK.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_YZ7pBSK_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Yo1GJo7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Yo1GJo7_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Z8gVXiP.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_Z8gVXiP_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_bZHjWbQ.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_bZHjWbQ_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_d7Lqj3d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_d7Lqj3d_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_dqEJfB8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_dqEJfB8_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_duDpSrY.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_duDpSrY_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_fGG8gTU.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_fGG8gTU_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ijVIRz3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_ijVIRz3_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_jhOtVBl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_jhOtVBl_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_q7raSH9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_q7raSH9_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_rLEcG1L.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_rLEcG1L_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_tCIScwZ.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_tCIScwZ_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_tKEEqpQ.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_tKEEqpQ_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_tLHrPvU.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_tLHrPvU_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_teaQzk2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_teaQzk2_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_uvL9Tom.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_uvL9Tom_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_vN1avCN.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_vN1avCN_thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_zyeiMHk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/2019/08/13/image_zyeiMHk_thumb.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/image/dialogs/image.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ckeditor/ckeditor/plugins/image/dialogs/image.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -118,15 +155,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/media" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\js\Python\git\media" />
       <recent name="E:\js\Python\git" />
+      <recent name="E:\js\Python\git\media" />
       <recent name="E:\js\Python\git\static\ckeditor\ckeditor\skins" />
       <recent name="E:\js\Python\git\static\ckeditor\ckeditor\plugins" />
       <recent name="E:\js\Python\git\media\uploads" />
@@ -244,6 +281,7 @@
       <workItem from="1565499368312" duration="580000" />
       <workItem from="1565526142692" duration="17062000" />
       <workItem from="1565644468082" duration="4288000" />
+      <workItem from="1565736558230" duration="993000" />
     </task>
     <servers />
   </component>
