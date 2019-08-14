@@ -2,7 +2,7 @@ import base64
 
 from django.db import models
 from curso.models import Modulo, SubModulo
-from curso_online import settings
+#from curso_online import settings
 from estudiante.models import Estudiante
 
 class Evaluacion(models.Model):
