@@ -261,6 +261,9 @@ $(function () {
             $(arr[arr.length - 1]).val($('#imgfc'+arr.length).attr('src'));
             $('#id_lista_de_enunciados').html(valores_select);
         }
+        $('#alertaGuardar').modal('show');
+    });
+    $('#aceptarGuardar').click(function () {
         $('#guardar').html(cargando);
         $('#guardar').attr("disabled", true);
         $('#frm').submit();

@@ -18,6 +18,29 @@
         </div>
     </nav>
     <div class="container mt-3 mb-5">
+    <!-- Modal -->
+        <div class="modal fade" id="alertaGuardar" tabindex="-1" role="dialog" aria-labelledby="alertaGuardarCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-justify text-break">
+                  <center>¿Está seguro de guardar?<br>
+                      <strong>Asegúrese de haber ingresado todas las alternativas.</strong></center>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                <button id="aceptarGuardar" type="button" class="btn btn-success">
+                    Aceptar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-white">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -67,7 +90,7 @@
                         {% endfor %}
                     </select>
                     <div id="containerButton" class="form-group">
-                        {% if hidden_tipo_enunciado %}
+                        {% if hidden_tipo_enunciado >= 0 %}
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"> {% if hidden_tipo_enunciado == 0 or hidden_tipo_enunciado == 1 %}Agregar Opción{% endif %}{% if hidden_tipo_enunciado == 2 or hidden_tipo_enunciado == 3 %}Agregar Imagen{% endif %} </span>
@@ -79,30 +102,11 @@
                                     <input title="Imagen para la opción" id="fileImg" style="cursor:pointer;" type="file" accept="image/*" class="form-control pb-5 pt-3" aria-label="Opcion" aria-describedby="basic-addon1">
                                 {% endif %}
                                 <div class="input-group-append">
-                                    {% if hidden_tipo_enunciado == 0 %}
-                                        <button onclick="agregar_opcion_ru()" title="Agregar" class="btn btn-outline-info" type="button" id="add">
-                                    {% endif %}
-                                    {% if hidden_tipo_enunciado == 1 %}
-                                        <button onclick="agregar_opcion_rm()" title="Agregar" class="btn btn-outline-info" type="button" id="add">
-                                    {% endif %}
-                                    {% if hidden_tipo_enunciado == 2 %}
-                                        <button onclick="agregar_opcion_img_ru()" title="Agregar" class="btn btn-outline-info" type="button" id="add">
-                                    {% endif %}
-                                    {% if hidden_tipo_enunciado == 3 %}
-                                        <button onclick="agregar_opcion_img_rm()" title="Agregar" class="btn btn-outline-info" type="button" id="add">
-                                    {% endif %}
-                                            <i class="fas fa-folder-plus"></i>
-                                        </button>
+                                    <button onclick="{% if hidden_tipo_enunciado == 0 %}agregar_opcion_ru(){% elif hidden_tipo_enunciado == 1 %}agregar_opcion_rm(){% elif hidden_tipo_enunciado == 2 %}agregar_opcion_img_ru(){% elif hidden_tipo_enunciado == 3 %}agregar_opcion_img_rm(){% endif %}" title="Agregar" class="btn btn-outline-info" type="button" id="add">
+                                        <i class="fas fa-folder-plus"></i>
+                                    </button>
                                 </div>
                             </div>
-                        {% endif %}
-                    </div>
-                    <div class="form-group">
-                        <button id="guardar" type="button" class="btn btn-success btn-md px-5">Guardar Enunciado</button>
-                        {% if not agregar_enunciado %}
-                            <a href="/evaluacion/registros/enunciado/{{ enunciado_evaluacion.submodulo.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
-                        {% else %}
-                            <a href="/evaluacion/listar/submodulo/{{ submodulo.modulo.id }}/" class="btn btn-danger btn-md px-5">Cancelar</a>
                         {% endif %}
                     </div>
                 </form>
@@ -112,31 +116,19 @@
                 {% for oe in opciones_enunciado %}
                     {% if hidden_tipo_enunciado == 0 %}
                         <div style="cursor: pointer;" id="fr{{ oe.fr }}" class="custom-control custom-radio my-1 mr-sm-2">
-                            {% if oe.respuesta %}
-                                <input name="lista_enunciado" value="{{ oe.opcion }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" checked />
-                            {% else %}
-                                <input name="lista_enunciado" value="{{ oe.opcion }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" />
-                            {% endif %}
+                            <input name="lista_enunciado" value="{{ oe.opcion }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" {% if oe.respuesta %}checked{% endif %} />
                             <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ oe.fr }}">{{ oe.opcion }}</label>
                         </div>
                     {% endif %}
                     {% if hidden_tipo_enunciado == 1 %}
                         <div style="cursor: pointer;" id="fc{{ oe.fr }}" class="custom-control custom-checkbox my-1">
-                            {% if oe.respuesta %}
-                                <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" checked />
-                            {% else %}
-                                <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" />
-                            {% endif %}
+                            <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" {% if oe.respuesta %}checked{% endif %} />
                             <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ oe.fr }}">{{ oe.opcion }}</label>
                         </div>
                     {% endif %}
                     {% if hidden_tipo_enunciado == 2 %}
                         <div style="cursor: pointer;" id="fr{{ oe.fr }}" class="custom-control custom-radio my-1 mr-sm-2">
-                            {% if oe.respuesta %}
-                                <input name="lista_enunciado" value="{{ oe.opcion }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" checked />
-                            {% else %}
-                                <input name="lista_enunciado" value="{{ oe.opcion }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" />
-                            {% endif %}
+                            <input name="lista_enunciado" value="{{ oe.opcion }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" {% if oe.respuesta %}checked{% endif %} />
                             <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ oe.fr }}">
                                 <img id="imgfc{{ oe.fr }}" class="img-fluid" src="{{ oe.opcion }}" width="200px">
                             </label>
@@ -144,17 +136,21 @@
                     {% endif %}
                     {% if hidden_tipo_enunciado == 3 %}
                         <div style="cursor: pointer;" id="fc{{ oe.fr }}" class="custom-control custom-checkbox my-1">
-                            {% if oe.respuesta %}
-                                <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" checked />
-                            {% else %}
-                                <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" />
-                            {% endif %}
+                            <input name="lista_enunciado[{{ oe.fr }}]" value="{{ oe.opcion }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ oe.fr }}" {% if oe.respuesta %}checked{% endif %} />
                             <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ oe.fr }}">
                                 <img id="imgfc{{ oe.fr }}" class="img-fluid" src="{{ oe.opcion }}" width="200px">
                             </label>
                         </div>
                     {% endif %}
                 {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-xl-6 col-xl-6">
+                <div class="form-group">
+                    <button id="guardar" type="button" class="btn btn-success btn-md px-5">Guardar Enunciado</button>
+                    <a href="{% if not agregar_enunciado %}/evaluacion/registros/enunciado/{{ enunciado_evaluacion.submodulo.id }}/{% else %}/evaluacion/listar/submodulo/{{ submodulo.modulo.id }}/{% endif %}" id="btnCancelar" class="btn btn-danger btn-md px-5">Cancelar</a>
+                </div>
             </div>
         </div>
     </div>
