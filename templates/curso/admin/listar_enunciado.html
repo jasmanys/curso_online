@@ -29,7 +29,7 @@
                 </button>
               </div>
               <div class="modal-body text-justify text-break">
-                  ¿Está seguro de eliminar el SubMódulo <strong><span id="tituloSubModulo"></span></strong>?
+                  ¿Está seguro de eliminar el Enunciado <strong><span id="tituloEnunciado"></span></strong>?
                   <br>
                   ¿Continuar?
               </div>
@@ -37,7 +37,7 @@
                 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
                 <button id="aceptarEliminar" type="button" class="btn btn-success">
                     Aceptar
-                    <input type="hidden" id="idSubModulo" value=""/>
+                    <input type="hidden" id="idEnunciado" value=""/>
                 </button>
               </div>
             </div>
@@ -82,9 +82,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btn_opcion">
                                             <a href="/evaluacion/editar/enunciado/{{ enunciado.id }}/" class="dropdown-item">Editar</a>
-                                        </div>
-                                        <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                            <a href="/evaluacion/eliminar/enunciado/{{ enunciado.id }}/" class="dropdown-item">Eliminar</a>
+                                            <button type="button" onclick="eliminar_enunciado('{{ enunciado.id }}', '{{ enunciado.enunciado }}')" class="dropdown-item">Eliminar</button>
                                         </div>
                                     </div>
                                 </td>
@@ -100,5 +98,5 @@
 {% block script %}
     <script src="/static/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/static/js/listar_submodulo.js"></script>
+    <script src="/static/js/listar_enunciado.js"></script>
 {% endblock %}

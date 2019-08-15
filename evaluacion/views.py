@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -164,6 +165,22 @@ def editar_enunciado(request, enunciado_id):
     else:
         data['form_enunciado_evaluacion'] = EnunciadoEvaluacionForm(instance=data['enunciado_evaluacion'])
     return render(request, 'curso/admin/form_enunciado.html', data)
+
+@login_required(login_url='/login/')
+def eliminar_enunciado(request, enunciado_id):
+    data = {}
+    data['user'] = request.user
+    codigo = ''
+    try:
+        with transaction.atomic():
+            en = EnunciadoEvaluacion.objects.get(id=enunciado_id)
+            codigo = en.submodulo.id
+            en.delete()
+    except DatabaseError:
+        pass
+    except ObjectDoesNotExist:
+        return redirect('/')
+    return redirect('/evaluacion/registros/enunciado/{}/'.format(codigo))
 
 @login_required(login_url='/login/')
 def registro_enunciado(request, submodulo_id):
