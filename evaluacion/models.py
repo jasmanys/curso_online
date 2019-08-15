@@ -31,8 +31,8 @@ class EnunciadoEvaluacion(models.Model):
         #(RELACIONAR_CONCEPTO, 'Relacionar concepto'),
     )
     tipo_respuesta_dict = dict(RESPUESTA_CHOICES)
-    evaluacion = models.ForeignKey(Evaluacion, verbose_name='Evaluación', on_delete=models.CASCADE)
-    submodulo = models.ForeignKey(SubModulo, verbose_name='SubModulo', on_delete=models.CASCADE)
+    evaluacion = models.ForeignKey(Evaluacion, verbose_name='Evaluación', on_delete=models.PROTECT)
+    submodulo = models.ForeignKey(SubModulo, verbose_name='SubModulo', on_delete=models.PROTECT)
     enunciado = models.TextField(verbose_name='Enunciado', max_length=500)
     tipo_respuesta = models.IntegerField(verbose_name='Tipo de Respuesta', choices=RESPUESTA_CHOICES)
     foto = models.ImageField(verbose_name='Imagen para el enunciado (Opcional)', upload_to='fotos_enunciado/', blank=True, null=True)
@@ -48,7 +48,7 @@ class EnunciadoEvaluacion(models.Model):
         verbose_name_plural = 'Enunciados'
 
 class OpcionEnunciado(models.Model):
-    enunciado_evaluacion = models.ForeignKey(EnunciadoEvaluacion, verbose_name='Enunciado Evaluacion', on_delete=models.PROTECT)
+    enunciado_evaluacion = models.ForeignKey(EnunciadoEvaluacion, verbose_name='Enunciado Evaluacion', on_delete=models.CASCADE)
     opcion = models.TextField(verbose_name='Enunciado', max_length=200, null=True, blank=True)
     imagen = models.ImageField(verbose_name='Imagen', upload_to='fotos_opciones_enunciado/', null=True, blank=True)
 
