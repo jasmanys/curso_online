@@ -126,6 +126,9 @@ def editar_enunciado(request, enunciado_id):
     if request.method == 'POST':
         try:
             with transaction.atomic():
+                add_msg = ''
+                if 'foto' in request.FILES:
+                    add_msg = ' (También se adjuntó una imagen)'
                 form = EnunciadoEvaluacionForm(request.POST, request.FILES, instance=data['enunciado_evaluacion'])
                 if form.is_valid():
                     form.save()
@@ -155,9 +158,9 @@ def editar_enunciado(request, enunciado_id):
                                 seleccion_multiple.respuesta = False
                             seleccion_multiple.save()
                     data = ret_data_editar_enunciado(request, enunciado_id)
-                    data['exito'] = "Se editó el enunciado <strong>{}</strong>".format(form.instance.enunciado)
+                    data['exito'] = "Se editó el enunciado <strong>{} {}</strong>".format(form.instance.enunciado, add_msg)
                 else:
-                    data['error'] = "error en el form"
+                    data['error'] = "error en los datos a registrar"
         except DatabaseError:
             data['error'] = "error al guardar el enunciado"
     if form:
@@ -194,6 +197,9 @@ def registro_enunciado(request, submodulo_id):
     if request.method == 'POST':
         try:
             with transaction.atomic():
+                add_msg = ''
+                if 'foto' in request.FILES:
+                    add_msg = ' (También se adjuntó una imagen)'
                 form = EnunciadoEvaluacionForm(request.POST, request.FILES)
                 if form.is_valid():
                     form.save()
@@ -214,10 +220,10 @@ def registro_enunciado(request, submodulo_id):
                             else:
                                 seleccion_multiple.respuesta = False
                             seleccion_multiple.save()
-                    data['exito'] = 'Se guardó el enunciado <strong><a title="¿Editar?" href="/evaluacion/editar/enunciado/{}/">{}</a></strong>'.format(form.instance.id, form.instance.enunciado)
+                    data['exito'] = 'Se guardó el enunciado <strong><a title="¿Editar?" href="/evaluacion/editar/enunciado/{}/">{}</a> {}</strong>'.format(form.instance.id, form.instance.enunciado, add_msg)
                     form = None
                 else:
-                    data['error'] = "error en el form"
+                    data['error'] = "error en los datos a registrar"
         except DatabaseError:
             data['error'] = "error al guardar el enunciado"
     if form:
