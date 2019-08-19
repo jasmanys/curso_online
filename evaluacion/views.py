@@ -116,6 +116,7 @@ def ret_data_editar_enunciado(request, enunciado_id):
         opciones_enunciado[i]['fr'] = i + 1
     data['opciones_enunciado'] = opciones_enunciado
     data['eval'] = True
+    data['editar_enunciado'] = True
     return data
 
 @login_required(login_url='/login/')
@@ -129,6 +130,10 @@ def editar_enunciado(request, enunciado_id):
                 add_msg = ''
                 if 'foto' in request.FILES:
                     add_msg = ' (También se adjuntó una imagen)'
+                else:
+                    if 'eliminar_foto_enunciado' in request.POST:
+                        if request.POST['eliminar_foto_enunciado'] == 'true':
+                            data['enunciado_evaluacion'].foto = None
                 form = EnunciadoEvaluacionForm(request.POST, request.FILES, instance=data['enunciado_evaluacion'])
                 if form.is_valid():
                     form.save()

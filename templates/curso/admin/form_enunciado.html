@@ -79,7 +79,33 @@
                 {% endif %}
                 <form id="frm" action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form_enunciado_evaluacion.as_p }}
+                    {{ form_enunciado_evaluacion.evaluacion }}
+                    {{ form_enunciado_evaluacion.submodulo }}
+                    <div class="form-group">
+                        <small class="form-text text-danger">{{ form_enunciado_evaluacion.enunciado.errors }}</small>
+                        {{ form_enunciado_evaluacion.enunciado.label_tag }}
+                        {{ form_enunciado_evaluacion.enunciado }}
+                    </div>
+                    <div class="form-group">
+                        <small class="form-text text-danger">{{ form_enunciado_evaluacion.tipo_respuesta.errors }}</small>
+                        {{ form_enunciado_evaluacion.tipo_respuesta.label_tag }}
+                        {{ form_enunciado_evaluacion.tipo_respuesta }}
+                    </div>
+                    <div class="form-group">
+                        <small class="form-text text-danger">{{ form_enunciado_evaluacion.foto.errors }}</small>
+                        {{ form_enunciado_evaluacion.foto.label_tag }}
+                        <div id="divImgEnunciado" class="alert alert-white {% if not editar_enunciado or enunciado_evaluacion.foto == '' %}d-none{% endif %}" role="alert">
+                            <button onclick="{% if editar_enunciado %}eliminarImgDelEnunciado(){% else %}eliminarImgEnunciado(){% endif %}" style="padding: 0px;" type="button" class="close"
+                                    aria-label="Close">
+                                <i style="font-size: 20px;" class="fas fa-times justify-end"></i>
+                            </button>
+                            {% if editar_enunciado %}
+                                <input type="hidden" id="id_eliminar_foto_enunciado" name="eliminar_foto_enunciado" value=""/>
+                            {% endif %}
+                            <img id="imgDelEnunciado" src="/media/{{ enunciado_evaluacion.foto }}" alt="imagen del enunciado" width="500px" />
+                        </div>
+                        {{ form_enunciado_evaluacion.foto }}
+                    </div>
                     <select style="display:none;" required name="lista_de_enunciados" id="id_lista_de_enunciados" multiple="multiple">
                         {% for oe in opciones_enunciado %}
                             {% if oe.respuesta %}

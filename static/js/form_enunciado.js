@@ -264,8 +264,33 @@ $(function () {
         $('#alertaGuardar').modal('show');
     });
     $('#aceptarGuardar').click(function () {
-        $('#guardar').html(cargando);
-        $('#guardar').attr("disabled", true);
+        $('#guardar, #aceptarGuardar').html(cargando);
+        $('#guardar, #aceptarGuardar').attr("disabled", true);
         $('#frm').submit();
     });
+    $('#id_foto').change(function (e) {
+        var file = e.target.files[0];
+        if (!file.type.match('image.*')) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = (function(theFile) {
+            return function(e) {
+                // Insertamos la imagen
+                $('#imgDelEnunciado').attr('src', e.target.result);
+                $('#divImgEnunciado').attr('class', 'alert alert-white');
+            };
+        })(file);
+
+        reader.readAsDataURL(file);
+    });
 });
+function eliminarImgEnunciado(){
+    $('#imgDelEnunciado').attr('src', '');
+    $('#divImgEnunciado').attr('class', 'alert alert-white d-none');
+    $('#id_foto').val(null);
+}
+function eliminarImgDelEnunciado(){
+    $('#id_eliminar_foto_enunciado').val('true');
+    eliminarImgEnunciado();
+}
