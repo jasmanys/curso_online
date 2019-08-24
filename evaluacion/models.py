@@ -1,7 +1,7 @@
 import base64
 
 from django.db import models
-from curso.models import Modulo, SubModulo
+from curso.models import Modulo, SubModulo, EstudianteCurso
 #from curso_online import settings
 from estudiante.models import Estudiante
 
@@ -101,7 +101,7 @@ class RelacionarConcepto(models.Model):
         verbose_name_plural = 'Relacionar Conceptos'
 
 class EstudianteEvaluacion(models.Model):
-    estudiante = models.ForeignKey(Estudiante, on_delete=models.PROTECT)
+    estudiante = models.ForeignKey(EstudianteCurso, on_delete=models.PROTECT)
     evaluacion = models.ForeignKey(Evaluacion, on_delete=models.PROTECT)
     calificacion = models.FloatField()
 

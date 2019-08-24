@@ -25,9 +25,13 @@ def abrir_curso(request, curso_nombre, curso_id):
                 if i == 0:
                     modulos[i]['habilitado'] = True
                 modulos[i]['submodulos'] = SubModulo.objects.filter(modulo__id = modulos[i]['id']).values()
+                submod_term = 0
                 for ind in range(len(modulos[i]['submodulos'])):
                     if EstudianteSubModulo.objects.filter(estudiante=estudiante_curso.estudiante, submodulos__id=modulos[i]['submodulos'][ind]['id']).exists():
                         modulos[i]['submodulos'][ind]['terminado'] = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-check text-success"></i>'
+                        submod_term += 1
+                if submod_term == len(modulos[i]['submodulos']):
+                    modulos[i]['eval_modulo'] = '/evaluacion/evaluar/modulo/{}/'.format(modulos[i]['id'])
 
             data['modulos'] = modulos
             return render(request, 'curso/modulo/indice_curso.html', data)

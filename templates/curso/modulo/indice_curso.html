@@ -51,6 +51,9 @@
                                             {% endif %}
                                         </li>
                                     {% endfor %}
+                                {% if '/evaluacion/evaluar/' in modulo.eval_modulo %}
+                                     <li><p><a href="{{ modulo.eval_modulo }}">Realizar la evaluacion del módulo {{ modulo.numero }}</a></p></li>
+                                {% endif %}
                                 </ul>
                             </li>
                         {% endfor %}
