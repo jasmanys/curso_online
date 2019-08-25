@@ -71,7 +71,7 @@ class OpcionEnunciado(models.Model):
             return self.imagen
 
 class SeleccionMultiple(models.Model):
-    opcion_enunciado = models.ForeignKey(OpcionEnunciado, on_delete=models.CASCADE)
+    opcion_enunciado = models.OneToOneField(OpcionEnunciado, on_delete=models.CASCADE)
     respuesta = models.BooleanField(verbose_name='Respuesta')
 
     def opcion(self):
@@ -84,7 +84,7 @@ class SeleccionMultiple(models.Model):
         verbose_name = 'Seleccion Multiple'
 
 class RelacionarConcepto(models.Model):
-    opcion_enunciado = models.ForeignKey(OpcionEnunciado, on_delete=models.CASCADE)
+    opcion_enunciado = models.OneToOneField(OpcionEnunciado, on_delete=models.CASCADE)
     respuesta = models.ForeignKey(OpcionEnunciado, on_delete=models.CASCADE, null=True, blank=True, related_name='fk_respuesta')
 
     def opcion(self):

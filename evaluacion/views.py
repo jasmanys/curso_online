@@ -102,6 +102,29 @@ def registros_enunciado(request, submodulo_id):
     data['enunciados'] = EnunciadoEvaluacion.objects.filter(submodulo__id=submodulo_id)
     return render(request, 'curso/admin/listar_enunciado.html', data)
 
+@login_required(login_url='/login/')
+def evaluar_modulo(request, modulo_id):
+    data = {}
+    user = request.user
+    estudiante_curso = EstudianteCurso.objects.get(estudiante__usuario=user)
+    evaluacion = Evaluacion.objects.get(modulo__id=modulo_id)
+    enunciado_evaluacion = EnunciadoEvaluacion.objects.filter(evaluacion=evaluacion).values()
+    fr = 0
+    for i in range(len(enunciado_evaluacion)):
+        enunciado_evaluacion[i]['opciones_enunciado'] = OpcionEnunciado.objects.filter(enunciado_evaluacion__id=enunciado_evaluacion[i]['id']).values()
+        for j in range(len(enunciado_evaluacion[i]['opciones_enunciado'])):
+            fr += 1
+            enunciado_evaluacion[i]['opciones_enunciado'][j]['fr'] = fr
+            if enunciado_evaluacion[i]['tipo_respuesta'] in [0, 1, 2, 3]:
+                enunciado_evaluacion[i]['opciones_enunciado'][j]['respuesta'] = SeleccionMultiple.objects.get(opcion_enunciado__id=enunciado_evaluacion[i]['opciones_enunciado'][j]['id']).respuesta
+            if enunciado_evaluacion[i]['tipo_respuesta'] in [2, 3]:
+                enunciado_evaluacion[i]['opciones_enunciado'][j]['opcion_img'] = OpcionEnunciado.objects.get(id=enunciado_evaluacion[i]['opciones_enunciado'][j]['id']).imagen_base64
+    data['user'] = user
+    data['estudiante_curso'] = estudiante_curso
+    data['evaluacion'] = evaluacion
+    data['enunciado_evaluacion'] = enunciado_evaluacion
+    return render(request, 'estudiante/evaluar_modulo.html', data)
+
 def ret_data_editar_enunciado(request, enunciado_id):
     data = {}
     data['user'] = request.user

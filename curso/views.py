@@ -7,6 +7,8 @@ from curso.models import *
 #from evaluacion.models import Evaluacion
 from django.core.exceptions import ObjectDoesNotExist
 
+from evaluacion.models import Evaluacion, EnunciadoEvaluacion, EstudianteEvaluacion
+
 
 @login_required(login_url='/login/')
 def abrir_curso(request, curso_nombre, curso_id):
@@ -21,6 +23,8 @@ def abrir_curso(request, curso_nombre, curso_id):
             curso = Curso.objects.get(pk = curso_id)
             data['curso'] = curso
             modulos = Modulo.objects.filter(curso__id = curso_id).values()
+            modulo_completado_icono = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Módulo Completado" class="fas fa-award text-success"></i>'
+            submodulo_terminado_icono = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-check text-success"></i>'
             for i in range(len(modulos)):
                 if i == 0:
                     modulos[i]['habilitado'] = True
@@ -28,10 +32,29 @@ def abrir_curso(request, curso_nombre, curso_id):
                 submod_term = 0
                 for ind in range(len(modulos[i]['submodulos'])):
                     if EstudianteSubModulo.objects.filter(estudiante=estudiante_curso.estudiante, submodulos__id=modulos[i]['submodulos'][ind]['id']).exists():
-                        modulos[i]['submodulos'][ind]['terminado'] = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-check text-success"></i>'
+                        modulos[i]['submodulos'][ind]['terminado'] = submodulo_terminado_icono
                         submod_term += 1
                 if submod_term == len(modulos[i]['submodulos']):
-                    modulos[i]['eval_modulo'] = '/evaluacion/evaluar/modulo/{}/'.format(modulos[i]['id'])
+                    try:
+                        est_evaluacion = Evaluacion.objects.get(modulo__id=modulos[i]['id'])
+                        est_enunciados = EnunciadoEvaluacion.objects.filter(evaluacion=est_evaluacion).values()
+                        if len(est_enunciados) > 0:
+                            modulos[i]['eval_modulo'] = '/evaluacion/evaluar/modulo/{}/'.format(modulos[i]['id'])
+                            est_estudiante_evaluacion = EstudianteEvaluacion.objects.filter(estudiante=estudiante_curso, evaluacion=est_evaluacion).order_by('-calificacion').values()
+
+                            if len(est_estudiante_evaluacion) > 0:
+                                if est_estudiante_evaluacion[0]['calificacion'] >= est_evaluacion.calificacion_minima:
+                                    modulos[i + 1]['habilitado'] = True
+                                    modulos[i]['completado'] = modulo_completado_icono
+                        else:
+                            if i + 1 < len(modulos):
+                                modulos[i + 1]['habilitado'] = True
+                                modulos[i]['completado'] = modulo_completado_icono
+                    except ObjectDoesNotExist:
+                        if i+1 < len(modulos):
+                            modulos[i+1]['habilitado'] = True
+                            modulos[i]['completado'] = modulo_completado_icono
+
 
             data['modulos'] = modulos
             return render(request, 'curso/modulo/indice_curso.html', data)
@@ -49,13 +72,35 @@ def abrir_modulo(request, modulo_id):
         if request.method == 'POST':
             pass
         else:
-            data['submodulos'] = SubModulo.objects.filter(modulo = modulo).values()
-            for i in range(len(data['submodulos'])):
+            submodulos = SubModulo.objects.filter(modulo = modulo).values()
+            modulo_completado_icono = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Módulo Completado" class="fas fa-award text-success"></i>'
+            submodulo_terminado_icono = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-check text-success"></i>'
+            submod_term = 0
+            for i in range(len(submodulos)):
                 if EstudianteSubModulo.objects.filter(estudiante=estudiante_curso.estudiante,
-                                                      submodulos__id=data['submodulos'][i]['id']).exists():
-                    data['submodulos'][i]['completado'] = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-check text-success"></i>'
+                                                      submodulos__id=submodulos[i]['id']).exists():
+                    submodulos[i]['completado'] = submodulo_terminado_icono
+                    submod_term += 1
+            if submod_term == len(submodulos):
+                try:
+                    est_evaluacion = Evaluacion.objects.get(modulo__id=modulo.id)
+                    est_enunciados = EnunciadoEvaluacion.objects.filter(evaluacion=est_evaluacion).values()
+                    if len(est_enunciados) > 0:
+                        data['eval_modulo'] = '/evaluacion/evaluar/modulo/{}/'.format(modulo.id)
+                        est_estudiante_evaluacion = EstudianteEvaluacion.objects.filter(estudiante=estudiante_curso,
+                                                                                        evaluacion=est_evaluacion).order_by(
+                            '-calificacion').values()
+
+                        if len(est_estudiante_evaluacion) > 0:
+                            if est_estudiante_evaluacion[0]['calificacion'] >= est_evaluacion.calificacion_minima:
+                                data['modulo_calificacion'] = '{}/{}'.format(est_estudiante_evaluacion[0]['calificacion'], est_evaluacion.calificacion_maxima)
+                    data['modulo_completado'] = modulo_completado_icono
+                except ObjectDoesNotExist:
+                    data['modulo_completado'] = modulo_completado_icono
+            data['submodulos'] = submodulos
             data['modulo'] = modulo
             data['curso_link'] = "/curso/abrir/{}/{}/".format(modulo.curso.nombre.replace(' ', '').lower(), modulo.curso.id)
+
             return render(request, 'curso/modulo/indice_modulo.html', data)
     else:
         return redirect('/')

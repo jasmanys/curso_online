@@ -20,7 +20,7 @@
           <ol class="breadcrumb bg-white">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item"><a href="{{ curso_link }}">Índice del curso de {{ modulo.curso.nombre }}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Índice del módulo {{ modulo.titulo }}</li>
+              <li class="breadcrumb-item active" aria-current="page">Índice del módulo {{ modulo.titulo }}{{ modulo_completado }}  {{ modulo_calificacion }}</li>
           </ol>
         </nav>
         <div class="row">
@@ -38,6 +38,11 @@
                                     <p><a href="/curso/submodulo/abrir/id/{{ submodulo.id }}/">{{ modulo.numero }}.{{ submodulo.numero }} {{ submodulo.titulo }}</a>{{ submodulo.completado | safe }}</p>
                                 </li>
                             {% endfor %}
+                            {% if '/evaluacion/evaluar/' in eval_modulo %}
+                                <li>
+                                    <p><a href="{{ eval_modulo }}">Realizar la evaluacion del módulo {{ modulo.numero }}</a></p>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

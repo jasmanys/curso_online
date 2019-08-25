@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0019_auto_20190824_1514.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/estudiante/evaluar_modulo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evaluacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +42,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -192,7 +196,7 @@
       <workItem from="1566179385659" duration="651000" />
       <workItem from="1566520842528" duration="1709000" />
       <workItem from="1566594470323" duration="18000" />
-      <workItem from="1566646217247" duration="4280000" />
+      <workItem from="1566646217247" duration="17069000" />
     </task>
     <servers />
   </component>
