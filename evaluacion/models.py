@@ -106,7 +106,7 @@ class EstudianteEvaluacion(models.Model):
     calificacion = models.FloatField()
 
     def __str__(self):
-        return 'Estudiante: {} - Evaluacion: {} - Calificacion: {}'.format(self.estudiante.nombres(),
+        return 'Estudiante: {} - Evaluacion: {} - Calificacion: {}'.format(self.estudiante.estudiante.nombres(),
                                                                            self.evaluacion.modulo.titulo,
                                                                            self.calificacion)
 
@@ -121,7 +121,7 @@ class DetalleEstudianteEvaluacion(models.Model):
     calificacion_maxima = models.FloatField()
 
     def __str__(self):
-        return 'Estudiante: {} - Enunciado: {} - Calificacion: {}/{}'.format(self.estudiante_evaluacion.estudiante.nombres(),
+        return 'Estudiante: {} - Enunciado: {} - Calificacion: {}/{}'.format(self.estudiante_evaluacion.estudiante.estudiante.nombres(),
                                                                              self.enunciado_evaluacion.enunciado,
                                                                             self.calificacion_obtenida, self.calificacion_maxima)
 
@@ -130,12 +130,12 @@ class DetalleEstudianteEvaluacion(models.Model):
         verbose_name_plural = 'Detalle de Evaluaciones'
 
 class CalificacionSeleccionMultiple(models.Model):
-    estudiante = models.ForeignKey(Estudiante, verbose_name='Estudiante', on_delete=models.PROTECT)
+    estudiante_evaluacion = models.ForeignKey(EstudianteEvaluacion, verbose_name='Estudiante', on_delete=models.PROTECT)
     seleccion_multiple = models.ForeignKey(SeleccionMultiple, verbose_name='Pregunta', on_delete=models.PROTECT)
     respuesta_estudiante = models.BooleanField(verbose_name='Respuesta del Estudiante')
 
     def __str__(self):
-        return 'Estudiante: {} - Pregunta: {}, {} - Respondió: {}'.format(self.estudiante.nombres(),
+        return 'Estudiante: {} - Pregunta: {}, {} - Respondió: {}'.format(self.estudiante_evaluacion.estudiante.estudiante.nombres(),
                                                                           self.seleccion_multiple.opcion(),
                                                                           self.seleccion_multiple.respuesta,
                                                                           self.respuesta_estudiante)
@@ -144,12 +144,12 @@ class CalificacionSeleccionMultiple(models.Model):
         verbose_name = 'Calificacion de Seleccion Multiple'
 
 class CalificacionRelacionarConcepto(models.Model):
-    estudiante = models.ForeignKey(Estudiante, verbose_name='Estudiante', on_delete=models.PROTECT)
+    estudiante_evaluacion = models.ForeignKey(EstudianteEvaluacion, verbose_name='Estudiante', on_delete=models.PROTECT)
     relacionar_concepto = models.ForeignKey(RelacionarConcepto, verbose_name='Pregunta', on_delete=models.PROTECT)
     respuesta_estudiante = models.ForeignKey(OpcionEnunciado, verbose_name='Respuesta del Estudiante', on_delete=models.PROTECT)
 
     def __str__(self):
-        return 'Estudiante: {} - Pregunta: {}, {} - Respondió: {}'.format(self.estudiante.nombres(),
+        return 'Estudiante: {} - Pregunta: {}, {} - Respondió: {}'.format(self.estudiante_evaluacion.estudiante.estudiante.nombres(),
                                                                           self.relacionar_concepto.opcion(),
                                                                           self.relacionar_concepto.respuesta_opcion(),
                                                                           self.respuesta_estudiante.opcion)

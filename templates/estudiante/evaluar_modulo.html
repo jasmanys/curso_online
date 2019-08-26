@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 {% endblock %}
 {% block title %}
-    Cursos Asignados
+    Evaluacion del módulo {{ evaluacion.modulo.numero }}
 {% endblock %}
 {% block style %}
 
@@ -13,64 +13,100 @@
     <nav id="nav-foto" class="navbar undercontainer">
         <div class="container">
             <h1 class="h1 text-white">
-                Enunciados para el submódulo
+                Evaluacion del módulo {{ evaluacion.modulo.numero }}
             </h1>
         </div>
     </nav>
     <br><br>
-    <div class="container-fluid">
-    <ol>
-        {% for enun in enunciado_evaluacion %}
-            <strong>
-                <li>
-                    <p class="text-break text-justify">
-                        {{ enun.enunciado }}
-                    </p>
-                    {% if 'fotos_enunciado' in enun.foto %}
-                        <img width="50%" src="/media/{{ enun.foto }}" class="img-fluid"/>
+    <div class="container">
+        <form id="frm" method="post" action="">
+            {% csrf_token %}
+            <input type="hidden" name="hidden_modulo_id" value="{{ evaluacion.modulo.id }}">
+            <div class="row">
+                <div class="col-12">
+                    {% if error %}
+                    <div id="no-valido" class="alert alert-danger" role="alert">
+                        <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <i class="fas fa-times justify-end"></i>
+                        </button>
+                        <span id="alert-contenido">
+                            {{ error }}
+                        </span>
+                    </div>
                     {% endif %}
-                </li>
-            </strong>
-            <ol type="a">
-            {% for opcion in enun.opciones_enunciado %}
-                <li>
-                {% if enun.tipo_respuesta == 0 %}
-                    <div style="cursor: pointer;" class="custom-control custom-radio my-1 mr-sm-2 text-break text-justify">
-                        <input name="respuesta_opcion_{{ enun.id }}" value="{{ opcion.id }}" style="cursor: pointer;" id="respuesta_opcion_{{ opcion.fr }}" type="radio" class="custom-control-input" {% if opcion.respuesta %}checked{% endif %} />
-                        <label style="cursor: pointer;" class="custom-control-label" for="respuesta_opcion_{{ opcion.fr }}">{{ opcion.opcion }}</label>
-                    </div>
-                {% endif %}
-                {% if enun.tipo_respuesta == 1 %}
-                    <div style="cursor: pointer;" class="custom-control custom-checkbox my-1">
-                        <input name="lista_enunciado[{{ opcion.fr }}]" value="{{ opcion.id }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
-                        <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">{{ opcion.opcion }}</label>
-                    </div>
-                {% endif %}
-                {% if enun.tipo_respuesta == 2 %}
-                    <div style="cursor: pointer;" class="custom-control custom-radio my-1 mr-sm-2">
-                        <input name="lista_enunciado" value="{{ opcion.id }}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
-                        <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">
-                            <img class="img-fluid" src="{{ opcion.opcion_img }}" width="300px">
-                        </label>
-                    </div>
-                {% endif %}
-                {% if enun.tipo_respuesta == 3 %}
-                    <div style="cursor: pointer;" class="custom-control custom-checkbox my-1">
-                        <input name="lista_enunciado[{{ opcion.fr }}]" value="{{ opcion.id }}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
-                        <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">
-                            <img class="img-fluid" src="{{ opcion.opcion_img }}" width="300px">
-                        </label>
-                    </div>
-                {% endif %}
-                </li>
-            {% endfor %}
-            </ol>
-        {% endfor %}
-    </ol>
+                    {% if exito %}
+                        <div id="no-valido" class="alert alert-success" role="alert">
+                            <button style="padding: 0px;" type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <i class="fas fa-times justify-end"></i>
+                            </button>
+                            <span id="alert-contenido">
+                                {{ exito | safe }}
+                            </span>
+                        </div>
+                    {% endif %}
+                    <ol>
+                        {% for enun in enunciado_evaluacion %}
+                            <strong>
+                                <li>
+                                    <p class="text-break text-justify">
+                                        {{ enun.enunciado }}
+                                    </p>
+                                    {% if 'fotos_enunciado' in enun.foto %}
+                                        <img width="50%" src="/media/{{ enun.foto }}" class="img-fluid"/>
+                                    {% endif %}
+                                </li>
+                            </strong>
+                            <ol id="codEnunciado{{ enun.id }}" type="a">
+                            {% for opcion in enun.opciones_enunciado %}
+                                <li>
+                                {% if enun.tipo_respuesta == 0 %}
+                                    <div style="cursor: pointer;" class="custom-control custom-radio my-1 mr-sm-2 text-break text-justify">
+                                        <input name="respuesta_opcion_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" id="respuesta_opcion_{{ opcion.fr }}" type="radio" class="custom-control-input" {% if opcion.respuesta %}checked{% endif %} />
+                                        <label style="cursor: pointer;" class="custom-control-label" for="respuesta_opcion_{{ opcion.fr }}">{{ opcion.opcion }}</label>
+                                    </div>
+                                {% endif %}
+                                {% if enun.tipo_respuesta == 1 %}
+                                    <div style="cursor: pointer;" class="custom-control custom-checkbox my-1">
+                                        <input name="lista_enunciado_{{ enun.id }}['{{ opcion.fr }}']" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
+                                        <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">{{ opcion.opcion }}</label>
+                                    </div>
+                                {% endif %}
+                                {% if enun.tipo_respuesta == 2 %}
+                                    <div style="cursor: pointer;" class="custom-control custom-radio my-1 mr-sm-2">
+                                        <input name="respuesta_opcion_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
+                                        <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">
+                                            <img class="img-fluid" src="{{ opcion.opcion_img }}" width="300px">
+                                        </label>
+                                    </div>
+                                {% endif %}
+                                {% if enun.tipo_respuesta == 3 %}
+                                    <div style="cursor: pointer;" class="custom-control custom-checkbox my-1">
+                                        <input name="lista_enunciado_{{ enun.id }}['{{ opcion.fr }}']" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
+                                        <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">
+                                            <img class="img-fluid" src="{{ opcion.opcion_img }}" width="300px">
+                                        </label>
+                                    </div>
+                                {% endif %}
+                                </li>
+                            {% endfor %}
+                            </ol>
+                        {% endfor %}
+                    </ol>
+                </div>
+                <div class="col-6 offset-6">
+                    <button id="enviarEvaluacion" type="submit" class="btn btn-outline-success">Enviar evaluacion</button>
+                </div>
+            </div>
+        </form>
     </div>
     <br>
-
 {% endblock %}
 {% block script %}
-
+<script>
+const idEnunciados = "{% for enun in enunciado_evaluacion %}#codEnunciado{{ enun.id }}|{% endfor %}".split('|');
+idEnunciados.pop();
+</script>
+<script src="/static/js/evaluar_modulo.js"></script>
 {% endblock %}

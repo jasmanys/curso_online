@@ -1,4 +1,5 @@
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -6,6 +7,7 @@ from curso.models import *
 from evaluacion.forms import EnunciadoEvaluacionForm
 from evaluacion.models import *
 from django.db import DatabaseError, transaction
+
 #Imagen decoded
 def decode_base64_file(data):
     def get_file_extension(file_name, decoded_file):
@@ -102,11 +104,110 @@ def registros_enunciado(request, submodulo_id):
     data['enunciados'] = EnunciadoEvaluacion.objects.filter(submodulo__id=submodulo_id)
     return render(request, 'curso/admin/listar_enunciado.html', data)
 
+def convertir_a_diccionario(valor):
+    data = {}
+    try:
+        value = eval(valor)  # Convertir a dict
+        if str(type(value)) == "<class 'dict'>":  # Comprobar que sea dict
+            return value
+        else:
+            data['error'] = 'No pudo registrarse su evaluación, inténtelo nuevamente'
+    except Exception as e:
+        data['error'] = 'Datos incongruentes'
+    return data
+
 @login_required(login_url='/login/')
 def evaluar_modulo(request, modulo_id):
     data = {}
     user = request.user
     estudiante_curso = EstudianteCurso.objects.get(estudiante__usuario=user)
+
+    if request.method == 'POST':
+        if 'hidden_modulo_id' in request.POST:
+            hidden_modulo_id = int(request.POST['hidden_modulo_id'])
+            try:
+                with transaction.atomic():
+                    recoger = ""
+                    #Llamar a la evaluacion que se va a calificar
+                    evaluacion = Evaluacion.objects.get(modulo__id=hidden_modulo_id)
+                    #Llamar a todos los enunciados de la evaluación a calificar
+                    enunciado_evaluacion = EnunciadoEvaluacion.objects.filter(evaluacion=evaluacion).all()
+                    #Registrar al estudiante que va a ser calificado con la evaluación
+                    estudiante_evaluacion = EstudianteEvaluacion(estudiante=estudiante_curso, evaluacion=evaluacion,calificacion=0)
+                    estudiante_evaluacion.save()
+                    #Para obtener la nota de cada enunciado respondido, se va a dividir la calificación máxima de la evaluación (100)...
+                    #...entre la cantidad de enunciados que haya en la evaluación
+                    nota_por_enunciado = float(evaluacion.calificacion_maxima / enunciado_evaluacion.count())
+                    calificacion_total = 0
+                    #Registrar los enunciados que respondió el estudiante
+                    for enun in enunciado_evaluacion:
+                        detalle_estudiante_evaluacion = DetalleEstudianteEvaluacion(estudiante_evaluacion=estudiante_evaluacion,
+                                                                                    enunciado_evaluacion=EnunciadoEvaluacion.objects.get(id=enun.id),
+                                                                                    calificacion_obtenida=0,
+                                                                                    calificacion_maxima=nota_por_enunciado)
+                        detalle_estudiante_evaluacion.save()
+                        #Calificar pregunta de opción única
+                        if enun.tipo_respuesta in [0, 2]:#Preguntar si el tipo de respuesta es de opción única
+                            #Traer todos los enunciados registrados
+                            opciones_del_enunciado = OpcionEnunciado.objects.filter(enunciado_evaluacion__id=enun.id)
+                            #Comprobar que las respuestas se hayan enviado correctamente al servidor
+                            if 'respuesta_opcion_{}'.format(enun.id) in request.POST:
+                                value = convertir_a_diccionario(request.POST['respuesta_opcion_{}'.format(enun.id)])#Convertir a dict
+                                if not 'error' in value:#Asegurarse que no haya algún error
+                                    #Obtener la respuesta que el estudiante realizó
+                                    respuesta_del_estudiante = SeleccionMultiple.objects.get(opcion_enunciado__id=value['id_opcion'])
+                                    # Obtener la respuesta correcta
+                                    respuesta_correcta = SeleccionMultiple.objects.get(opcion_enunciado__enunciado_evaluacion__id=enun.id,
+                                                                                       respuesta=True)
+                                    #Registrar la respuesta del estudiante
+                                    calificacion_seleccion_multiple = CalificacionSeleccionMultiple(
+                                        estudiante_evaluacion=estudiante_evaluacion, seleccion_multiple=respuesta_correcta,
+                                        respuesta_estudiante=respuesta_del_estudiante.respuesta)
+                                    calificacion_seleccion_multiple.save()
+                                    #Preguntar si la respuesta del estudiante coincide con la correcta...
+                                    if respuesta_correcta.respuesta == respuesta_del_estudiante.respuesta:
+                                        #...si es así, irá aumentando su calificación
+                                        calificacion_total += nota_por_enunciado
+
+                                else:
+                                    data['error'] = value['error']
+                        if enun.tipo_respuesta in [1, 3]:  # Preguntar si el tipo de respuesta es de opción múltiple
+                            # Comprobar que las respuestas se hayan enviado correctamente al servidor
+                            if 'lista_enunciado_{}'.format(enun.id) in request.POST:
+                                recoger += "entro a opcion multiple, "
+                                respuestas = request.POST.getlist('lista_enunciado_{}'.format(enun.id))
+                                # Obtener las respuestas correctas
+                                respuestas_correctas = SeleccionMultiple.objects.filter(opcion_enunciado__enunciado_evaluacion__id=enun.id, respuesta=True)
+                                nota_por_enunciado_actual = float(nota_por_enunciado / respuestas_correctas.count())
+                                for res in respuestas:
+                                    recoger += "entro a iterar, "
+                                    value = convertir_a_diccionario(res)  # Convertir a dict
+                                    if not 'error' in value:  # Asegurarse que no haya algún error
+                                        # Obtener la respuesta que el estudiante realizó
+                                        respuesta_del_estudiante = SeleccionMultiple.objects.get(opcion_enunciado__id=value['id_opcion'])
+                                        #A razón de que el enunciado puede haber más de una respuesta correcta,...
+                                        #...se debe iterar
+                                        for rc in respuestas_correctas:
+                                            recoger += "entro a iterar rc, "
+                                            #Registrar la respuesta del estudiante
+                                            if respuesta_del_estudiante.id == rc.id:
+                                                calificacion_seleccion_multiple = CalificacionSeleccionMultiple(estudiante_evaluacion=estudiante_evaluacion, seleccion_multiple__id=rc.id, respuesta_estudiante=respuesta_del_estudiante.respuesta)
+                                                calificacion_seleccion_multiple.save()
+                                                recoger += "entro a guardar rc, "
+                                            #Preguntar si la respuesta del estudiante coincide con la correcta...
+                                            if respuesta_del_estudiante.respuesta == rc.respuesta:
+                                                # ...si es así, irá aumentando su calificación
+                                                calificacion_total += nota_por_enunciado_actual
+                                                recoger += "entro a sumar rc, "
+                    estudiante_evaluacion.calificacion = float(calificacion_total)
+                    estudiante_evaluacion.save()
+                    data['exito'] = "todo salió posi, su calificación es de {} puntos {}".format(calificacion_total, recoger)
+            except ValueError:
+                data['error'] = "No se pudo registrar"
+            """except ObjectDoesNotExist:
+                data['error'] = "No se pudo registrar"
+            except MultipleObjectsReturned:
+                data['error'] = "No se pudo registrar"""
     evaluacion = Evaluacion.objects.get(modulo__id=modulo_id)
     enunciado_evaluacion = EnunciadoEvaluacion.objects.filter(evaluacion=evaluacion).values()
     fr = 0
@@ -119,6 +220,7 @@ def evaluar_modulo(request, modulo_id):
                 enunciado_evaluacion[i]['opciones_enunciado'][j]['respuesta'] = SeleccionMultiple.objects.get(opcion_enunciado__id=enunciado_evaluacion[i]['opciones_enunciado'][j]['id']).respuesta
             if enunciado_evaluacion[i]['tipo_respuesta'] in [2, 3]:
                 enunciado_evaluacion[i]['opciones_enunciado'][j]['opcion_img'] = OpcionEnunciado.objects.get(id=enunciado_evaluacion[i]['opciones_enunciado'][j]['id']).imagen_base64
+
     data['user'] = user
     data['estudiante_curso'] = estudiante_curso
     data['evaluacion'] = evaluacion
