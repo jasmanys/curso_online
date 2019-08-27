@@ -23,7 +23,7 @@ def abrir_curso(request, curso_nombre, curso_id):
             curso = Curso.objects.get(pk = curso_id)
             data['curso'] = curso
             modulos = Modulo.objects.filter(curso__id = curso_id).values()
-            modulo_completado_icono = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Módulo Completado" class="fas fa-award text-success"></i>'
+            modulo_completado_icono = '&nbsp;<i style="cursor: pointer;" title="Módulo Completado" class="fas fa-award text-success"></i>'
             submodulo_terminado_icono = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-check text-success"></i>'
             for i in range(len(modulos)):
                 if i == 0:
@@ -46,6 +46,13 @@ def abrir_curso(request, curso_nombre, curso_id):
                                 if est_estudiante_evaluacion[0]['calificacion'] >= est_evaluacion.calificacion_minima:
                                     modulos[i + 1]['habilitado'] = True
                                     modulos[i]['completado'] = modulo_completado_icono
+                                    modulos[i]['modulo_calificacion'] = '<span class="text-success"><strong>Calificacion: </strong>{}/{}</span>'.format(
+                                        round(est_estudiante_evaluacion[0]['calificacion'],2),
+                                        est_evaluacion.calificacion_maxima)
+                                else:
+                                    modulos[i]['modulo_calificacion'] = '<span class="text-danger"><strong>Calificacion: </strong>{}/{}</span>'.format(
+                                        round(est_estudiante_evaluacion[0]['calificacion'],2),
+                                        est_evaluacion.calificacion_maxima)
                         else:
                             if i + 1 < len(modulos):
                                 modulos[i + 1]['habilitado'] = True
@@ -73,7 +80,7 @@ def abrir_modulo(request, modulo_id):
             pass
         else:
             submodulos = SubModulo.objects.filter(modulo = modulo).values()
-            modulo_completado_icono = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Módulo Completado" class="fas fa-award text-success"></i>'
+            modulo_completado_icono = '&nbsp;<i style="cursor: pointer;" title="Módulo Completado" class="fas fa-award text-success"></i>'
             submodulo_terminado_icono = '&nbsp;&nbsp;&nbsp;&nbsp;<i style="cursor: pointer;" title="Completado" class="fas fa-check text-success"></i>'
             submod_term = 0
             for i in range(len(submodulos)):
@@ -93,7 +100,10 @@ def abrir_modulo(request, modulo_id):
 
                         if len(est_estudiante_evaluacion) > 0:
                             if est_estudiante_evaluacion[0]['calificacion'] >= est_evaluacion.calificacion_minima:
-                                data['modulo_calificacion'] = '{}/{}'.format(est_estudiante_evaluacion[0]['calificacion'], est_evaluacion.calificacion_maxima)
+                                data['modulo_calificacion'] = '<span class="text-success"><strong>Calificacion: </strong>{}/{}</span>'.format(round(est_estudiante_evaluacion[0]['calificacion'],2), est_evaluacion.calificacion_maxima)
+                            else:
+                                data['modulo_calificacion'] = '<span class="text-danger"><strong>Calificacion: </strong>{}/{}</span>'.format(
+                                    round(est_estudiante_evaluacion[0]['calificacion'],2), est_evaluacion.calificacion_maxima)
                     data['modulo_completado'] = modulo_completado_icono
                 except ObjectDoesNotExist:
                     data['modulo_completado'] = modulo_completado_icono
@@ -140,7 +150,7 @@ def abrir_submodulo(request, submodulo_id):
             except ObjectDoesNotExist:
                 pass
             if EstudianteSubModulo.objects.filter(estudiante=estudiante_curso.estudiante).exists():
-                if not EstudianteSubModulo.objects.filter(submodulos=submodulo).exists():
+                if not EstudianteSubModulo.objects.filter(submodulos=submodulo, estudiante=estudiante_curso.estudiante).exists():
                     est_sub_mod = EstudianteSubModulo.objects.get(estudiante=estudiante_curso.estudiante)
                     est_sub_mod.submodulos.add(submodulo)
             else:

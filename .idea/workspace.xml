@@ -2,23 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0020_auto_20190825_1903.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_enunciado/img53_ry6g2on.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_enunciado/img58_9yhV61d.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_enunciado/img62_FdEJGbx.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_opciones_enunciado/1d59f275-473.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_opciones_enunciado/2816da8a-c41.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_opciones_enunciado/299b0882-1a5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_opciones_enunciado/2fca9022-7bf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_opciones_enunciado/4e3644b4-77b.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_opciones_enunciado/b27ab082-6d2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_opciones_enunciado/cb3a97ea-a2c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/fotos_opciones_enunciado/d29465c8-d23.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/evaluar_modulo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dump.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0021_auto_20190826_2158.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newdb.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso_online/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso_online/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evaluacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evaluacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_enunciado/img53_ry6g2on.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_enunciado/img58_9yhV61d.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_enunciado/img62_FdEJGbx.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/1d59f275-473.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/2816da8a-c41.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/299b0882-1a5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/2fca9022-7bf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/4e3644b4-77b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/b27ab082-6d2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/cb3a97ea-a2c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/d29465c8-d23.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/evaluar_modulo.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/evaluar_modulo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/estudiante/evaluar_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/estudiante/evaluar_modulo.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -208,6 +214,9 @@
       <workItem from="1566646217247" duration="17656000" />
       <workItem from="1566739746896" duration="11869000" />
       <workItem from="1566781774416" duration="9801000" />
+      <workItem from="1566854705330" duration="11846000" />
+      <workItem from="1566874295651" duration="5313000" />
+      <workItem from="1566880164911" duration="467000" />
     </task>
     <servers />
   </component>

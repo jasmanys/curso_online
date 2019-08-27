@@ -37,7 +37,7 @@
                         {% for modulo in modulos %}
                             <li>
                                 {% if modulo.habilitado %}
-                                    <p><a href="/curso/modulo/abrir/id/{{ modulo.id }}/">Módulo {{ modulo.numero }}: {{ modulo.titulo }}</a>{{ modulo.completado | safe }}</p>
+                                    <p><a href="/curso/modulo/abrir/id/{{ modulo.id }}/">Módulo {{ modulo.numero }}: {{ modulo.titulo }}</a>{{ modulo.completado | safe }} {{ modulo.modulo_calificacion | safe }}</p>
                                 {% else %}
                                     <p>Módulo {{ modulo.numero }}: {{ modulo.titulo }}</p>
                                 {% endif %}

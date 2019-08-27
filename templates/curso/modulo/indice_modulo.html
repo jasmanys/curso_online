@@ -20,7 +20,7 @@
           <ol class="breadcrumb bg-white">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item"><a href="{{ curso_link }}">Índice del curso de {{ modulo.curso.nombre }}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Índice del módulo {{ modulo.titulo }}{{ modulo_completado }}  {{ modulo_calificacion }}</li>
+              <li class="breadcrumb-item active" aria-current="page">Índice del módulo {{ modulo.titulo }} {{ modulo_completado|safe }}  {{ modulo_calificacion|safe }}</li>
           </ol>
         </nav>
         <div class="row">

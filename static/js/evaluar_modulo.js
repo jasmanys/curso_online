@@ -13,11 +13,20 @@ $(function(){
                 bandera = true;
                 return;
             }
+            if($(element).data('cantres')){
+                if($(element).data('cantres')!=contadorCheck){
+                    alert('Del enunciado: <'+$(element).data('enunciadoval')+'> debe contestar '+$(element).data('cantres')+' opciones');
+                    bandera = true;
+                    return;
+                }
+            }
         });
         if(bandera){
             alert('Debe contestar todo');
             return;
         }
-        $('#frm').submit();
+        if(!bandera) {
+            $('#frm').submit();
+        }
     });
 });

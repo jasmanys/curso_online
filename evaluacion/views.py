@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+from unidecode import unidecode
+
 from curso.models import *
 from evaluacion.forms import EnunciadoEvaluacionForm
 from evaluacion.models import *
@@ -126,18 +128,17 @@ def evaluar_modulo(request, modulo_id):
         if 'hidden_modulo_id' in request.POST:
             hidden_modulo_id = int(request.POST['hidden_modulo_id'])
             try:
+                # Llamar a la evaluacion que se va a calificar
+                evaluacion = Evaluacion.objects.get(modulo__id=hidden_modulo_id)
+                # Llamar a todos los enunciados de la evaluación a calificar
+                enunciado_evaluacion = EnunciadoEvaluacion.objects.filter(evaluacion=evaluacion)
                 with transaction.atomic():
-                    recoger = ""
-                    #Llamar a la evaluacion que se va a calificar
-                    evaluacion = Evaluacion.objects.get(modulo__id=hidden_modulo_id)
-                    #Llamar a todos los enunciados de la evaluación a calificar
-                    enunciado_evaluacion = EnunciadoEvaluacion.objects.filter(evaluacion=evaluacion).all()
                     #Registrar al estudiante que va a ser calificado con la evaluación
                     estudiante_evaluacion = EstudianteEvaluacion(estudiante=estudiante_curso, evaluacion=evaluacion,calificacion=0)
                     estudiante_evaluacion.save()
                     #Para obtener la nota de cada enunciado respondido, se va a dividir la calificación máxima de la evaluación (100)...
                     #...entre la cantidad de enunciados que haya en la evaluación
-                    nota_por_enunciado = float(evaluacion.calificacion_maxima / enunciado_evaluacion.count())
+                    nota_por_enunciado = evaluacion.calificacion_maxima / enunciado_evaluacion.count()
                     calificacion_total = 0
                     #Registrar los enunciados que respondió el estudiante
                     for enun in enunciado_evaluacion:
@@ -162,7 +163,7 @@ def evaluar_modulo(request, modulo_id):
                                     #Registrar la respuesta del estudiante
                                     calificacion_seleccion_multiple = CalificacionSeleccionMultiple(
                                         estudiante_evaluacion=estudiante_evaluacion, seleccion_multiple=respuesta_correcta,
-                                        respuesta_estudiante=respuesta_del_estudiante.respuesta)
+                                        respuesta_estudiante=respuesta_del_estudiante)
                                     calificacion_seleccion_multiple.save()
                                     #Preguntar si la respuesta del estudiante coincide con la correcta...
                                     if respuesta_correcta.respuesta == respuesta_del_estudiante.respuesta:
@@ -173,14 +174,13 @@ def evaluar_modulo(request, modulo_id):
                                     data['error'] = value['error']
                         if enun.tipo_respuesta in [1, 3]:  # Preguntar si el tipo de respuesta es de opción múltiple
                             # Comprobar que las respuestas se hayan enviado correctamente al servidor
-                            if 'lista_enunciado_{}'.format(enun.id) in request.POST:
-                                recoger += "entro a opcion multiple, "
-                                respuestas = request.POST.getlist('lista_enunciado_{}'.format(enun.id))
+                            nombre_lista = 'lista_enunciado_{}'.format(enun.id)
+                            if nombre_lista in request.POST:
+                                respuestas = request.POST.getlist(nombre_lista)
                                 # Obtener las respuestas correctas
                                 respuestas_correctas = SeleccionMultiple.objects.filter(opcion_enunciado__enunciado_evaluacion__id=enun.id, respuesta=True)
-                                nota_por_enunciado_actual = float(nota_por_enunciado / respuestas_correctas.count())
+                                nota_por_enunciado_actual = nota_por_enunciado / respuestas_correctas.count()
                                 for res in respuestas:
-                                    recoger += "entro a iterar, "
                                     value = convertir_a_diccionario(res)  # Convertir a dict
                                     if not 'error' in value:  # Asegurarse que no haya algún error
                                         # Obtener la respuesta que el estudiante realizó
@@ -188,31 +188,31 @@ def evaluar_modulo(request, modulo_id):
                                         #A razón de que el enunciado puede haber más de una respuesta correcta,...
                                         #...se debe iterar
                                         for rc in respuestas_correctas:
-                                            recoger += "entro a iterar rc, "
                                             #Registrar la respuesta del estudiante
                                             if respuesta_del_estudiante.id == rc.id:
-                                                calificacion_seleccion_multiple = CalificacionSeleccionMultiple(estudiante_evaluacion=estudiante_evaluacion, seleccion_multiple__id=rc.id, respuesta_estudiante=respuesta_del_estudiante.respuesta)
+                                                calificacion_seleccion_multiple = CalificacionSeleccionMultiple(estudiante_evaluacion=estudiante_evaluacion, seleccion_multiple=SeleccionMultiple.objects.get(id=rc.id), respuesta_estudiante=respuesta_del_estudiante)
                                                 calificacion_seleccion_multiple.save()
-                                                recoger += "entro a guardar rc, "
                                             #Preguntar si la respuesta del estudiante coincide con la correcta...
-                                            if respuesta_del_estudiante.respuesta == rc.respuesta:
+                                            if respuesta_del_estudiante.id == rc.id and respuesta_del_estudiante.respuesta == rc.respuesta:
                                                 # ...si es así, irá aumentando su calificación
                                                 calificacion_total += nota_por_enunciado_actual
-                                                recoger += "entro a sumar rc, "
-                    estudiante_evaluacion.calificacion = float(calificacion_total)
+                    estudiante_evaluacion.calificacion = round(calificacion_total, 2)
                     estudiante_evaluacion.save()
-                    data['exito'] = "todo salió posi, su calificación es de {} puntos {}".format(calificacion_total, recoger)
-            except ValueError:
+                    data['exito'] = True
+            except DatabaseError:
                 data['error'] = "No se pudo registrar"
-            """except ObjectDoesNotExist:
+            except ObjectDoesNotExist:
                 data['error'] = "No se pudo registrar"
             except MultipleObjectsReturned:
-                data['error'] = "No se pudo registrar"""
+                data['error'] = "No se pudo registrar"
+            if data['exito']:
+                return redirect('/curso/abrir/{}/{}/'.format(unidecode(evaluacion.modulo.curso.nombre.lower().replace(' ','')), evaluacion.modulo.curso.id))
     evaluacion = Evaluacion.objects.get(modulo__id=modulo_id)
     enunciado_evaluacion = EnunciadoEvaluacion.objects.filter(evaluacion=evaluacion).values()
     fr = 0
     for i in range(len(enunciado_evaluacion)):
         enunciado_evaluacion[i]['opciones_enunciado'] = OpcionEnunciado.objects.filter(enunciado_evaluacion__id=enunciado_evaluacion[i]['id']).values()
+        enunciado_evaluacion[i]['cant_opc_correctas'] = SeleccionMultiple.objects.filter(opcion_enunciado__enunciado_evaluacion__id=enunciado_evaluacion[i]['id'], respuesta=True).count()
         for j in range(len(enunciado_evaluacion[i]['opciones_enunciado'])):
             fr += 1
             enunciado_evaluacion[i]['opciones_enunciado'][j]['fr'] = fr

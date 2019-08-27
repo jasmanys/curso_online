@@ -131,14 +131,14 @@ class DetalleEstudianteEvaluacion(models.Model):
 
 class CalificacionSeleccionMultiple(models.Model):
     estudiante_evaluacion = models.ForeignKey(EstudianteEvaluacion, verbose_name='Estudiante', on_delete=models.PROTECT)
-    seleccion_multiple = models.ForeignKey(SeleccionMultiple, verbose_name='Pregunta', on_delete=models.PROTECT)
-    respuesta_estudiante = models.BooleanField(verbose_name='Respuesta del Estudiante')
+    seleccion_multiple = models.ForeignKey(SeleccionMultiple, verbose_name='Respuesta correcta', on_delete=models.PROTECT)
+    respuesta_estudiante = models.ForeignKey(SeleccionMultiple, verbose_name='Respuesta del estudiante', on_delete=models.PROTECT, related_name='fk_respuesta_estudiante')
 
     def __str__(self):
         return 'Estudiante: {} - Pregunta: {}, {} - Respondió: {}'.format(self.estudiante_evaluacion.estudiante.estudiante.nombres(),
                                                                           self.seleccion_multiple.opcion(),
                                                                           self.seleccion_multiple.respuesta,
-                                                                          self.respuesta_estudiante)
+                                                                          self.respuesta_estudiante.opcion())
 
     class Meta:
         verbose_name = 'Calificacion de Seleccion Multiple'

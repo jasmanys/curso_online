@@ -51,14 +51,14 @@
                             <strong>
                                 <li>
                                     <p class="text-break text-justify">
-                                        {{ enun.enunciado }}
+                                        {{ enun.enunciado }} {% if enun.cant_opc_correctas > 1 %}(Seleccione {{ enun.cant_opc_correctas }}){% endif %}
                                     </p>
                                     {% if 'fotos_enunciado' in enun.foto %}
                                         <img width="50%" src="/media/{{ enun.foto }}" class="img-fluid"/>
                                     {% endif %}
                                 </li>
                             </strong>
-                            <ol id="codEnunciado{{ enun.id }}" type="a">
+                            <ol {% if enun.cant_opc_correctas > 1 %}data-cantres="{{enun.cant_opc_correctas}}" data-enunciadoval="{{ enun.enunciado }}" data-codenun="{{ enun.id }}"{% endif %} id="codEnunciado{{ enun.id }}" type="a">
                             {% for opcion in enun.opciones_enunciado %}
                                 <li>
                                 {% if enun.tipo_respuesta == 0 %}
@@ -69,7 +69,7 @@
                                 {% endif %}
                                 {% if enun.tipo_respuesta == 1 %}
                                     <div style="cursor: pointer;" class="custom-control custom-checkbox my-1">
-                                        <input name="lista_enunciado_{{ enun.id }}['{{ opcion.fr }}']" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
+                                        <input name="lista_enunciado_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
                                         <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">{{ opcion.opcion }}</label>
                                     </div>
                                 {% endif %}
@@ -83,7 +83,7 @@
                                 {% endif %}
                                 {% if enun.tipo_respuesta == 3 %}
                                     <div style="cursor: pointer;" class="custom-control custom-checkbox my-1">
-                                        <input name="lista_enunciado_{{ enun.id }}['{{ opcion.fr }}']" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
+                                        <input name="lista_enunciado_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
                                         <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">
                                             <img class="img-fluid" src="{{ opcion.opcion_img }}" width="300px">
                                         </label>
@@ -96,7 +96,7 @@
                     </ol>
                 </div>
                 <div class="col-6 offset-6">
-                    <button id="enviarEvaluacion" type="submit" class="btn btn-outline-success">Enviar evaluacion</button>
+                    <button id="enviarEvaluacion" type="button" class="btn btn-outline-success">Enviar evaluacion</button>
                 </div>
             </div>
         </form>
