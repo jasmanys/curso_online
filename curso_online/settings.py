@@ -80,19 +80,21 @@ WSGI_APPLICATION = 'curso_online.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_curso_online',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': '127.0.0.1',
+        #'HOST': '18.221.58.128',
         'PORT': '5432',
+        'ATOMIC_REQUESTS': True,
     }
-}"""
+}
 
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db_curso_online.sqlite3'),
@@ -100,7 +102,7 @@ DATABASES = {
     'OPTIONS': {
         'timeout': 5,
     }
-}
+}"""
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 

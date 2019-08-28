@@ -34,7 +34,7 @@ def abrir_curso(request, curso_nombre, curso_id):
                     if EstudianteSubModulo.objects.filter(estudiante=estudiante_curso.estudiante, submodulos__id=modulos[i]['submodulos'][ind]['id']).exists():
                         modulos[i]['submodulos'][ind]['terminado'] = submodulo_terminado_icono
                         submod_term += 1
-                if submod_term == len(modulos[i]['submodulos']):
+                if submod_term == len(modulos[i]['submodulos']) and submod_term > 0:
                     try:
                         est_evaluacion = Evaluacion.objects.get(modulo__id=modulos[i]['id'])
                         est_enunciados = EnunciadoEvaluacion.objects.filter(evaluacion=est_evaluacion).values()

@@ -2,30 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dump.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0021_auto_20190826_2158.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/newdb.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credentials.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/migrations/0002_auto_20190722_1542.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/migrations/0003_auto_20190722_1832.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/migrations/0004_estudiantesubmodulo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/migrations/0005_auto_20190803_2223.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/migrations/0006_auto_20190805_2047.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/curso/migrations/0007_auto_20190811_1019.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/curso/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/curso_online/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/curso_online/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_enunciado/img53_ry6g2on.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_enunciado/img58_9yhV61d.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_enunciado/img62_FdEJGbx.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/1d59f275-473.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/2816da8a-c41.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/299b0882-1a5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/2fca9022-7bf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/4e3644b4-77b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/b27ab082-6d2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/cb3a97ea-a2c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/fotos_opciones_enunciado/d29465c8-d23.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/evaluar_modulo.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/evaluar_modulo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_curso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/modulo/indice_modulo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/estudiante/evaluar_modulo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/estudiante/evaluar_modulo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dump.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/estudiante/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/estudiante/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/estudiante/migrations/0002_auto_20190810_1034.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/estudiante/migrations/0003_auto_20190810_1137.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0002_auto_20190722_0652.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0003_auto_20190722_0705.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0004_auto_20190722_0710.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0005_auto_20190722_1104.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0006_auto_20190722_1542.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0007_auto_20190722_1832.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0008_auto_20190722_2226.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0009_auto_20190722_2323.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0010_auto_20190724_1710.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0011_evaluacion_calificacion_minima.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0012_auto_20190805_2019.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0013_auto_20190805_2028.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0014_auto_20190805_2045.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0015_auto_20190805_2046.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0016_auto_20190806_2105.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0017_auto_20190815_1535.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0018_auto_20190824_0918.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0019_auto_20190824_1514.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0020_auto_20190825_1903.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/migrations/0021_auto_20190826_2158.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/newdb.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -217,6 +231,8 @@
       <workItem from="1566854705330" duration="11846000" />
       <workItem from="1566874295651" duration="5313000" />
       <workItem from="1566880164911" duration="467000" />
+      <workItem from="1567021029123" duration="1168000" />
+      <workItem from="1567025666614" duration="5607000" />
     </task>
     <servers />
   </component>
