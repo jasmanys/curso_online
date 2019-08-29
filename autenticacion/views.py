@@ -16,14 +16,17 @@ from estudiante.models import Estudiante
 
 @login_required(login_url='/login/')
 def registros_usuario(request):
-    data = {}
-    data['user'] = request.user
-    usuarios = User.objects.all().values()
-    for i in range(len(usuarios)):
-        if not Estudiante.objects.filter(usuario__id=usuarios[i]['id']).exists() and not usuarios[i]['is_superuser']:
-            usuarios[i]['no_es_estudiante'] = True
-    data['usuarios'] = usuarios
-    return render(request, 'usuario/listar_usuario.html', data)
+    if request.user.is_superuser:
+        data = {}
+        data['user'] = request.user
+        usuarios = User.objects.all().values()
+        for i in range(len(usuarios)):
+            if not Estudiante.objects.filter(usuario__id=usuarios[i]['id']).exists() and not usuarios[i]['is_superuser']:
+                usuarios[i]['no_es_estudiante'] = True
+        data['usuarios'] = usuarios
+        return render(request, 'usuario/listar_usuario.html', data)
+    else:
+        return redirect('/')
 
 @login_required(login_url='/login/')
 def editar_cuenta(request, user_id):
@@ -53,43 +56,49 @@ def editar_cuenta(request, user_id):
 
 @login_required(login_url='/login/')
 def registrar_cuenta(request):
-    data = {}
-    data['user'] = request.user
-    data['form'] = UserForm()
-    data['b'] = True
-    data['title'] = 'Registrar Cuenta'
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        m_user = User()
-        if request.POST['contrasena'] == request.POST['confirmar_contrasena']:
-            m_user.set_password(request.POST['contrasena'])
-            form.instance = m_user
-            if form.is_valid():
-                form.save()
-                data['exito'] = 'Se registró la cuenta <strong>{}</strong>'.format(form.instance.username)
-                data['form'] = UserForm()
+    if request.user.is_superuser:
+        data = {}
+        data['user'] = request.user
+        data['form'] = UserForm()
+        data['b'] = True
+        data['title'] = 'Registrar Cuenta'
+        if request.method == 'POST':
+            form = UserForm(request.POST)
+            m_user = User()
+            if request.POST['contrasena'] == request.POST['confirmar_contrasena']:
+                m_user.set_password(request.POST['contrasena'])
+                form.instance = m_user
+                if form.is_valid():
+                    form.save()
+                    data['exito'] = 'Se registró la cuenta <strong>{}</strong>'.format(form.instance.username)
+                    data['form'] = UserForm()
+                else:
+                    data['error'] = 'Hubo un error al registrar la cuenta'
+                    data['form'] = form
             else:
-                data['error'] = 'Hubo un error al registrar la cuenta'
+                data['error'] = 'Contraseñas no coinciden'
                 data['form'] = form
-        else:
-            data['error'] = 'Contraseñas no coinciden'
-            data['form'] = form
-    return render(request, 'usuario/form_usuario.html', data)
+        return render(request, 'usuario/form_usuario.html', data)
+    else:
+        return redirect('/')
 
 @login_required(login_url='/login/')
 def eliminar_cuenta(request, user_id):
     data = {}
     data['user'] = request.user
-    if request.user.id != user_id:
-        try:
-            with transaction.atomic():
-                user = User.objects.get(id=user_id)
-                user.delete()
-        except DatabaseError:
-            pass
-        except Exception:
-            pass
-    return redirect('/autenticacion/usuario/registros/')
+    if request.user.is_superuser:
+        if request.user.id != user_id:
+            try:
+                with transaction.atomic():
+                    user = User.objects.get(id=user_id)
+                    user.delete()
+            except DatabaseError:
+                pass
+            except Exception:
+                pass
+        return redirect('/autenticacion/usuario/registros/')
+    else:
+        return redirect('/')
 
 @login_required(login_url='/login/')
 def index(request):
