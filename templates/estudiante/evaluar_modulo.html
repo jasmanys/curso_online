@@ -63,19 +63,19 @@
                                 <li>
                                 {% if enun.tipo_respuesta == 0 %}
                                     <div style="cursor: pointer;" class="custom-control custom-radio my-1 mr-sm-2 text-break text-justify">
-                                        <input name="respuesta_opcion_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" id="respuesta_opcion_{{ opcion.fr }}" type="radio" class="custom-control-input" {% if opcion.respuesta %}checked{% endif %} />
+                                        <input name="respuesta_opcion_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" id="respuesta_opcion_{{ opcion.fr }}" type="radio" class="custom-control-input" />
                                         <label style="cursor: pointer;" class="custom-control-label" for="respuesta_opcion_{{ opcion.fr }}">{{ opcion.opcion }}</label>
                                     </div>
                                 {% endif %}
                                 {% if enun.tipo_respuesta == 1 %}
                                     <div style="cursor: pointer;" class="custom-control custom-checkbox my-1">
-                                        <input name="lista_enunciado_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
+                                        <input name="lista_enunciado_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}"  />
                                         <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">{{ opcion.opcion }}</label>
                                     </div>
                                 {% endif %}
                                 {% if enun.tipo_respuesta == 2 %}
                                     <div style="cursor: pointer;" class="custom-control custom-radio my-1 mr-sm-2">
-                                        <input name="respuesta_opcion_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
+                                        <input name="respuesta_opcion_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="radio" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}"  />
                                         <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">
                                             <img class="img-fluid" src="{{ opcion.opcion_img }}" width="300px">
                                         </label>
@@ -83,7 +83,7 @@
                                 {% endif %}
                                 {% if enun.tipo_respuesta == 3 %}
                                     <div style="cursor: pointer;" class="custom-control custom-checkbox my-1">
-                                        <input name="lista_enunciado_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}" {% if opcion.respuesta %}checked{% endif %} />
+                                        <input name="lista_enunciado_{{ enun.id }}" value="{'id_opcion': {{ opcion.id }},'tipo_respuesta': {{ enun.tipo_respuesta }}}" style="cursor: pointer;" type="checkbox" class="custom-control-input" id="lista_enunciado{{ opcion.fr }}"  />
                                         <label style="cursor: pointer;" class="custom-control-label" for="lista_enunciado{{ opcion.fr }}">
                                             <img class="img-fluid" src="{{ opcion.opcion_img }}" width="300px">
                                         </label>
