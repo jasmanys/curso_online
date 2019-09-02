@@ -64,10 +64,8 @@ def registrar_cuenta(request):
         data['title'] = 'Registrar Cuenta'
         if request.method == 'POST':
             form = UserForm(request.POST)
-            m_user = User()
             if request.POST['contrasena'] == request.POST['confirmar_contrasena']:
-                m_user.set_password(request.POST['contrasena'])
-                form.instance = m_user
+                form.instance.set_password(request.POST['contrasena'])
                 if form.is_valid():
                     form.save()
                     data['exito'] = 'Se registró la cuenta <strong>{}</strong>'.format(form.instance.username)

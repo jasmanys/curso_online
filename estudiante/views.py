@@ -111,20 +111,26 @@ def registrar_estudiante(request):
         if request.method == 'POST':
             form_user = UserForm(request.POST)
             form_estudiante = EstudianteForm(request.POST)
-            try:
-                with transaction.atomic():
-                    if form_user.is_valid() and form_estudiante.is_valid():
-                        form_user.save()
-                        est = Estudiante(usuario=form_user.instance)
-                        form_estudiante = EstudianteForm(request.POST, instance=est)
-                        form_estudiante.save()
-                        data['exito'] = 'El estudiante <strong>Username: {} - Nombres: {} - Cédula: {}</strong> se registró correctamente'.format(form_user.instance.username, form_user.instance.first_name + ' ' + form_user.instance.last_name, form_estudiante.instance.cedula)
-                    else:
-                        data['form_user'] = form_user
-                        data['form_estudiante'] = form_estudiante
-                        data['error'] = 'Error en los datos'
-            except DatabaseError:
-                data['error'] = 'Error al registrar'
+            if request.POST['password'] == request.POST['password2']:
+                try:
+                    with transaction.atomic():
+                        if form_user.is_valid() and form_estudiante.is_valid():
+                            form_user.instance.set_password(request.POST['password'])
+                            form_user.save()
+                            est = Estudiante(usuario=form_user.instance)
+                            form_estudiante = EstudianteForm(request.POST, instance=est)
+                            form_estudiante.save()
+                            data['exito'] = 'El estudiante <strong>Username: {} - Nombres: {} - Cédula: {}</strong> se registró correctamente'.format(form_user.instance.username, form_user.instance.first_name + ' ' + form_user.instance.last_name, form_estudiante.instance.cedula)
+                        else:
+                            data['form_user'] = form_user
+                            data['form_estudiante'] = form_estudiante
+                            data['error'] = 'Error en los datos'
+                except DatabaseError:
+                    data['error'] = 'Error al registrar'
+                    data['form_user'] = form_user
+                    data['form_estudiante'] = form_estudiante
+            else:
+                data['error'] = 'Contraseña no confimada'
                 data['form_user'] = form_user
                 data['form_estudiante'] = form_estudiante
         return render(request, 'estudiante/form_estudiante.html', data)
