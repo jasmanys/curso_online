@@ -47,12 +47,12 @@
                 <ul class="navbar-nav">
                     <li class="nav-item px-lg-4 ml-lg-5">
                         <a style="color: rgb(7, 7, 70);" href="/" class="nav-link">
-                            Cursos
+                            <i class="fas fa-book"></i> Cursos
                         </a>
                     </li>
                     <li class="nav-item px-lg-4 ml-lg-4">
                         <a style="color: rgb(7, 7, 70);" href="http://186.3.65.147:8069/page/homepage" class="nav-link">
-                            Escuela Superior Naval
+                            <i class="fas fa-school"></i> Escuela Superior Naval
                         </a>
                     </li>
                     {% if user.is_superuser %}
@@ -60,13 +60,13 @@
                         <a style="color: rgb(7, 7, 70);" href="#" class="nav-link dropdown-toggle"
                          data-toggle="dropdown" id="navbardropest" data-slidebar="true" role="button"
                             aria-haspopup="true" aria-expanded="false">
-                            Estudiantes
+                            <i class="fas fa-user-graduate"></i> Estudiantes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbardropest">
-                            <a href="/estudiante/registros/" class="dropdown-item">Registros</a>
-                            <a href="/estudiante/nuevo/" class="dropdown-item">Añadir</a>
-                            <a href="/estudiante/asignar_curso/" class="dropdown-item">Asignar Cursos</a>
-                            <a href="/estudiante/cursos_asignados/" class="dropdown-item">Cursos Asignados</a>
+                            <a href="/estudiante/registros/" class="dropdown-item"><i class="fas fa-users"></i> Registros</a>
+                            <a href="/estudiante/nuevo/" class="dropdown-item"><i class="fas fa-address-card"></i> Añadir</a>
+                            <a href="/estudiante/asignar_curso/" class="dropdown-item"><i class="fas fa-book-medical"></i> Asignar Cursos</a>
+                            <a href="/estudiante/cursos_asignados/" class="dropdown-item"><i class="fas fa-chalkboard-teacher"></i> Cursos Asignados</a>
                         </div>
                     </li>
                     {% endif %}
@@ -74,16 +74,16 @@
                         <a style="color: rgb(7, 7, 70);" href="#" class="nav-link dropdown-toggle"
                             data-toggle="dropdown" id="navbardrop" data-slidebar="true" role="button"
                             aria-haspopup="true" aria-expanded="false">
-                            {{ user.username }}
+                            <i class="fas fa-user"></i> {{ user.username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbardrop">
                             {% if user.is_superuser %}
-                                <a href="/autenticacion/usuario/registros/" class="dropdown-item">Usuarios</a>
-                                <a href="/autenticacion/usuario/nuevo/" class="dropdown-item">Añadir Usuario</a>
-                                <a href="/autenticacion/usuario/{{ user.id }}/mi_cuenta/" class="dropdown-item">Mi Cuenta</a>
+                                <a href="/autenticacion/usuario/registros/" class="dropdown-item"><i class="fas fa-users"></i> Usuarios</a>
+                                <a href="/autenticacion/usuario/nuevo/" class="dropdown-item"><i class="fas fa-user-plus"></i> Añadir Usuario</a>
+                                <a href="/autenticacion/usuario/{{ user.id }}/mi_cuenta/" class="dropdown-item"><i class="fas fa-user-circle"></i> Mi Cuenta</a>
                             {% endif %}
                             <div class="dropdown-divider"></div>
-                            <a href="/logout/" class="dropdown-item">Salir</a>
+                            <a href="/logout/" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Salir</a>
                         </div>
                     </li>
                 </ul>

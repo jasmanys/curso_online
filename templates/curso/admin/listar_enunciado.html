@@ -78,11 +78,11 @@
                                 <td class="text-center">
                                     <div class="dropdown">
                                         <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Opción
+                                            <i class="fas fa-ellipsis-v"></i> Opción
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                            <a href="/evaluacion/editar/enunciado/{{ enunciado.id }}/" class="dropdown-item">Editar</a>
-                                            <button type="button" onclick="eliminar_enunciado('{{ enunciado.id }}', '{{ enunciado.enunciado }}')" class="dropdown-item">Eliminar</button>
+                                            <a href="/evaluacion/editar/enunciado/{{ enunciado.id }}/" class="dropdown-item"><i class="fas fa-edit"></i> Editar</a>
+                                            <button type="button" onclick="eliminar_enunciado('{{ enunciado.id }}', '{{ enunciado.enunciado }}')" class="dropdown-item"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                         </div>
                                     </div>
                                 </td>

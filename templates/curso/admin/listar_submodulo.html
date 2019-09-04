@@ -84,27 +84,27 @@
                                     {% if eval %}
                                         <div class="dropdown">
                                             <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Opción
+                                                <i class="fas fa-ellipsis-v"></i> Opción
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="btn_opcion">
                                                 {% if submodulo.count_enunciado > 0 %}
                                                     <a href="/evaluacion/registros/enunciado/{{ submodulo.id }}/" class="dropdown-item">
-                                                        Enunciados Registrados
+                                                        <i class="fas fa-tasks"></i> Enunciados Registrados
                                                     </a>
                                                 {% endif %}
                                                 <a href="/evaluacion/agregar/enunciado/{{ submodulo.id }}/" class="dropdown-item">
-                                                    Agregar Enunciado
+                                                    <i class="fas fa-plus-square"></i> Agregar Enunciado
                                                 </a>
                                             </div>
                                         </div>
                                     {% else %}
                                         <div class="dropdown">
                                             <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Opción
+                                                <i class="fas fa-ellipsis-v"></i> Opción
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                                <a href="/curso/submodulo/editar/{{ submodulo.id }}/" class="dropdown-item">Editar</a>
-                                                <button onclick="eliminar_submodulo('{{ submodulo.id }}', '{{ submodulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
+                                                <a href="/curso/submodulo/editar/{{ submodulo.id }}/" class="dropdown-item"><i class="fas fa-edit"></i> Editar</a>
+                                                <button onclick="eliminar_submodulo('{{ submodulo.id }}', '{{ submodulo.titulo }}')" class="dropdown-item" type="button"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                             </div>
                                         </div>
                                     {% endif %}

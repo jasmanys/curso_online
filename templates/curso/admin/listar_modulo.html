@@ -92,29 +92,29 @@
                                         {% if modulo.eval_count > 0 %}
                                             <div class="dropdown">
                                                 <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Opción
+                                                    <i class="fas fa-ellipsis-v"></i> Opción
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                                    <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="dropdown-item">Ver Evaluación Registrada</a>
-                                                    <a href="/evaluacion/eliminar/{{ modulo.id }}/" class="dropdown-item">Eliminar Evaluación</a>
+                                                    <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="dropdown-item"><i class="fas fa-tasks"></i> Ver Evaluación Registrada</a>
+                                                    <a href="/evaluacion/eliminar/{{ modulo.id }}/" class="dropdown-item"><i class="fas fa-trash-alt"></i> Eliminar Evaluación</a>
                                                 </div>
                                             </div>
                                         {% else %}
-                                            <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="btn btn-outline-primary">Registrar Evaluación</a>
+                                            <a href="/evaluacion/listar/submodulo/{{ modulo.id }}/" class="btn btn-outline-primary"><i class="fas fa-plus-square"></i> Registrar Evaluación</a>
                                         {% endif %}
                                     {% else %}
                                         <div class="dropdown">
                                           <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="btn_opcion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Opción
+                                            <i class="fas fa-ellipsis-v"></i> Opción
                                           </button>
                                           <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                              <a href="/curso/submodulo/nuevo/{{ modulo.id }}/" class="dropdown-item">Agregar SubMódulo</a>
-                                              <a href="/curso/submodulo/registros/{{ modulo.id }}/" class="dropdown-item">Ver SubMódulos Registrados</a>
+                                              <a href="/curso/submodulo/nuevo/{{ modulo.id }}/" class="dropdown-item"><i class="fas fa-plus-square"></i> Agregar SubMódulo</a>
+                                              <a href="/curso/submodulo/registros/{{ modulo.id }}/" class="dropdown-item"><i class="fas fa-bars"></i> Ver SubMódulos Registrados</a>
                                               {% if modulo.submodulos_count and modulo.submodulos_count > 0 %}
-                                                  <a href="/curso/evaluacion/nuevo/{{ modulo.id }}/" class="dropdown-item">Agregar Evaluación</a>
+                                                  <a href="/curso/evaluacion/nuevo/{{ modulo.id }}/" class="dropdown-item"><i class="fas fa-tasks"></i> Agregar Evaluación</a>
                                               {% endif %}
-                                              <a href="/curso/modulo/editar/{{ modulo.id }}/" class="dropdown-item">Editar</a>
-                                              <button onclick="eliminar_modulo('{{ modulo.id }}', '{{ modulo.titulo }}')" class="dropdown-item" type="button">Eliminar</button>
+                                              <a href="/curso/modulo/editar/{{ modulo.id }}/" class="dropdown-item"><i class="fas fa-edit"></i> Editar</a>
+                                              <button onclick="eliminar_modulo('{{ modulo.id }}', '{{ modulo.titulo }}')" class="dropdown-item" type="button"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                           </div>
                                         </div>
                                     {% endif %}
