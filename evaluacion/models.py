@@ -104,6 +104,7 @@ class EstudianteEvaluacion(models.Model):
     estudiante = models.ForeignKey(EstudianteCurso, on_delete=models.PROTECT)
     evaluacion = models.ForeignKey(Evaluacion, on_delete=models.PROTECT)
     calificacion = models.FloatField()
+    fecha = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return 'Estudiante: {} - Evaluacion: {} - Calificacion: {}'.format(self.estudiante.estudiante.nombres(),

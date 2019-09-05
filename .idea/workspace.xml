@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5325506e-90ce-418c-90fe-b05d752cfa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/js/form_asignar_curso.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluacion/migrations/0002_estudianteevaluacion_fecha.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/form_enunciado.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/form_enunciado.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/curso/admin/form_enunciado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/curso/admin/form_enunciado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/estudiante/form_asignar_curso.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/estudiante/form_asignar_curso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/estudiante/lista_cursos_asignados.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/estudiante/lista_cursos_asignados.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/estudiante/listar_estudiante.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/estudiante/listar_estudiante.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuario/form_usuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuario/form_usuario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuario/listar_usuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuario/listar_usuario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_curso_online.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_curso_online.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -209,6 +204,7 @@
       <workItem from="1567549699595" duration="686000" />
       <workItem from="1567553623611" duration="6391000" />
       <workItem from="1567595559193" duration="3863000" />
+      <workItem from="1567704248379" duration="1229000" />
     </task>
     <servers />
   </component>
