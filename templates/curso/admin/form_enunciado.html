@@ -18,29 +18,7 @@
         </div>
     </nav>
     <div class="container mt-3 mb-5">
-    <!-- Modal -->
-        <div class="modal fade" id="alertaGuardar" tabindex="-1" role="dialog" aria-labelledby="alertaGuardarCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header text-center">
-                <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body text-justify text-break">
-                  <center>¿Está seguro de guardar?<br>
-                      <strong>Asegúrese de haber ingresado todas las alternativas.</strong></center>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
-                <button id="aceptarGuardar" type="button" class="btn btn-success">
-                    Aceptar
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-white">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -79,6 +57,29 @@
                 {% endif %}
                 <form id="frm" action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                <!-- Modal -->
+        <div class="modal fade" id="alertaGuardar" tabindex="-1" role="dialog" aria-labelledby="alertaGuardarCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h5 class="modal-title" id="alertaTitulo">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-justify text-break">
+                  <center>¿Está seguro de guardar?<br>
+                      <strong>Asegúrese de haber ingresado todas las alternativas.</strong></center>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                <button id="aceptarGuardar" type="submit" class="btn btn-success">
+                    Aceptar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
                     {{ form_enunciado_evaluacion.evaluacion }}
                     {{ form_enunciado_evaluacion.submodulo }}
                     <div class="form-group">

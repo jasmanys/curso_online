@@ -119,12 +119,12 @@
                                             Opción
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                            <a href="/autenticacion/usuario/editar/{{ usuario.id }}/" class="dropdown-item">Editar</a>
+                                            <a href="/autenticacion/usuario/editar/{{ usuario.id }}/" class="dropdown-item"><i class="fas fa-edit"></i> Editar</a>
                                             {% if user.id != usuario.id %}
-                                            <button type="button" onclick="eliminar_usuario('{{ usuario.id }}', 'Username: {{ usuario.username }} - Nombres: {{ usuario.first_name }} {{ usuario.last_name }} - E-Mail: {{ usuario.email }}')" class="dropdown-item">Eliminar</button>
+                                            <button type="button" onclick="eliminar_usuario('{{ usuario.id }}', 'Username: {{ usuario.username }} - Nombres: {{ usuario.first_name }} {{ usuario.last_name }} - E-Mail: {{ usuario.email }}')" class="dropdown-item"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                             {% endif %}
                                             {% if usuario.no_es_estudiante %}
-                                             <a href="/estudiante/usuario/nuevo/{{ usuario.id }}/" class="dropdown-item">Asignar como estudiante</a>
+                                             <a href="/estudiante/usuario/nuevo/{{ usuario.id }}/" class="dropdown-item"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Asignar como estudiante</a>
                                             {% endif %}
                                         </div>
                                     </div>

@@ -79,8 +79,8 @@
                                             Opción
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                            <a href="/estudiante/cursos_asignados/editar/{{ ca.id }}/" class="dropdown-item">Editar</a>
-                                            <button onclick="eliminar_curso_asignado('{{ ca.id }}', 'Username: {{ ca.estudiante.usuario.username}} - Cédula: {{ ca.estudiante.cedula}} - Nombres: {{ ca.estudiante.usuario.first_name }} {{ ca.estudiante.usuario.last_name }}')" class="dropdown-item" type="button">Eliminar</button>
+                                            <a href="/estudiante/cursos_asignados/editar/{{ ca.id }}/" class="dropdown-item"><i class="fas fa-edit"></i> Editar</a>
+                                            <button onclick="eliminar_curso_asignado('{{ ca.id }}', 'Username: {{ ca.estudiante.usuario.username}} - Cédula: {{ ca.estudiante.cedula}} - Nombres: {{ ca.estudiante.usuario.first_name }} {{ ca.estudiante.usuario.last_name }}')" class="dropdown-item" type="button"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                         </div>
                                     </div>
                                 </td>

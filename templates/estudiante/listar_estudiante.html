@@ -101,8 +101,8 @@
                                             Opción
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btn_opcion">
-                                            <a href="/estudiante/editar/{{ estudiante.id }}/" class="dropdown-item">Editar</a>
-                                            <button onclick="eliminar_estudiante('{{ estudiante.id }}', '{{ estudiante.usuario.username}};{{ estudiante.cedula}};{{ estudiante.usuario.first_name }} {{ estudiante.usuario.last_name }}')" class="dropdown-item" type="button">Eliminar</button>
+                                            <a href="/estudiante/editar/{{ estudiante.id }}/" class="dropdown-item"><i class="fas fa-edit"></i> Editar</a>
+                                            <button onclick="eliminar_estudiante('{{ estudiante.id }}', '{{ estudiante.usuario.username}};{{ estudiante.cedula}};{{ estudiante.usuario.first_name }} {{ estudiante.usuario.last_name }}')" class="dropdown-item" type="button"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                         </div>
                                     </div>
                                 </td>

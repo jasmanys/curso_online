@@ -261,12 +261,21 @@ $(function () {
             $(arr[arr.length - 1]).val($('#imgfc'+arr.length).attr('src'));
             $('#id_lista_de_enunciados').html(valores_select);
         }
-        $('#alertaGuardar').modal('show');
+
+        var esValido = false;
+        $('#id_lista_de_enunciados option').map(function(){if(this.value.split('|')[1] == "true"){esValido = true;}});
+        if(esValido){
+            $('#alertaGuardar').modal('show');
+        }else{
+            alert("Asegúrese de haber ingresado todas las alternativas y haber señalado la correcta");
+        }
     });
-    $('#aceptarGuardar').click(function () {
+    /*$('#aceptarGuardar').click(function () {
+        $('#frm').submit();
+    });*/
+    $('#frm').submit(function (e) {
         $('#guardar, #aceptarGuardar').html(cargando);
         $('#guardar, #aceptarGuardar').attr("disabled", true);
-        $('#frm').submit();
     });
     $('#id_foto').change(function (e) {
         var file = e.target.files[0];
