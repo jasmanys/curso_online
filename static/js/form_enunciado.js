@@ -1,5 +1,6 @@
 const cargando = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 const err = 'Guardar Módulo';
+var _cerrar = true;
 function button_enunciado(label, funcion){
     var html = '<div class="input-group mb-3">';
     html += '<div class="input-group-prepend">';
@@ -274,6 +275,7 @@ $(function () {
         $('#frm').submit();
     });*/
     $('#frm').submit(function (e) {
+        _cerrar = false;
         $('#guardar, #aceptarGuardar').html(cargando);
         $('#guardar, #aceptarGuardar').attr("disabled", true);
     });
@@ -302,4 +304,16 @@ function eliminarImgEnunciado(){
 function eliminarImgDelEnunciado(){
     $('#id_eliminar_foto_enunciado').val('true');
     eliminarImgEnunciado();
+}
+window.onbeforeunload = function() {
+    if(_cerrar){
+        var confirmar = confirm("¿Seguro que deseas cerrar la ventana?");
+        if(confirmar){
+            window.onunload = function () {
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
 }

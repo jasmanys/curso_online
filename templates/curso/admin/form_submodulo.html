@@ -103,13 +103,6 @@
 {% block script %}
 <!-- Initialize Swiper -->
     {{ form.media }}
-  <script>
-    const cargando = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
-    const err = 'Guardar SubMódulo';
-    $('#frm').on('submit',() =>{
-        $('#guardar').html(cargando);
-        $('#guardar').attr("disabled", true);
-    });
-  </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="/static/js/form_submodulo.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script>
 {% endblock %}
