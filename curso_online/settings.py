@@ -127,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-ec'
 
-TIME_ZONE = 'America/Bogota'
+TIME_ZONE = 'America/Guayaquil'
 
 USE_I18N = True
 
@@ -144,6 +144,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#ckeditor config
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = 'pillow'

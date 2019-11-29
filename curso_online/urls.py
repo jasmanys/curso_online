@@ -20,12 +20,15 @@ from django.urls import path, include
 
 from autenticacion.views import index
 from curso_online import settings
+from django.views.generic import RedirectView
 from login.views import *
 from django.views.static import serve
 from autenticacion.views import login_user, logout_user, forget_password
 admin.site.site_header = "Administracion de Cursos"
-
+favicon_view = RedirectView.as_view(url='/static/media/logo.ico', permanent=True)
 urlpatterns = [
+    #url favicon
+    url(r'^favicon\.ico$', favicon_view),
     path(r'', index),
     path(r'admin/', admin.site.urls),
     path(r'autenticacion/', include(('autenticacion.urls', 'autenticacion'))),
